@@ -2,7 +2,7 @@ name: "Bump frontend version"
 on:
   push:
     branches:
-      - erik/init-frontend
+      - main
     paths-ignore:
       - "./client/package.json"
       - "./client/CHANGELOG.md"
