@@ -4,8 +4,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - "package.json"
-      - "CHANGELOG.md"
+      - "./client/package.json"
+      - "./client/CHANGELOG.md"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,4 +22,4 @@ jobs:
           git-message: "chore(release): {version}"
           preset: "angular"
           tag-prefix: ""
-          output-file: "CHANGELOG.md"
+          output-file: "./client/CHANGELOG.md"
