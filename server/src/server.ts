@@ -1,7 +1,7 @@
-import { ApolloServer, gql } from "apollo-server";
-import { Db, MongoClient } from "mongodb";
+import { ApolloServer, gql } from 'apollo-server';
+import { Db, MongoClient } from 'mongodb';
 
-require("dotenv").config();
+require('dotenv').config();
 
 // The GraphQL schema
 const typeDefs = gql`
@@ -14,7 +14,7 @@ const typeDefs = gql`
 // A map of functions which return data for the schema.
 const resolvers = {
   Query: {
-    hello: () => "world",
+    hello: () => 'world',
   },
 };
 
@@ -23,7 +23,7 @@ let db: Db;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  subscriptions: { path: "/cheapifyme" },
+  subscriptions: { path: '/cheapifyme' },
   context: async () => {
     if (!db) {
       try {
@@ -33,10 +33,10 @@ const server = new ApolloServer({
         });
 
         if (!dbClient.isConnected()) await dbClient.connect();
-        db = dbClient.db("cheapifyme"); // database name
+        db = dbClient.db('cheapifyme'); // database name
       } catch (error) {
         console.log(
-          "--->error while connecting with graphql context (db)",
+          '--->error while connecting with graphql context (db)',
           error
         );
       }
@@ -50,3 +50,4 @@ const server = new ApolloServer({
 // server.listen({ port: PORT }).then(({ url }) => {
 //   console.log(`🚀  Server ready at ${url}`);
 // });
+export default server;
