@@ -2,7 +2,7 @@ name: "Bump frontend version"
 on:
   push:
     branches:
-      - main
+      - erik/init-frontend
     paths-ignore:
       - "./client/package.json"
       - "./client/CHANGELOG.md"
@@ -16,10 +16,10 @@ jobs:
           token: ${{ secrets.ACTIONS }}
       - name: "Bump version and push tag"
         uses: bahmutov/npm-install@v1
-          with: 
-            working-directory: | 
-              server
-              client 
+        with: 
+          working-directory: | 
+            server
+            client 
         uses: TriPSs/conventional-changelog-action@master
         with:
           github-token: ${{ secrets.ACTIONS }}
