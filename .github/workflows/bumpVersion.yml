@@ -16,6 +16,7 @@ jobs:
           token: ${{ secrets.ACTIONS }}
       - name: Bump version and push tag
         uses: TriPSs/conventional-changelog-action@master
+        run: cd client && npm i
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./client/package.json"
