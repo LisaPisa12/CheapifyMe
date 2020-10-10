@@ -14,13 +14,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACTIONS }}
-      - name: "Bump version and push tag"
+      - name: "Install npm modules"
         uses: bahmutov/npm-install@v1
-          with: 
-            working-directory: | 
-              server
-              client 
-        uses: TriPSs/conventional-changelog-action@master
+        with:
+          working-directory: |
+            server
+            client
+      - name: "Run changelog update on frontend"
+        uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./client/package.json"
@@ -28,6 +29,8 @@ jobs:
           preset: "angular"
           tag-prefix: ""
           output-file: "./client/CHANGELOG.md"
+      - name: "Run changelog update on server"
+        uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./server/package.json"
