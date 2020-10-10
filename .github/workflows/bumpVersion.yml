@@ -21,7 +21,7 @@ jobs:
             server
             client
       - name: "Run changelog update on frontend"
-        uses: TriPSs/conventional-changelog-action@master
+        uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./client/package.json"
