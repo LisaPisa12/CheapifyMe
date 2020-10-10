@@ -30,7 +30,7 @@ jobs:
           tag-prefix: ""
           output-file: "./client/CHANGELOG.md"
       - name: "Run changelog update on server"
-      uses: TriPSs/conventional-changelog-action@master
+        uses: TriPSs/conventional-changelog-action@master
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./server/package.json"
