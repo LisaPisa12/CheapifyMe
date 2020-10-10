@@ -1,4 +1,4 @@
-name: Bump frontend version
+name: "Bump frontend version"
 on:
   push:
     branches:
@@ -14,14 +14,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACTIONS }}
-      - name: Bump version and push tag
-        with: 
-          working-directory: | 
-            server
-            client 
+      - name: "Bump version and push tag"
         uses: bahmutov/npm-install@v1
+          with: 
+            working-directory: | 
+              server
+              client 
         uses: TriPSs/conventional-changelog-action@master
-        run: cd client && npm i
         with:
           github-token: ${{ secrets.ACTIONS }}
           version-file: "./client/package.json"
