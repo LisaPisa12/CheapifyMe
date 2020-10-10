@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "dependencies": {
     "next": "9.5.5",
@@ -18,6 +19,7 @@
     "@types/react": "^16.9.51",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
+    "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
   },
   "config": {
