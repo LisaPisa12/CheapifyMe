@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p ./src",
-    "start": "node 'dist/server.js'"
+    "build:live": "nodemon --watch ‘src/**/*.ts’ --exec “ts-node” src/server.ts",
+    "start": "npm run build:live"
   },
   "author": "",
   "license": "ISC",
