@@ -1,8 +1,6 @@
 name: Tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -20,4 +18,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd client && npm i && npm run test
+      - run: cd client && npm i && npm run test && cd ..
+      - run: cd server && npm i && npm run test
