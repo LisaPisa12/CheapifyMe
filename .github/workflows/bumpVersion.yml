@@ -15,6 +15,11 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS }}
       - name: Bump version and push tag
+        with: 
+          working-directory: | 
+            server
+            client 
+        uses: bahmutov/npm-install@v1
         uses: TriPSs/conventional-changelog-action@master
         with:
           github-token: ${{ secrets.ACTIONS }}
@@ -23,3 +28,10 @@ jobs:
           preset: "angular"
           tag-prefix: ""
           output-file: "./client/CHANGELOG.md"
+        with:
+          github-token: ${{ secrets.ACTIONS }}
+          version-file: "./server/package.json"
+          git-message: "chore(release): {version}"
+          preset: "angular"
+          tag-prefix: ""
+          output-file: "./server/CHANGELOG.md"
