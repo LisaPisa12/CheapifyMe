@@ -1,0 +1,76 @@
+.section {
+  display: grid;
+  height: 100%;
+  background-color: var(--primary-light);
+  grid-template-rows: repeat(3, minmax(100px, 1fr));
+}
+
+@media (min-width: 520px) {
+  .section {
+    border-radius: 10px;
+  }
+
+  .map_placeholder {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .childs:last-child {
+    border-radius: 50% 50% 10px 10px;
+  }
+}
+
+.childs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.image {
+  max-height: 250px;
+  width: auto;
+  height: auto;
+}
+
+.input {
+  height: 56px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+  width: 80%;
+}
+
+.input:focus,
+.button:focus {
+  outline: none;
+}
+
+.button {
+  margin-left: -50px;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gps_icon {
+  width: 24px;
+}
+
+.childs:last-child {
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.map_placeholder {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+}
