@@ -1,4 +1,4 @@
-import AppLayout from './layout';
+import AppLayout from '.';
 
 import { cleanup, render, screen } from '@testing-library/react';
 import { ReactNode } from 'react';

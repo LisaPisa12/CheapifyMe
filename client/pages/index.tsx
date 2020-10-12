@@ -1,3 +1,9 @@
+import Navbar from '../layout/Navbar';
+
 export default function Home() {
-  return <p>Test</p>;
+  return (
+    <>
+      <Navbar></Navbar>
+    </>
+  );
 }
