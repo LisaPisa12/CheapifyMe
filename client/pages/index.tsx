@@ -16,9 +16,14 @@ export default function Home() {
             type="textbox"
             placeholder="location"
             className={styles.input}
+            data-testid="location-textbox"
           />
           <button className={styles.button}>
-            <img src="gps.png" className={styles.gps_icon} />
+            <img
+              src="gps.png"
+              className={styles.gps_icon}
+              data-testid="location-button"
+            />
           </button>
         </div>
         <div className={styles.childs} data-testid="child">
