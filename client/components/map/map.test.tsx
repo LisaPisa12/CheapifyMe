@@ -1,16 +1,13 @@
 import Map from './map';
+import { initialize } from '@googlemaps/jest-mocks';
 import { cleanup, render, screen } from '@testing-library/react';
-
-global.google = {
-  maps: {
-    LatLng: class {},
-    Map: class {},
-  },
-} as any;
 
 const renderComponent = () => render(<Map mapType={'roadmap'} />);
 
 describe('App layout', () => {
+  beforeEach(() => {
+    initialize();
+  });
   afterEach(() => {
     cleanup();
   });
