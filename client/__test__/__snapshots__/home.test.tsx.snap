@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App layout Renders the layout 1`] = `
+<body>
+  <div>
+    <section
+      class="section"
+      data-testid="section"
+    >
+      <div
+        class="childs"
+        data-testid="child"
+      >
+        <img
+          class="image"
+          data-testid="img"
+          src="cheapifyme.gif"
+        />
+      </div>
+      <div
+        class="childs"
+        data-testid="child"
+      >
+        <input
+          class="input"
+          data-testid="location-textbox"
+          placeholder="location"
+          type="textbox"
+        />
+        <button
+          class="button"
+        >
+          <img
+            class="gps_icon"
+            data-testid="location-button"
+            src="gps.png"
+          />
+        </button>
+      </div>
+      <div
+        class="childs"
+        data-testid="child"
+      >
+        <img
+          class="map_placeholder"
+          data-testid="map-img"
+          src="map-placeholder.jpg"
+        />
+      </div>
+    </section>
+  </div>
+</body>
+`;
