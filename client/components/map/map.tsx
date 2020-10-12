@@ -1,15 +1,14 @@
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './map.module.css';
 
 interface IMap {
-  mapType: google.maps.MapTypeId;
-  mapTypeControl?: boolean;
+  mapType: google.maps.MapTypeId | string;
 }
 
 type GoogleLatLng = google.maps.LatLng;
 type GoogleMap = google.maps.Map;
 
-const Map: FunctionComponent<IMap> = ({ mapType, mapTypeControl = false }) => {
+const Map = ({ mapType }: IMap) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
@@ -30,21 +29,26 @@ const Map: FunctionComponent<IMap> = ({ mapType, mapTypeControl = false }) => {
         new google.maps.Map(ref.current, {
           zoom: zoomLevel,
           center: address,
-          mapTypeControl: false,
           disableDefaultUI: false,
-          zoomControl: true,
+          zoomControl: false,
           mapTypeId: mapType,
-          mapId: '2104dea2028a628c',
+          mapTypeControl: false,
+          mapId: process.env.NEXT_PUBLIC_MAPS_ID, //eslint-disable-line
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
-        })
+        } as google.maps.MapOptions)
       );
     }
   };
+
   return (
-    <div className={styles.map_container}>
-      <div ref={ref} className={styles.map_container_map}></div>
+    <div className={styles.map_container} data-testid="map_container">
+      <div
+        ref={ref}
+        className={styles.map_container_map}
+        data-testid="map_div"
+      ></div>
     </div>
   );
 };

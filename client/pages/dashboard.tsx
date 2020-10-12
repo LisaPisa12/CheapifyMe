@@ -16,7 +16,7 @@ function Dashboard() {
     <>
       {scriptLoaded && (
         // eslint-disable-next-line no-undef
-        <Map mapType={google.maps.MapTypeId.ROADMAP} mapTypeControl={true} />
+        <Map mapType={google.maps.MapTypeId.ROADMAP} />
       )}
     </>
   );
