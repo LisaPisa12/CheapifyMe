@@ -7,8 +7,10 @@ type IAppLayout = {
 
 export default function AppLayout({ children }: IAppLayout) {
   return (
-    <div className={styles.center}>
-      <main className={styles.main}>{children}</main>
+    <div className={styles.center} data-testid="center-div">
+      <main className={styles.main} data-testid="main">
+        {children}
+      </main>
     </div>
   );
 }
