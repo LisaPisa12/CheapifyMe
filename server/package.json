@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc -p ./src",
-    "build:live": "nodemon --watch ‘src/**/*.ts’ --exec “ts-node” src/server.ts",
+    "build:live": "nodemon --watch ‘src/**/*.ts’ --exec ts-node src/server.ts",
     "start": "npm run build:live",
     "commit": "git-cz",
     "test": "jest",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@types/mongodb": "^3.5.27",
+    "@types/mongoose": "^5.7.36",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "babel-jest": "^26.5.2",
@@ -39,6 +40,7 @@
     "husky": "^4.3.0",
     "jest": "^26.5.2",
     "lint-staged": "^10.4.0",
+    "mongoose": "^5.10.9",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
     "standard-version": "^9.0.0",
