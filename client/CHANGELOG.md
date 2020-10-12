@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/LisaPisa12/CheapifyMe/compare/v0.1.3...v0.1.4) (2020-10-12)
+
+
+### Tests
+
+* **home screen test:** add test for the home screen ([c1354fb](https://github.com/LisaPisa12/CheapifyMe/commit/c1354fbd2a335f91fb94db6dc3b70a0a943b8322))
+
 ### [0.1.3](https://github.com/LisaPisa12/CheapifyMe/compare/v0.1.1...v0.1.3) (2020-10-12)
 
 
