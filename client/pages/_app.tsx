@@ -1,4 +1,10 @@
 import '../styles/globals.css';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import ReduxThunk from 'redux-thunk';
+
+import { state } from '../types/redux';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
@@ -7,6 +13,38 @@ import { motion } from 'framer-motion';
 
 import AppLayout from '../layout/Container';
 import { CoordsProvider } from '../hooks/useCoords';
+
+const initialState: state = {
+  isLoading: false,
+  coords: {
+    latitude: 41.395039,
+    longitude: 12.19796
+  },
+  places: []
+};
+function reducer(
+  state = initialState,
+  action: { type: string; payload?: any }
+) {
+  switch (action.type) {
+    case 'SET_COORDINATES':
+      console.log('from coordinates action type:', action.payload);
+      return { ...state, coords: action.payload };
+
+    case 'SET_LOADING':
+      return { ...state, isLoading: action.payload };
+
+    case 'SET_PLACES':
+      return { ...state, places: action.payload };
+
+    default:
+      return state;
+  }
+}
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(ReduxThunk))
+);
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
@@ -30,23 +68,25 @@ function MyApp({ Component, pageProps, router }: AppProps) {
      user-scalable=0"
         />
       </Head>
-      <CoordsProvider>
-        <motion.div
-          key={router.route}
-          initial="pageInitial"
-          animate="pageAnimate"
-          variants={{
-            pageInitial: {
-              opacity: 0,
-            },
-            pageAnimate: {
-              opacity: 1,
-            },
-          }}
-        >
-          <Component {...pageProps} />
-        </motion.div>
-      </CoordsProvider>
+      <Provider store={store}>
+        <CoordsProvider>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: {
+                opacity: 0
+              },
+              pageAnimate: {
+                opacity: 1
+              }
+            }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </CoordsProvider>
+      </Provider>
     </AppLayout>
   );
 }
