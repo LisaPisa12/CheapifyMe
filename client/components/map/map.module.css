@@ -1,0 +1,10 @@
+.map_container {
+  display: flex;
+  justify-content: center;
+}
+
+.map_container_map {
+  height: 90vh;
+  width: 100%;
+  background-color: aqua;
+}
