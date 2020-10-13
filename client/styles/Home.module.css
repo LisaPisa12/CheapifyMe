@@ -56,6 +56,10 @@
   align-items: center;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .gps_icon {
   width: 24px;
 }
