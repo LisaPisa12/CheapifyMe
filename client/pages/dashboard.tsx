@@ -12,6 +12,7 @@ function Dashboard() {
       setScriptLoaded(true);
     });
   }, []);
+
   return (
     <>
       {scriptLoaded && (
