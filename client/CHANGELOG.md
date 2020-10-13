@@ -1,4 +1,22 @@
-## 0.1.2 (2020-10-10)
+## [0.1.3](https://github.com/LisaPisa12/CheapifyMe/compare/1.1.0...0.1.3) (2020-10-13)
+
+
+### Performance Improvements
+
+* **pwa:** add manifest.json to make the app a PWA ([05be0c4](https://github.com/LisaPisa12/CheapifyMe/commit/05be0c4a9619bc83a974bd80c6c22bc36d27af0e))
+
+
+
+# [1.1.0](https://github.com/LisaPisa12/CheapifyMe/compare/0.1.2...1.1.0) (2020-10-12)
+
+
+### Features
+
+* **layout:** create a basic mobile only layout ([75b8491](https://github.com/LisaPisa12/CheapifyMe/commit/75b849165c3123096f49e0bfd682be997d7f95c1))
+
+
+
+## [0.1.2](https://github.com/LisaPisa12/CheapifyMe/compare/e818a225fc1be4ec1f9c867ed9e9b527a491e6ad...0.1.2) (2020-10-10)
 
 
 ### Bug Fixes
