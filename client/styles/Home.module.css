@@ -60,6 +60,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  visibility: hidden;
+}
+
 .gps_icon {
   width: 24px;
 }

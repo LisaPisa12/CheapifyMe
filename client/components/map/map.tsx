@@ -3,12 +3,16 @@ import styles from './map.module.css';
 
 interface IMap {
   mapType: google.maps.MapTypeId | string;
+  coords: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 type GoogleLatLng = google.maps.LatLng;
 type GoogleMap = google.maps.Map;
 
-const Map = ({ mapType }: IMap) => {
+const Map = ({ mapType, coords }: IMap) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
@@ -19,8 +23,11 @@ const Map = ({ mapType }: IMap) => {
   useEffect(startMap, [map]);
 
   const defaultMapStart = (): void => {
-    const defaultAdress = new google.maps.LatLng(41.394846, 2.197848);
-    initMap(14, defaultAdress);
+    const defaultAdress = new google.maps.LatLng(
+      coords.latitude,
+      coords.longitude
+    );
+    initMap(17, defaultAdress);
   };
 
   const initMap = (zoomLevel: number, address: GoogleLatLng): void => {
@@ -37,6 +44,7 @@ const Map = ({ mapType }: IMap) => {
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
+          gestureHandling: 'cooperative',
         } as google.maps.MapOptions)
       );
     }
