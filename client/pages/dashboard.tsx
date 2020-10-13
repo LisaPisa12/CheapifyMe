@@ -13,15 +13,17 @@ function Dashboard() {
   useEffect(() => {
     const googleMapScript = loadMapApi();
     googleMapScript.addEventListener('load', () => {
-      setScriptLoaded(true);
+      setTimeout(() => setScriptLoaded(true), 2000);
     });
   }, []);
 
   return (
     <>
-      {scriptLoaded && (
+      {scriptLoaded ? (
         // eslint-disable-next-line no-undef
         <Map mapType={google.maps.MapTypeId.ROADMAP} coords={coords} />
+      ) : (
+        <p>Loading</p>
       )}
     </>
   );

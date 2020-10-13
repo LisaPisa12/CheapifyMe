@@ -3,10 +3,12 @@ import '../styles/globals.css';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 
+import { motion } from 'framer-motion';
+
 import AppLayout from '../layout/Container';
 import { CoordsProvider } from '../hooks/useCoords';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <AppLayout>
       <Head>
@@ -29,7 +31,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <CoordsProvider>
-        <Component {...pageProps} />
+        <motion.div
+          key={router.route}
+          initial="pageInitial"
+          animate="pageAnimate"
+          variants={{
+            pageInitial: {
+              opacity: 0,
+            },
+            pageAnimate: {
+              opacity: 1,
+            },
+          }}
+        >
+          <Component {...pageProps} />
+        </motion.div>
       </CoordsProvider>
     </AppLayout>
   );
