@@ -2,10 +2,6 @@ import '../styles/globals.css';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-<<<<<<< HEAD
-=======
-import Head from 'next/head';
->>>>>>> d64c7339385aa0e088249f3e9ad75fd8caa11eaf
 
 import AppLayout from '../layout/Container';
 
@@ -13,7 +9,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppLayout>
       <Head>
-<<<<<<< HEAD
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
@@ -26,8 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0072de" />
 
-=======
->>>>>>> d64c7339385aa0e088249f3e9ad75fd8caa11eaf
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 

@@ -11,7 +11,6 @@ export default function Home() {
 
     const { latitude, longitude } = position.coords;
     setLocation({ latitude, longitude });
-    console.log(location);
   }
 
   function error() {
