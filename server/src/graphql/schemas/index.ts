@@ -4,7 +4,7 @@ import query from './query.schemas';
 import mutation from './mutation.schemas';
 import types from './types.schemas';
 
-module.exports = gql`
+export default gql`
   ${query}
   ${mutation}
   ${types}

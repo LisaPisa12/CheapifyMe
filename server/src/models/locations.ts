@@ -11,18 +11,21 @@ const offerSchema = new Schema({
   repeatEvery: String,
   description: String,
   score: Number,
-  active: Boolean,
+  available: Boolean,
 });
 
 const locationSchema = new Schema({
-  name: String,
+  name: String, // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number,
   location: {
-    type: String,
-    coordinates: [Number],
+    type: String, // need to set to "Point"
+    coordinates: [Number, Number], // need to set a range of values for the coords -180-180, -90-90
   },
   image: String,
   offers: [offerSchema],
 });
 
-module.exports = mongoose.model('Locations', locationSchema);
+const Location = mongoose.model('Location', locationSchema);
+const Offer = mongoose.model('Offer', offerSchema);
+
+export default { Location, Offer };

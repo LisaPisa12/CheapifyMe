@@ -1,10 +1,9 @@
 import query from './query.resolvers';
-import mutation from './mutation.resolvers';
-import types from './types.resolvers';
+// const types = require('./types.resolvers');
 
 const resolvers = {
   Query: query,
-  ...types,
+  // ...types,
 };
 
-module.exports = resolvers;
+export default resolvers;

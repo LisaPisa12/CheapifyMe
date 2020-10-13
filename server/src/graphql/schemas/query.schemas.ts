@@ -1,4 +1,4 @@
-module.exports = `
+export default `
 type Query {
-  getNearOffersByZip(zipcode:String):[Locations],
+  getNearOffersByZip(zipcode: Int): [Location]
 }`;

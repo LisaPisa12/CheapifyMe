@@ -1,19 +1,19 @@
 export default `
-  
-type Locations {
+
+type Location {
     name: String!
-    location:[Location]!
+    location:[Coordinates]!
     image: String
-    zipCode: Number
-    offers: [offersId]!
+    zipCode: Int
+    offers: [OffersId]!
   }
 
-  type Location {
+  type Coordinates {
     type: String
-    coordinates: Number //to be revised, dont thins its's correct
+    coordinates: Int 
   }
   
-  type offersId {
+  type OffersId {
     id:Int!
     consumableType: String
     offerType: String
@@ -22,8 +22,9 @@ type Locations {
     repeat: Boolean
     repeatEvery: String
     description: String
-    score: Number
+    score: Int
     active: Boolean
   }
-  
+
+
 `;

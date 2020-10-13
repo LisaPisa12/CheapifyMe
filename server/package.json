@@ -10,7 +10,8 @@
     "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "addMocks": "mongoimport --jsonArray --db cheapifyme --collection locations --file ./src/mocks/data.json"
   },
   "author": "",
   "license": "ISC",
@@ -37,10 +38,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "graphql-geojson": "^1.0.0",
     "husky": "^4.3.0",
     "jest": "^26.5.2",
     "lint-staged": "^10.4.0",
     "mongoose": "^5.10.9",
+    "neo4j-graphql-js": "^2.16.4",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
     "standard-version": "^9.0.0",
