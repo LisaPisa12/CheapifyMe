@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import styles from '../styles/Home.module.css';
+import { CoordsContext } from '../hooks/useCoords';
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
-  const [location, setLocation] = useState({});
+  const { setCoords } = useContext(CoordsContext);
+
+  const router = useRouter();
 
   function success(position: any) {
-    console.log(position);
-
     const { latitude, longitude } = position.coords;
-    setLocation({ latitude, longitude });
+    console.log(setCoords);
+    if (setCoords) {
+      setCoords({ latitude, longitude });
+    }
+    router.push('/dashboard');
   }
 
-  function error() {
+  function error(error: any) {
+    // Tell the user to add a direction manually and disable the button
     console.log(error);
   }
 

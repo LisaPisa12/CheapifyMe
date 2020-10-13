@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 
 import AppLayout from '../layout/Container';
+import { CoordsProvider } from '../hooks/useCoords';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -27,7 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
      user-scalable=0"
         />
       </Head>
-      <Component {...pageProps} />
+      <CoordsProvider>
+        <Component {...pageProps} />
+      </CoordsProvider>
     </AppLayout>
   );
 }
