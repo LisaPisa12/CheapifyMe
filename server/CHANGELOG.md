@@ -1,3 +1,27 @@
+# [1.2.0](https://github.com/LisaPisa12/CheapifyMe/compare/0.1.3...1.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **map component test:** changed the test for the Map component ([e483910](https://github.com/LisaPisa12/CheapifyMe/commit/e4839106bb7b331c6ce45247b5a4dabd8e28b6a8))
+* **package lock json:** deleted pacakge-lock.json for merge cponflict ([200479f](https://github.com/LisaPisa12/CheapifyMe/commit/200479f249e65fb900835bf3552ab63d2f416152))
+
+
+### Features
+
+* **component:** map compomnent that calls google maps API and returns a stylized version ([52832dc](https://github.com/LisaPisa12/CheapifyMe/commit/52832dcd7f0891ffd594377e01fdb9c02af8fdd1))
+
+
+
+## [0.1.3](https://github.com/LisaPisa12/CheapifyMe/compare/1.1.0...0.1.3) (2020-10-13)
+
+
+### Performance Improvements
+
+* **pwa:** add manifest.json to make the app a PWA ([05be0c4](https://github.com/LisaPisa12/CheapifyMe/commit/05be0c4a9619bc83a974bd80c6c22bc36d27af0e))
+
+
+
 # [1.1.0](https://github.com/LisaPisa12/CheapifyMe/compare/0.1.2...1.1.0) (2020-10-12)
 
 
