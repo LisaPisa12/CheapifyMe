@@ -1,18 +1,16 @@
 export default `
+scalar Point
 
 type Location {
     name: String!
-    location:[Coordinates]!
+    location:Point!
     image: String
     zipCode: Int
     offers: [OffersId]!
   }
 
-  type Coordinates {
-    type: String
-    coordinates: Int 
-  }
-  
+
+
   type OffersId {
     id:Int!
     consumableType: String
@@ -28,3 +26,12 @@ type Location {
 
 
 `;
+
+// input CoordinatesInput {
+//   lat:Float!
+//   lon:Float!
+// }
+// type Coordinates{
+//   lat:Float!
+//   lon:Float!
+// }

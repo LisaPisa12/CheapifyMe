@@ -18,8 +18,9 @@ const locationSchema = new Schema({
   name: String, // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number,
   location: {
-    type: String, // need to set to "Point"
-    coordinates: [Number, Number], // need to set a range of values for the coords -180-180, -90-90
+    longitude: Number,
+    latitude: Number,
+    // need to set a range of values for the coords -180-180, -90-90
   },
   image: String,
   offers: [offerSchema],

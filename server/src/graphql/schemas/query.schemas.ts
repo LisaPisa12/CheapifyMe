@@ -1,4 +1,4 @@
 export default `
 type Query {
-  getNearOffersByZip(zipcode: Int): [Location]
+  getNearOffersNearby(location:Point!): [Location]
 }`;

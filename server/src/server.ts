@@ -6,7 +6,6 @@ import Offer from './models/locations';
 import mongoose from 'mongoose';
 import typeDefs from './graphql/schemas';
 import resolvers from './graphql/resolvers';
-// import { makeAugmentedSchema } from 'neo4j-graphql-js';
 
 require('dotenv').config();
 
@@ -17,8 +16,6 @@ mongoose
   })
   .then(() => console.log('DB CONNECTED'))
   .catch((err) => console.log('--->error while connecting with graphql ', err));
-
-// const schema = makeAugmentedSchema({ typeDefs });
 
 const server = new ApolloServer({
   typeDefs,
