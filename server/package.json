@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc -p ./src",
-    "build:live": "nodemon --watch ‘src/**/*.ts’ --exec ts-node src/server.ts",
+    "build:live": "nodemon --watch './' --exec ts-node src/server.ts",
     "start": "npm run build:live",
     "commit": "git-cz",
     "test": "jest",
@@ -19,6 +19,7 @@
     "apollo-server": "^2.18.2",
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
+    "graphql-geojson-scalar-types": "0.0.5",
     "mongodb": "^3.6.2"
   },
   "devDependencies": {

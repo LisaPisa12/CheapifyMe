@@ -1,4 +1,4 @@
-import db from '../../models/locations';
+import { Location } from '../../models/locations';
 // @ts-ignore
 
 interface Point {
@@ -7,9 +7,11 @@ interface Point {
 }
 
 export default {
-  getNearOffersNearby: async (_: any, location: Point) => {
+  getNearOffersNearby: async (_: any, { location }: { location: Point }) => {
     try {
-      const nearbyPlaces = await db.Location.find({
+      console.log(location);
+
+      const nearbyPlaces = await Location.find({
         location: {
           $geoWithin: {
             $centerSphere: [
@@ -19,7 +21,11 @@ export default {
           },
         },
       });
+      console.log(nearbyPlaces);
+
       return nearbyPlaces;
-    } catch (e) {}
+    } catch (err) {
+      console.log(err);
+    }
   },
 };

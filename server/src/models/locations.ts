@@ -18,8 +18,7 @@ const locationSchema = new Schema({
   name: String, // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number,
   location: {
-    longitude: Number,
-    latitude: Number,
+    coordinates: [Number, Number],
     // need to set a range of values for the coords -180-180, -90-90
   },
   image: String,
@@ -29,4 +28,4 @@ const locationSchema = new Schema({
 const Location = mongoose.model('Location', locationSchema);
 const Offer = mongoose.model('Offer', offerSchema);
 
-export default { Location, Offer };
+export { Location, Offer };

@@ -9,8 +9,6 @@ type Location {
     offers: [OffersId]!
   }
 
-
-
   type OffersId {
     id:Int!
     consumableType: String
@@ -27,11 +25,12 @@ type Location {
 
 `;
 
-// input CoordinatesInput {
+// type Coordinates{
 //   lat:Float!
 //   lon:Float!
 // }
-// type Coordinates{
+
+// input CoordinatesInput {
 //   lat:Float!
 //   lon:Float!
 // }

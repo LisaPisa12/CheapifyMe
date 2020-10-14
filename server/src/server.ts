@@ -1,9 +1,9 @@
 import { ApolloServer } from 'apollo-server';
 // eslint-disable-next-line import/no-duplicates
-import Location from './models/locations';
-// eslint-disable-next-line import/no-duplicates
-import Offer from './models/locations';
 import mongoose from 'mongoose';
+import { Location, Offer } from './models/locations';
+// eslint-disable-next-line import/no-duplicates
+// import Offer from './models/locations';
 import typeDefs from './graphql/schemas';
 import resolvers from './graphql/resolvers';
 
