@@ -1,11 +1,16 @@
 import '../styles/globals.css';
+import { store } from '../redux/reducer';
+import { Provider } from 'react-redux';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 
-import AppLayout from '../layout/Container';
+import { motion } from 'framer-motion';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import AppLayout from '../layout/Container';
+import { CoordsProvider } from '../hooks/useCoords';
+
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <AppLayout>
       <Head>
@@ -31,7 +36,25 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         ></link>
       </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <CoordsProvider>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: {
+                opacity: 0
+              },
+              pageAnimate: {
+                opacity: 1
+              }
+            }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </CoordsProvider>
+      </Provider>
     </AppLayout>
   );
 }

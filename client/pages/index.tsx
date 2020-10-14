@@ -1,21 +1,32 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from '../styles/Home.module.css';
+import { setCoordinates } from '../redux/actions';
+import { RootState, coords } from '../types/redux';
 
 import Input from '../components/input';
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
-  const [location, setLocation] = useState({});
+  const dispatch = useDispatch();
 
-  function success(position: any) {
-    console.log(position);
+  const router = useRouter();
 
+  const testCoords = useSelector((state: RootState) => state.coords);
+
+  function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
-    setLocation({ latitude, longitude });
+    if (testCoords) {
+      dispatch(setCoordinates({ latitude, longitude }));
+      console.log(testCoords);
+    }
+    router.push('/dashboard');
   }
 
-  function error() {
+  function error(error: any) {
+    // Tell the user to add a direction manually and disable the button
     console.log(error);
   }
 
