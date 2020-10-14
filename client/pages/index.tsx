@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates } from '../utils/redux/actions';
+import { setCoordinates } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 
 export default function Home() {

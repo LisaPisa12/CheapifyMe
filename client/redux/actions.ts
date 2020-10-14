@@ -1,4 +1,4 @@
-import { coords, place } from '../../types/redux';
+import { coords, place } from '../types/redux';
 
 export function setCoordinates(coords: coords) {
   return {
