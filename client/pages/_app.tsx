@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import { store } from '../redux/reducer';
+import { Provider } from 'react-redux';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
@@ -30,23 +32,25 @@ function MyApp({ Component, pageProps, router }: AppProps) {
      user-scalable=0"
         />
       </Head>
-      <CoordsProvider>
-        <motion.div
-          key={router.route}
-          initial="pageInitial"
-          animate="pageAnimate"
-          variants={{
-            pageInitial: {
-              opacity: 0,
-            },
-            pageAnimate: {
-              opacity: 1,
-            },
-          }}
-        >
-          <Component {...pageProps} />
-        </motion.div>
-      </CoordsProvider>
+      <Provider store={store}>
+        <CoordsProvider>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: {
+                opacity: 0
+              },
+              pageAnimate: {
+                opacity: 1
+              }
+            }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </CoordsProvider>
+      </Provider>
     </AppLayout>
   );
 }
