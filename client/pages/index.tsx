@@ -46,7 +46,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.childs} data-testid="child">
-          <Input data-testid="location-textbox" />
+          <Input />
           <button
             className={styles.button}
             onClick={askGeolocalization}
