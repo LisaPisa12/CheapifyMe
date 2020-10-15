@@ -3,7 +3,6 @@ import { ApolloServer } from 'apollo-server';
 import mongoose from 'mongoose';
 import { Place, Offer } from './models/places';
 // eslint-disable-next-line import/no-duplicates
-// import Offer from './models/locations';
 import typeDefs from './graphql/schemas';
 import resolvers from './graphql/resolvers';
 

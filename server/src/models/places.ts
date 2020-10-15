@@ -18,6 +18,11 @@ interface IPlace extends mongoose.Document {
   name: String; // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number;
   location: {
+    type: {
+      type: String;
+      enum: ['Point'];
+      required: true;
+    };
     coordinates: [Number, Number];
     // need to set a range of values for the coords -180-180, -90-90
   };
@@ -41,6 +46,11 @@ const placeSchema = new Schema({
   name: String, // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number,
   location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+    },
     coordinates: [Number, Number],
     // need to set a range of values for the coords -180-180, -90-90
   },

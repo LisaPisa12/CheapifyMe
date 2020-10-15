@@ -4,9 +4,11 @@ export default {
   insertOffer: async (_: any, { id, offers }: any) => {
     try {
       const offerAtLocation = await Place.findById(id);
+      console.log(offerAtLocation);
       if (offerAtLocation) {
         offerAtLocation.offers.push(...offers);
         offerAtLocation.save();
+
         return offerAtLocation;
       }
     } catch (error) {
@@ -18,7 +20,7 @@ export default {
     try {
       const placeWithOffer = await Place.findById(id);
       if (placeWithOffer) {
-        placeWithOffer.offers.forEach((element) => {});
+        // placeWithOffer;
       }
     } catch (error) {
       console.log(error);
