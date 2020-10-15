@@ -1,20 +1,26 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from '../styles/Home.module.css';
-import { CoordsContext } from '../hooks/useCoords';
+import { setCoordinates } from '../redux/actions';
+import { RootState, coords } from '../types/redux';
+
+import Input from '../components/input';
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
-  const { setCoords } = useContext(CoordsContext);
+  const dispatch = useDispatch();
 
   const router = useRouter();
 
-  function success(position: any) {
+  const testCoords = useSelector((state: RootState) => state.coords);
+
+  function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
-    console.log(setCoords);
-    if (setCoords) {
-      setCoords({ latitude, longitude });
+    if (testCoords) {
+      dispatch(setCoordinates({ latitude, longitude }));
+      console.log(testCoords);
     }
     router.push('/dashboard');
   }
@@ -41,12 +47,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.childs} data-testid="child">
-          <input
-            type="textbox"
-            placeholder="location"
-            className={styles.input}
-            data-testid="location-textbox"
-          />
+          <Input data-testid="location-textbox" />
           <button
             className={styles.button}
             onClick={askGeolocalization}
