@@ -7,10 +7,10 @@ export function setCoordinates(coords: coords) {
   };
 }
 
-export function setLoading(isLoading: boolean) {
+export function setShowFloat(showFloat: boolean) {
   return {
-    type: 'SET_LOADING',
-    payload: isLoading
+    type: 'SET_SHOW_FLOAT',
+    payload: showFloat
   };
 }
 

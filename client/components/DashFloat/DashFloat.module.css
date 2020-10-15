@@ -1,0 +1,41 @@
+.float_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  margin-top: -300px;
+  height: auto;
+  min-height: 200px;
+}
+
+.float_info {
+  display: flex;
+  height: auto;
+  min-height: 160px;
+  width: 80%;
+  background-color:var(--white);
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.float_img {
+  height: auto;
+  min-height: 160px;
+  width: 120px;
+  border-radius: 10px 0 0 10px;
+}
+
+.float_text {
+  height: auto;
+  width: inherit;  
+  background-color: var(--white);
+  border-radius: 0 10px 10px 0;
+  padding: 10px;
+}
+
+.offer_icon {
+  margin-right: 10px;
+  height: 25px;
+  width: 25px;
+}
