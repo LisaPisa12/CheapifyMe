@@ -20,7 +20,6 @@ export default function Home() {
     const { latitude, longitude } = position.coords;
     if (testCoords) {
       dispatch(setCoordinates({ latitude, longitude }));
-      console.log(testCoords);
     }
     router.push('/dashboard');
   }

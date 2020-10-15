@@ -1,8 +1,15 @@
 import Home from '../pages';
 
+import { store } from '../redux/reducer';
+import { Provider } from 'react-redux';
 import { cleanup, render, screen } from '@testing-library/react';
 
-const renderComponent = () => render(<Home></Home>);
+const renderComponent = () =>
+  render(
+    <Provider store={store}>
+      <Home></Home>
+    </Provider>
+  );
 
 describe('App layout', () => {
   afterEach(() => {

@@ -18,13 +18,13 @@ export type place = {
 };
 
 export interface RootState {
-  isLoading: boolean;
+  showFloat: boolean;
   coords: coords;
   places: place[];
 }
 
 export interface state {
-  isLoading: boolean;
+  showFloat: boolean;
   coords: coords;
   places: place[];
 }
