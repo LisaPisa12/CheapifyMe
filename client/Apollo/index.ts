@@ -11,10 +11,9 @@ const getPlaces = gql`
     getOffersNearby(location: $location) {
       id
       name
-      
+      location
       image
-      offers: {
-        id
+      offers {
         consumableType
         offerType
         start
@@ -30,9 +29,5 @@ const getPlaces = gql`
 `;
 
 // This goes under name in the query
-// location {
-//   type
-//   coordinates
-// }
 
 export { client, getPlaces };

@@ -23,8 +23,10 @@ export default function Home() {
   });
 
   if (data && data.getOffersNearby) {
-    console.log(data);
     router.push('/dashboard');
+    if (data.getOffersNearby.length > 0) {
+      dispatch(setPlaces(data.getOffersNearby));
+    }
   }
 
   function success(position: { coords: coords }) {
