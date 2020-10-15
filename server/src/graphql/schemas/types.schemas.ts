@@ -1,16 +1,29 @@
 export default `
 scalar Point
 
-type Location {
+type Places {
+    id:String!
     name: String!
     location:Point!
     image: String
     zipCode: Int
-    offers: [OffersId]!
+    offers: [Offers]!
   }
 
-  type OffersId {
-    id:Int!
+  type Offers {
+    id:String!
+    consumableType: String!
+    offerType: String!
+    start: String!
+    end: String!
+    repeat: Boolean!
+    repeatEvery: String!
+    description: String!
+    score: Int!
+    available: Boolean!
+  }
+
+  input OffersInput {
     consumableType: String
     offerType: String
     start: String
@@ -19,10 +32,8 @@ type Location {
     repeatEvery: String
     description: String
     score: Int
-    active: Boolean
+    available: Boolean
   }
-
-
 `;
 
 // type Coordinates{

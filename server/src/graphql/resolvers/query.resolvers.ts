@@ -7,10 +7,8 @@ interface Point {
 }
 
 export default {
-  getNearOffersNearby: async (_: any, { location }: { location: Point }) => {
+  getOffersNearby: async (_: any, { location }: { location: Point }) => {
     try {
-      console.log(location);
-
       const nearbyPlaces = await Location.find({
         location: {
           $geoWithin: {
@@ -21,7 +19,6 @@ export default {
           },
         },
       });
-      console.log(nearbyPlaces);
 
       return nearbyPlaces;
     } catch (err) {
