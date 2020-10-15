@@ -6,6 +6,8 @@ import styles from '../styles/Home.module.css';
 import { setCoordinates } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 
+import Input from '../components/input';
+
 export default function Home() {
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
@@ -44,12 +46,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.childs} data-testid="child">
-          <input
-            type="textbox"
-            placeholder="location"
-            className={styles.input}
-            data-testid="location-textbox"
-          />
+          <Input data-testid="location-textbox" />
           <button
             className={styles.button}
             onClick={askGeolocalization}

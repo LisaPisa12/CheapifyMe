@@ -33,20 +33,6 @@
   height: auto;
 }
 
-.input {
-  height: 56px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border: none;
-  border-radius: 10px;
-  padding: 1em;
-  width: 80%;
-}
-
-.input:focus,
-.button:focus {
-  outline: none;
-}
-
 .button {
   margin-left: -50px;
   border: none;
@@ -60,8 +46,12 @@
   cursor: pointer;
 }
 
-.button:disabled {
-  visibility: hidden;
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  transform: scale(0.97);
 }
 
 .gps_icon {

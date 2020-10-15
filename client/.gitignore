@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/certificates
+certificates
 
 # testing
 /coverage
@@ -33,3 +33,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# ESLint
+.eslintcache
+
+# PWA
+public/workbox*
+public/sw*
