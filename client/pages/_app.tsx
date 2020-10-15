@@ -11,6 +11,10 @@ import AppLayout from '../layout/Container';
 import { CoordsProvider } from '../hooks/useCoords';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const divStyle = {
+    height: '100%',
+    width: '100%',
+  };
   return (
     <AppLayout>
       <Head>
@@ -44,12 +48,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             animate="pageAnimate"
             variants={{
               pageInitial: {
-                opacity: 0
+                opacity: 0,
               },
               pageAnimate: {
-                opacity: 1
-              }
+                opacity: 1,
+              },
             }}
+            style={divStyle}
           >
             <Component {...pageProps} />
           </motion.div>

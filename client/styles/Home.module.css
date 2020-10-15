@@ -50,8 +50,8 @@
   outline: none;
 }
 
-.button:disabled {
-  visibility: hidden;
+.button:active {
+  transform: scale(0.97);
 }
 
 .gps_icon {
