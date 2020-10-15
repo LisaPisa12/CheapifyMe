@@ -6,8 +6,8 @@ import ReduxThunk from 'redux-thunk';
 const initialState: state = {
   showFloat: false,
   coords: {
-    latitude: 41.395039,
-    longitude: 12.19796
+    latitude: 41.384723,
+    longitude: 2.199172
   },
   places: []
 };

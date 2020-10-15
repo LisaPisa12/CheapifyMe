@@ -8,7 +8,6 @@ import { AppProps } from 'next/app';
 import { motion } from 'framer-motion';
 
 import AppLayout from '../layout/Container';
-import { CoordsProvider } from '../hooks/useCoords';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const divStyle = {
@@ -39,24 +38,22 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         ></link>
       </Head>
       <Provider store={store}>
-        <CoordsProvider>
-          <motion.div
-            key={router.route}
-            initial="pageInitial"
-            animate="pageAnimate"
-            variants={{
-              pageInitial: {
-                opacity: 0
-              },
-              pageAnimate: {
-                opacity: 1
-              }
-            }}
-            style={divStyle}
-          >
-            <Component {...pageProps} />
-          </motion.div>
-        </CoordsProvider>
+        <motion.div
+          key={router.route}
+          initial="pageInitial"
+          animate="pageAnimate"
+          variants={{
+            pageInitial: {
+              opacity: 0
+            },
+            pageAnimate: {
+              opacity: 1
+            }
+          }}
+          style={divStyle}
+        >
+          <Component {...pageProps} />
+        </motion.div>
       </Provider>
     </AppLayout>
   );

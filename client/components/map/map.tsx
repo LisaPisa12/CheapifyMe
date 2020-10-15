@@ -18,7 +18,6 @@ type GoogleMap = google.maps.Map;
 const Map = ({ mapType, coords }: IMap) => {
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
-
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
     if (!map) {

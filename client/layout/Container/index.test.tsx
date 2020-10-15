@@ -1,10 +1,15 @@
 import AppLayout from '.';
-
+import { Provider } from 'react-redux';
+import { store } from '../../redux/reducer';
 import { cleanup, render, screen } from '@testing-library/react';
 import { ReactNode } from 'react';
 
 const renderComponent = (children: ReactNode) =>
-  render(<AppLayout>{children}</AppLayout>);
+  render(
+    <Provider store={store}>
+      <AppLayout>{children}</AppLayout>
+    </Provider>
+  );
 
 describe('App layout', () => {
   afterEach(() => {
