@@ -12,7 +12,7 @@ require('dotenv').config();
 mongoose
   .connect('mongodb://localhost:27017/cheapifyme', {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log('DB CONNECTED'))
   .catch((err) => console.log('--->error while connecting with graphql ', err));
@@ -23,10 +23,10 @@ const server = new ApolloServer({
   subscriptions: { path: '/cheapifyme' },
   context: async () => {
     return { db: { Location, Offer } };
-  },
+  }
 });
 
-const PORT = 3001;
+const PORT = 4000;
 server.listen({ port: PORT }).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
