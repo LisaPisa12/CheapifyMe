@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates } from '../redux/actions';
+import { setCoordinates, setPlaces } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
@@ -16,16 +16,29 @@ export default function Home() {
 
   const router = useRouter();
 
-  const { loading, error, data } = useQuery(getPlaces);
-
   const Coords = useSelector((state: RootState) => state.coords);
+
+  const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
+    fetchPolicy: 'network-only'
+  });
+
+  if (data && data.getOffersNearby) {
+    console.log(data);
+    router.push('/dashboard');
+  }
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
+
     if (Coords) {
       dispatch(setCoordinates({ latitude, longitude }));
+
+      getPlacesData({
+        variables: {
+          location: { type: 'Point', coordinates: [latitude, longitude] }
+        }
+      });
     }
-    router.push('/dashboard');
   }
 
   function positionError(error: any) {

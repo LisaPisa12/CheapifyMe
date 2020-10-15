@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 // eslint-disable-next-line import/no-duplicates
 import mongoose from 'mongoose';
-import { Location, Offer } from './models/locations';
+import { Place, Offer } from './models/places';
 // eslint-disable-next-line import/no-duplicates
 // import Offer from './models/locations';
 import typeDefs from './graphql/schemas';
@@ -22,7 +22,7 @@ const server = new ApolloServer({
   resolvers,
   subscriptions: { path: '/cheapifyme' },
   context: async () => {
-    return { db: { Location, Offer } };
+    return { db: { Place, Offer } };
   }
 });
 

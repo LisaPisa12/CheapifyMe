@@ -5,4 +5,11 @@ type Mutation {
     id: String!
     offers:[OffersInput]!
     ):Places 
-}`;
+
+  voteOffer(
+    id:String!
+    offers:[OffersInput]!
+    ):Places 
+}
+
+`;

@@ -7,13 +7,32 @@ const client = new ApolloClient({
 });
 
 const getPlaces = gql`
-  query {
-    getOffersNearby(
-      location: { type: "Point", coordinates: [-73.98241999999999, 40.579505] }
-    ) {
+  query($location: Point!) {
+    getOffersNearby(location: $location) {
+      id
       name
+      
+      image
+      offers: {
+        id
+        consumableType
+        offerType
+        start
+        end
+        repeat
+        repeatEvery
+        description
+        score
+        available
+      }
     }
   }
 `;
+
+// This goes under name in the query
+// location {
+//   type
+//   coordinates
+// }
 
 export { client, getPlaces };
