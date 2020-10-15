@@ -34,3 +34,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# ESLint
+.eslintcache
+
+# PWA
+public/workbox*
+public/sw*
