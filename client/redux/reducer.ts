@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 
 const initialState: state = {
-  isLoading: false,
+  showFloat: false,
   coords: {
     latitude: 41.395039,
     longitude: 12.19796
@@ -17,11 +17,10 @@ function reducer(
 ) {
   switch (action.type) {
     case 'SET_COORDINATES':
-      console.log('from coordinates action type:', action.payload);
       return { ...state, coords: action.payload };
 
-    case 'SET_LOADING':
-      return { ...state, isLoading: action.payload };
+    case 'SET_SHOW_FLOAT':
+      return { ...state, showFloat: action.payload };
 
     case 'SET_PLACES':
       return { ...state, places: action.payload };

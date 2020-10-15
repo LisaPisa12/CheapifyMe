@@ -11,6 +11,10 @@ import AppLayout from '../layout/Container';
 import { CoordsProvider } from '../hooks/useCoords';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const divStyle = {
+    height: '100%',
+    width: '100%'
+  };
   return (
     <AppLayout>
       <Head>
@@ -22,15 +26,17 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
         <title>Cheapify Me</title>
-
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0072de" />
-
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
      user-scalable=0"
         />
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <Provider store={store}>
         <CoordsProvider>
@@ -46,6 +52,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
                 opacity: 1
               }
             }}
+            style={divStyle}
           >
             <Component {...pageProps} />
           </motion.div>

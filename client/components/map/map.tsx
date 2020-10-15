@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setShowFloat } from '../../redux/actions';
+
 import styles from './map.module.css';
 
 interface IMap {
@@ -13,7 +16,9 @@ type GoogleLatLng = google.maps.LatLng;
 type GoogleMap = google.maps.Map;
 
 const Map = ({ mapType, coords }: IMap) => {
+  const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
+
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
     if (!map) {
@@ -44,11 +49,30 @@ const Map = ({ mapType, coords }: IMap) => {
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
-          gestureHandling: 'cooperative',
+          gestureHandling: 'cooperative'
         } as google.maps.MapOptions)
       );
     }
   };
+
+  function addMarker(map, coordinates: any) {
+    const marker = new google.maps.Marker({
+      position: coordinates,
+      title: 'Hello World!',
+      icon: 'test.png',
+      map
+    });
+    marker.addListener('click', function () {
+      dispatch(setShowFloat(true));
+      map.addListener('click', () => {
+        dispatch(setShowFloat(false));
+        google.maps.event.clearListeners(map, 'click');
+      });
+    });
+  }
+  addMarker(map, { lat: 41.390356499999996, lng: 2.1941694 });
+  addMarker(map, { lat: 41.390357, lng: 2.2 });
+  addMarker(map, { lat: 42, lng: 3 });
 
   return (
     <div className={styles.map_container} data-testid="map_container">
