@@ -1,9 +1,10 @@
 {
   "name": "client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:secure": "node server.js",
     "build": "next build",
     "start": "next start",
     "commit": "git-cz",
@@ -13,12 +14,25 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@types/google-map-react": "^2.1.0",
+    "@types/react-redux": "^7.1.9",
+    "@types/redux-devtools": "^3.0.47",
+    "dotenv": "^8.2.0",
+    "framer-motion": "^2.9.1",
+    "google-map-react": "^2.1.8",
     "next": "9.5.5",
+    "next-pwa": "^3.1.5",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@googlemaps/jest-mocks": "^0.1.0",
     "@testing-library/react": "^11.0.4",
+    "@types/googlemaps": "^3.40.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
     "@types/react": "^16.9.51",
@@ -38,6 +52,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.3.0",
     "jest": "^26.5.2",
+    "jest-css-modules": "^2.1.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
     "standard-version": "^9.0.0",
