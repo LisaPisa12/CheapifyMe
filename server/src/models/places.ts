@@ -14,7 +14,7 @@ interface IOffer extends mongoose.Document {
   available: Boolean;
 }
 
-interface ILocation extends mongoose.Document {
+interface IPlace extends mongoose.Document {
   name: String; // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number;
   location: {
@@ -37,7 +37,7 @@ const offerSchema = new Schema({
   available: Boolean,
 });
 
-const locationSchema = new Schema({
+const placeSchema = new Schema({
   name: String, // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode: Number,
   location: {
@@ -48,7 +48,7 @@ const locationSchema = new Schema({
   offers: [offerSchema],
 });
 
-const Location = mongoose.model<ILocation>('Location', locationSchema);
+const Place = mongoose.model<IPlace>('Place', placeSchema);
 const Offer = mongoose.model<IOffer>('Offer', offerSchema);
 
-export { Location, Offer };
+export { Place, Offer };

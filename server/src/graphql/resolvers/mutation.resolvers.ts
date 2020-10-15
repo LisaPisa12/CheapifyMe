@@ -1,9 +1,9 @@
-import { Location } from '../../models/locations';
+import { Place } from '../../models/places';
 
 export default {
   insertOffer: async (_: any, { id, offers }: any) => {
     try {
-      const offerAtLocation = await Location.findById(id);
+      const offerAtLocation = await Place.findById(id);
       if (offerAtLocation) {
         offerAtLocation.offers.push(...offers);
         offerAtLocation.save();
@@ -16,7 +16,7 @@ export default {
 
   voteOffer: async (_: any, { id, offers }: any) => {
     try {
-      const placeWithOffer = await Location.findById(id);
+      const placeWithOffer = await Place.findById(id);
       if (placeWithOffer) {
         placeWithOffer.offers.forEach((element) => {});
       }
