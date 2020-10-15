@@ -3,7 +3,6 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
       "coordinates": [-73.98241999999999, 40.579505]
     },
     "image": "urltestlala",
@@ -36,240 +35,7 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
-      "coordinates": [
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-73.9068506, 40.6199034]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-73.9482609, 40.6408271]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-74.0259567, 40.6353674]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-73.8642349, 40.75356]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-73.84856870000002, 40.8903781]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-84.2040813, 9.9986585]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        },
-        {
-          "name": "test1",
-          "zipcode": 12234,
-          "location": {
-            "type": "Point",
-            "coordinates": [-73.98513559999999, 40.7676919]
-          },
-          "image": "urltestlala",
-          "offers": [
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": true
-            },
-            {
-              "consumableType": "food",
-              "offerType": "happy hour",
-              "start": "09/12/2020",
-              "end": "09/12/2020",
-              "repeat": true,
-              "repeatEvery": "week",
-              "description": "lalalalalalal",
-              "score": 5,
-              "available": false
-            }
-          ]
-        }
-      ]
+      "coordinates": [-73.9068506, 40.6199034]
     },
     "image": "urltestlala",
     "offers": [
@@ -301,7 +67,198 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
+      "coordinates": [-73.9482609, 40.6408271]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
+      "coordinates": [-74.0259567, 40.6353674]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
+      "coordinates": [-73.8642349, 40.75356]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
+      "coordinates": [-73.84856870000002, 40.8903781]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
+      "coordinates": [-84.2040813, 9.9986585]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
+      "coordinates": [-73.98513559999999, 40.7676919]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "lalalalalalal",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "test1",
+    "zipcode": 12234,
+    "location": {
       "coordinates": [-73.9788694, 40.7665961]
     },
     "image": "urltestlala",
@@ -334,7 +291,6 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
       "coordinates": [-73.84971759999999, 40.8304811]
     },
     "image": "urltestlala",
@@ -367,7 +323,6 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
       "coordinates": [-73.9979214, 40.7371344]
     },
     "image": "urltestlala",
@@ -400,7 +355,6 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type": "Point",
       "coordinates": [-74.0037823, 40.7380122]
     },
     "image": "urltestlala",

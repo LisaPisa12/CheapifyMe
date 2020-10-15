@@ -7,8 +7,18 @@ export default {
       if (offerAtLocation) {
         offerAtLocation.offers.push(...offers);
         offerAtLocation.save();
-        console.log(offerAtLocation);
         return offerAtLocation;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  voteOffer: async (_: any, { id, offers }: any) => {
+    try {
+      const placeWithOffer = await Location.findById(id);
+      if (placeWithOffer) {
+        placeWithOffer.offers.forEach((element) => {});
       }
     } catch (error) {
       console.log(error);
