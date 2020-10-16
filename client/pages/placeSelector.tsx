@@ -28,7 +28,7 @@ export default function addOffer() {
                 key={place.id}
                 className={key % 2 === 0 ? styles.place_even : styles.place_odd}
                 onClick={() => {
-                  dispatch(setSelectedId("1"));
+                  dispatch(setSelectedId(place.id));
                   router.push('/addOffer')
                 }}
               >
@@ -44,20 +44,24 @@ export default function addOffer() {
       <div className={styles.results}>
        {showPlaces()}
        <article
-                
-                className={places.length % 2 === 0 ? styles.place_even : styles.place_odd }
-                onClick={() => {
-                  dispatch(setSelectedId("1"));
-                  router.push('/addOffer')
-                }}
-              >
-                <img src="cheapifyme.gif" className={styles['place-img']} />
-                <h2>Search more places</h2>
-              </article>
-       {places.length % 2 === 0 ? <p></p> : <><p></p><p></p></>}
+          className={places.length % 2 === 0 ? styles.place_even : styles.place_odd }
+          onClick={() => {
+            // search places on google based on location
+          }}
+        >
+          <img src="cheapifyme.gif" className={styles['place-img']} />
+          <h2>Search more places</h2>
+        </article>
+      {places.length % 2 === 1 ? 
+      <div className={styles.blank_div}></div> : 
+      <>
+        <div className={styles.blank_div}></div>
+        <div className={styles.blank_div}></div>
+      </>}
               
       </div>
       <div className={styles.search}>
+        {/* Search on the list based on the keys added  */}
         <Input />
         <button
           className={styles.button}

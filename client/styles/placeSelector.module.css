@@ -9,10 +9,12 @@
 
 .results {
   display: grid;
-  grid-template-columns: repeat(var(--total), 50%) 1em;
+  grid-template-columns: repeat(var(--total), 50%) 16px;
   grid-template-rows: 1fr 1fr;
-  overflow-x: auto;
+  overflow-y: auto;
   place-items: center;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1em;
 }
 
 .place_even {
@@ -23,11 +25,14 @@
   width: 90%;
   height: 90%;
   background-color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   cursor: pointer;
   grid-row-start: 1;
   text-align: center;
+  scroll-snap-align: start;
+  overflow: visible;
+  scroll-snap-stop: always;
 }
 
 .place_odd {
@@ -43,6 +48,16 @@
   cursor: pointer;
   grid-row-start: 2;
   text-align: center;
+  scroll-snap-align: start;
+  overflow: visible;
+  scroll-snap-stop: always;
+}
+
+.blank_div {
+  margin-right: 1em;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }
 
 .place:active {
