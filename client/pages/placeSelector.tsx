@@ -1,4 +1,8 @@
 import styles from '../styles/placeSelector.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { RootState } from '../types/redux';
+import { setSelectedId} from '../redux/actions'; 
 
 import Input from '../components/input';
 
@@ -6,30 +10,58 @@ import { useRouter } from 'next/router';
 
 export default function addOffer() {
   const router = useRouter();
+  const places = useSelector((state: RootState) => state.places);
+  
+  const dispatch = useDispatch();
+
+  const createGrid = () => {
+    const root = document.documentElement;
+    console.log(root);
+    root.style.setProperty('--total', Math.floor(((places.length+2) / 2)).toString());
+  }
+
+  const showPlaces = () => places.map( (place, key) => {
+    createGrid();
+           return (
+            <>
+              <article
+                key={place.id}
+                className={key % 2 === 0 ? styles.place_even : styles.place_odd}
+                onClick={() => {
+                  dispatch(setSelectedId(place.id));
+                  router.push('/addOffer')
+                }}
+              >
+                <img src="cheapifyme.gif" className={styles['place-img']} />
+                <h2>{place.name}</h2>
+              </article>
+            </>
+            )
+          })
+
   return (
     <section className={styles.section}>
       <div className={styles.results}>
-        <article
-          className={styles.place}
-          onClick={() => router.push('/addOffer')}
+       {showPlaces()}
+       <article
+          className={places.length % 2 === 0 ? styles.place_even : styles.place_odd }
+          onClick={() => {
+            // search places on google based on location
+          }}
         >
           <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Place name</h2>
+          <h2>Search more places</h2>
         </article>
-        <article className={styles.place}>
-          <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Place name</h2>
-        </article>
-        <article className={styles.place}>
-          <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Place name</h2>
-        </article>
-        <article className={styles.place}>
-          <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Place name</h2>
-        </article>
+      {places.length % 2 === 1 ? 
+      <div className={styles.blank_div}></div> : 
+      <>
+        <div className={styles.blank_div}></div>
+        <div className={styles.blank_div}></div>
+      </>}
+              
       </div>
       <div className={styles.search}>
+        {/* Search on the list based on the keys added  */}
         <Input />
         <button
           className={styles.button}

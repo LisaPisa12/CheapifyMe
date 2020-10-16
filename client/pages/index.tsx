@@ -31,6 +31,7 @@ export default function Home() {
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
+    console.log('click')
 
     if (Coords) {
       dispatch(setCoordinates({ latitude, longitude }));
