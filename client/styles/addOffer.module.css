@@ -1,0 +1,44 @@
+.section {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 60px repeat(4, 1fr) 60px;
+  background-color: var(--primary-light);
+}
+
+.restaurantData {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.formContainer {
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.offersType {
+  display: flex;
+  justify-content: center;
+  gap: 4em;
+  width: 100%;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.input {
+  width: 90%;
+  height: 60px;
+  padding: 1em;
+}
