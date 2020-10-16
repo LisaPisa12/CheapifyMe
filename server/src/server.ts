@@ -1,9 +1,8 @@
 import { ApolloServer } from 'apollo-server';
 // eslint-disable-next-line import/no-duplicates
 import mongoose from 'mongoose';
-import { Location, Offer } from './models/locations';
+import { Place, Offer } from './models/places';
 // eslint-disable-next-line import/no-duplicates
-// import Offer from './models/locations';
 import typeDefs from './graphql/schemas';
 import resolvers from './graphql/resolvers';
 
@@ -12,7 +11,7 @@ require('dotenv').config();
 mongoose
   .connect('mongodb://localhost:27017/cheapifyme', {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log('DB CONNECTED'))
   .catch((err) => console.log('--->error while connecting with graphql ', err));
@@ -22,11 +21,11 @@ const server = new ApolloServer({
   resolvers,
   subscriptions: { path: '/cheapifyme' },
   context: async () => {
-    return { db: { Location, Offer } };
-  },
+    return { db: { Place, Offer } };
+  }
 });
 
-const PORT = 3001;
+const PORT = 4000;
 server.listen({ port: PORT }).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });

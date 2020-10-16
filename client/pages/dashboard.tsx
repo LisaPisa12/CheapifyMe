@@ -9,6 +9,7 @@ import { RootState } from '../types/redux';
 
 function Dashboard() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
+
   const userCoords = useSelector((state: RootState) => state.coords);
   const showFloat = useSelector((state: RootState) => state.showFloat);
   useEffect(() => {

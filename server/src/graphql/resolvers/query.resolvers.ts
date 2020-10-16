@@ -1,4 +1,4 @@
-import { Location } from '../../models/locations';
+import { Place } from '../../models/places';
 // @ts-ignore
 
 interface Point {
@@ -9,7 +9,7 @@ interface Point {
 export default {
   getOffersNearby: async (_: any, { location }: { location: Point }) => {
     try {
-      const nearbyPlaces = await Location.find({
+      const nearbyPlaces = await Place.find({
         location: {
           $geoWithin: {
             $centerSphere: [

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setShowFloat } from '../../redux/actions';
 
+import { RootState } from '../../types/redux';
 import styles from './map.module.css';
 
 interface IMap {
@@ -17,6 +18,7 @@ type GoogleMap = google.maps.Map;
 
 const Map = ({ mapType, coords }: IMap) => {
   const dispatch = useDispatch();
+  const places = useSelector((state: RootState) => state.places);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
@@ -54,7 +56,7 @@ const Map = ({ mapType, coords }: IMap) => {
     }
   };
 
-  function addMarker(map, coordinates: any) {
+  function addMarker(coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
       title: 'Hello World!',
@@ -69,9 +71,15 @@ const Map = ({ mapType, coords }: IMap) => {
       });
     });
   }
-  addMarker(map, { lat: 41.390356499999996, lng: 2.1941694 });
-  addMarker(map, { lat: 41.390357, lng: 2.2 });
-  addMarker(map, { lat: 42, lng: 3 });
+  addMarker({ latitude: 41.3903651, longitude: 2.1941609 });
+  console.log(places.length);
+  if (places.length > 0) {
+    places.forEach((el) => {
+      const coordsArray = el.location.coordinates;
+      console.log({ latitude: coordsArray[0], longitude: coordsArray[1] });
+      addMarker({ lat: coordsArray[0], lng: coordsArray[1] });
+    });
+  }
 
   return (
     <div className={styles.map_container} data-testid="map_container">
