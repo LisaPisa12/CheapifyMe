@@ -30,12 +30,16 @@ export type place = {
 
 export interface RootState {
   showFloat: boolean;
+  scriptLoaded: boolean;
+  selectedId: string;
   coords: coords;
   places: place[];
 }
 
 export interface state {
   showFloat: boolean;
+  scriptLoaded: boolean;
+  selectedId: string;
   coords: coords;
   places: place[];
 }
