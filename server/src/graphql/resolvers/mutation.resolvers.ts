@@ -4,7 +4,6 @@ export default {
   insertOffer: async (_: any, { id, offers }: any) => {
     try {
       const offerAtLocation = await Place.findById(id);
-      console.log(offerAtLocation);
       if (offerAtLocation) {
         offerAtLocation.offers.push(...offers);
         offerAtLocation.save();
