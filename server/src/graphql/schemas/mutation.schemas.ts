@@ -10,6 +10,12 @@ type Mutation {
     id:String!
     offers:[OffersInput]!
     ):Places 
-}
 
+  insertNewRestaurant(
+    id: String!
+    name: String!
+    location:Point!
+    zipCode: Int
+    ):Places  
+}
 `;
