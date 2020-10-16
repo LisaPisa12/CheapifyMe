@@ -1,0 +1,14 @@
+.repeat_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position:absolute;
+  width: 100%;
+  height: 8rem;
+  z-index: 900;  
+ 
+}
+
+.repeat_button{
+ height: fit-content;
+}

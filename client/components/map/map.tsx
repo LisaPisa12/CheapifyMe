@@ -71,13 +71,11 @@ const Map = ({ mapType, coords }: IMap) => {
       });
     });
   }
-  addMarker({ latitude: 41.3903651, longitude: 2.1941609 });
-  console.log(places.length);
+
   if (places.length > 0) {
     places.forEach((el) => {
-      const coordsArray = el.location.coordinates;
-      console.log({ latitude: coordsArray[0], longitude: coordsArray[1] });
-      addMarker({ lat: coordsArray[0], lng: coordsArray[1] });
+      const [lat, lng] = el.location.coordinates;
+      addMarker({ lat, lng });
     });
   }
 
