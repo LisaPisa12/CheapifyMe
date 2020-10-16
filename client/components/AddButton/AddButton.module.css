@@ -1,6 +1,6 @@
 .add_container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: flex-end;
   position:absolute;
   width: 93%;

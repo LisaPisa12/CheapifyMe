@@ -79,7 +79,13 @@ export default function addOffer() {
         </div>
       </article>
       <article className={styles.formContainer}>
-        <button onClick={() => router.push('/dashboard')}>Send offer</button>
+        <button
+          onClick={() => {
+            router.push('/dashboard');
+          }}
+        >
+          Send offer
+        </button>
       </article>
     </section>
   );

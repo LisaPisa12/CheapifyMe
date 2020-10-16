@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setShowFloat } from '../../redux/actions';
+import { setSelectedId, setShowFloat } from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
 import styles from './map.module.css';
@@ -56,15 +56,15 @@ const Map = ({ mapType, coords }: IMap) => {
     }
   };
 
-  function addMarker(coordinates: any) {
+  function addMarker(id: string, coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
-      title: 'Hello World!',
       icon: 'test.png',
       map
     });
     marker.addListener('click', function () {
       dispatch(setShowFloat(true));
+      dispatch(setSelectedId(id));
       map.addListener('click', () => {
         dispatch(setShowFloat(false));
         google.maps.event.clearListeners(map, 'click');
@@ -75,7 +75,7 @@ const Map = ({ mapType, coords }: IMap) => {
   if (places.length > 0) {
     places.forEach((el) => {
       const [lat, lng] = el.location.coordinates;
-      addMarker({ lat, lng });
+      addMarker(el.id, { lat, lng });
     });
   }
 
