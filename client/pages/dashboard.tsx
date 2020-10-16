@@ -1,5 +1,9 @@
 import Map from '../components/map';
 import DashFloat from '../components/DashFloat';
+import DashBar from '../components/DashBar';
+import DashList from '../components/DashList';
+import AddButton from '../components/AddButton';
+import RepeatSearch from '../components/RepeatSearch';
 
 import { useState, useEffect } from 'react';
 import { loadMapApi } from '../utils/googleMapsUtils';
@@ -21,7 +25,9 @@ function Dashboard() {
 
   return (
     <>
-      {/* <TestMap /> */}
+      <DashBar />
+      <AddButton />
+      {/* <RepeatSearch /> */}
       {scriptLoaded ? (
         // eslint-disable-next-line no-undef
         <Map mapType={google.maps.MapTypeId.ROADMAP} coords={userCoords} />
@@ -29,6 +35,7 @@ function Dashboard() {
         <p>Loading</p>
       )}
       {showFloat ? <DashFloat /> : ''}
+      <DashList />
     </>
   );
 }

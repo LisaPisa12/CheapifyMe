@@ -1,0 +1,35 @@
+
+.dashbar_container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color:var(--primary-light);
+  z-index: 800;
+  padding: 0 2rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logo_container {
+  display: inline;  
+  width: 100%;
+  
+}
+.logo{
+  height: 100px;
+  width: auto; 
+ 
+}
+
+.filter_img{  
+  height: 36px;
+  width: 36px;  
+}
+
+.filter_button {
+  background-color: transparent;
+  border-color:transparent;
+  border-radius: 15px;
+}
