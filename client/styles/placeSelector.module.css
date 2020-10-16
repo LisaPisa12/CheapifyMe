@@ -9,13 +9,13 @@
 
 .results {
   display: grid;
+  grid-template-columns: repeat(var(--total), 50%) 1em;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  overflow-x: auto;
   place-items: center;
-  padding: 1em 1em;
 }
 
-.place {
+.place_even {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -26,6 +26,23 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   cursor: pointer;
+  grid-row-start: 1;
+  text-align: center;
+}
+
+.place_odd {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  grid-row-start: 2;
+  text-align: center;
 }
 
 .place:active {

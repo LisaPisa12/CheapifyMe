@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedId, setShowFloat } from '../../redux/actions';
+import { setSelectedId, setShowFloat } from '../../redux/actions'; 
 
 import { RootState } from '../../types/redux';
 import styles from './map.module.css';
