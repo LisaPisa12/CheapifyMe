@@ -19,6 +19,16 @@ function DashList() {
     <>
       {showList ? (
         <div className={styles.show_list_container}>
+          <div
+            className={styles.close}
+            onClick={() => {
+              setShowList(false);
+            }}
+          >
+            <h3 className={styles.text}>
+              there are {counter} cheapify offers nearby
+            </h3>
+          </div>
           {places.map((el) => (
             <ListItem place={el} key={el.id} />
           ))}

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 10rem;
-  width: 80%;
+  width: 100%;
   background-color:var(--white) ;
   border-radius: 10px;
 }
