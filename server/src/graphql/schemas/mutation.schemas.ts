@@ -3,14 +3,14 @@ export default `
 type Mutation {
   voteOffer(
     id:String!
-    offer:[OffersInput]!
+    offer:[OfferInput]!
     ):Places 
 
     insertOffer(
     id: String
     name: String!
     location:Point!
-    offer:[OffersInput]!
+    offer:[OfferInput]!
     ):Places  
 }
 `;

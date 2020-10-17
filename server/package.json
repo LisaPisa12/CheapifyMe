@@ -11,13 +11,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "addMocks": "mongoimport --jsonArray --db cheapifyme --collection locations --file ./src/mocks/data.json"
+    "addMocks": "mongoimport --jsonArray --db cheapifyme --collection places --file ./src/mocks/data.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.18.2",
+    "apollo-server-express": "^2.18.2",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "graphql": "^15.3.0",
     "graphql-geojson-scalar-types": "0.0.5",
     "mongodb": "^3.6.2"
