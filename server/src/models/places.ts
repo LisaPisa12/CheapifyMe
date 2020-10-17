@@ -81,15 +81,15 @@ const placeSchema = new Schema({
     type: {
       type: String,
       enum: ['Point'],
-      required: true,
+      required: true
     },
     coordinates: [
-                  {type:Number, required:true, min:-90, max:90}, 
-                  {type:Number, required:true, min:-180, max:180},
-                ],
+      {type:Number, required:true, min:-90, max:90}, 
+      {type:Number, required:true, min:-180, max:180},
+    ],
   },
   image: String,
-  offers: [offerSchema],
+  offers: [offerSchema]
 });
 
 const Place = mongoose.model<IPlace>('Place', placeSchema);

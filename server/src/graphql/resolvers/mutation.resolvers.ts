@@ -16,12 +16,12 @@ export default {
   //   }
   // },
 
-  voteOffer: async (_: any, { id, offerType }: any) => {
+  voteOffer: async (_: any, { id, offer }: any) => {
     try {
       const placeWithOffer = await Place.findById(id);
     
       if (placeWithOffer) {
-        const condition= {"Place.offers.$.offerType":offerType};
+        const condition= {"Place.offers.$.id":offer.id};
        Place.updateOne(condition, {$inc:{score:1}});
       }
     } catch (error) {

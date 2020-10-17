@@ -36,11 +36,6 @@ describe('App layout', () => {
     expect(screen.queryByTestId('img')).toBeTruthy();
   });
 
-  it('Renders the location textbox', () => {
-    renderComponent();
-    expect(screen.queryByTestId('location-textbox')).toBeTruthy();
-  });
-
   it('Renders the button with the location icon', () => {
     renderComponent();
     expect(screen.queryByTestId('location-button')).toBeTruthy();

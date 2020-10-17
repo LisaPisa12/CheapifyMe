@@ -1,0 +1,17 @@
+.list_container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  background-color:var(--primary-light); 
+  z-index: 800;
+  padding: 0 2rem;
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.3);
+  bottom: 0;
+}
+.text {
+  text-transform: uppercase;
+  color: var(--white);
+}

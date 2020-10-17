@@ -5,26 +5,41 @@ export type coords = {
 
 export type offer = {
   id: string;
-  type: string;
+  consumableType: string;
+  offerType: string;
   start: string;
-  end: string;
-  active: boolean;
+  end?: string;
+  repeat: boolean;
+  repeatEvery?: string;
+  description: string;
+  score: number;
+  available: boolean;
+};
+export type location = {
+  type: string;
+  coordinates: [number, number];
 };
 
 export type place = {
   id: string;
-  coords: coords;
+  name: string;
+  location: location;
+  image: string;
   offers: offer[];
 };
 
 export interface RootState {
   showFloat: boolean;
+  scriptLoaded: boolean;
+  selectedId: string;
   coords: coords;
   places: place[];
 }
 
 export interface state {
   showFloat: boolean;
+  scriptLoaded: boolean;
+  selectedId: string;
   coords: coords;
   places: place[];
 }
