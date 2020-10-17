@@ -177,11 +177,10 @@ export default function addOffer() {
         <article className={styles.formContainer}>
           <button
             onClick={() => {
-              console.log(thisOffer);
-              // mutateOffer({
-              //   variables: { id: place.id, offers: thisOffer }
-              // });
-              // router.push('/dashboard');
+              mutateOffer({
+                variables: { id: place.id, offers: thisOffer }
+              });
+              router.push('/dashboard');
             }}
           >
             Send offer
