@@ -24,7 +24,6 @@ exports[`App layout Renders the layout 1`] = `
         <input
           class="input"
           data-testid="location-textbox"
-          placeholder="location"
           type="textbox"
         />
         <button

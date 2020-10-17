@@ -1,6 +1,9 @@
-import '../styles/globals.css';
 import { store } from '../redux/reducer';
+import '../styles/globals.css';
 import { Provider } from 'react-redux';
+
+import { ApolloProvider } from '@apollo/client';
+import { client } from '../Apollo';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
@@ -12,7 +15,7 @@ import AppLayout from '../layout/Container';
 function MyApp({ Component, pageProps, router }: AppProps) {
   const divStyle = {
     height: '100%',
-    width: '100%',
+    width: '100%'
   };
   return (
     <AppLayout>
@@ -37,24 +40,26 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           rel="stylesheet"
         ></link>
       </Head>
-      <Provider store={store}>
-        <motion.div
-          key={router.route}
-          initial="pageInitial"
-          animate="pageAnimate"
-          variants={{
-            pageInitial: {
-              opacity: 0,
-            },
-            pageAnimate: {
-              opacity: 1,
-            },
-          }}
-          style={divStyle}
-        >
-          <Component {...pageProps} />
-        </motion.div>
-      </Provider>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: {
+                opacity: 0
+              },
+              pageAnimate: {
+                opacity: 1
+              }
+            }}
+            style={divStyle}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </Provider>
+      </ApolloProvider>
     </AppLayout>
   );
 }

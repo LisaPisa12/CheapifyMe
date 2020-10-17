@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLazyQuery } from '@apollo/client';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates } from '../redux/actions';
+import { setCoordinates, setPlaces } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
+import { getPlaces } from '../Apollo/';
 
 import Input from '../components/input';
 
@@ -14,17 +16,34 @@ export default function Home() {
 
   const router = useRouter();
 
-  const testCoords = useSelector((state: RootState) => state.coords);
+  const Coords = useSelector((state: RootState) => state.coords);
+
+  const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
+    fetchPolicy: 'network-only'
+  });
+
+  if (data && data.getOffersNearby) {
+    router.push('/dashboard');
+    if (data.getOffersNearby.length > 0) {
+      dispatch(setPlaces(data.getOffersNearby));
+    }
+  }
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
-    if (testCoords) {
+
+    if (Coords) {
       dispatch(setCoordinates({ latitude, longitude }));
+
+      getPlacesData({
+        variables: {
+          location: { type: 'Point', coordinates: [latitude, longitude] }
+        }
+      });
     }
-    router.push('/dashboard');
   }
 
-  function error(error: any) {
+  function positionError(error: any) {
     // Tell the user to add a direction manually and disable the button
     console.log(error);
   }
@@ -32,7 +51,7 @@ export default function Home() {
   const askGeolocalization = (e: any) => {
     e.preventDefault();
 
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, positionError);
     setClicked(true);
   };
   return (
@@ -46,7 +65,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.childs} data-testid="child">
-          <Input data-testid="location-textbox" />
+          <Input />
           <button
             className={styles.button}
             onClick={askGeolocalization}

@@ -1,9 +1,43 @@
 [
   {
-    "name": "test1",
+    "name": "navbar",
     "zipcode": 12234,
     "location": {
-      "coordinates": [-73.98241999999999, 40.579505]
+      "type":"Point",
+      "coordinates": [41.391527, 2.188049]
+    },
+    "image": "urltestlala",
+    "offers": [
+      {
+        "consumableType": "food",
+        "offerType": "happy hour",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "meteor burgers for 3 euros",
+        "score": 5,
+        "available": true
+      },
+      {
+        "consumableType": "drink",
+        "offerType": "2x1",
+        "start": "09/12/2020",
+        "end": "09/12/2020",
+        "repeat": true,
+        "repeatEvery": "week",
+        "description": "2x1 in margaritas",
+        "score": 5,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "L'Ovella Negra Marina",
+    "zipcode": 12234,
+    "location": {
+      "type":"Point",
+      "coordinates": [41.3903651,2.1941609]
     },
     "image": "urltestlala",
     "offers": [
@@ -27,50 +61,41 @@
         "repeatEvery": "week",
         "description": "lalalalalalal",
         "score": 5,
-        "available": false
+        "available": true
       }
     ]
   },
   {
-    "name": "test1",
+    "name": "mcDonalds",
     "zipcode": 12234,
     "location": {
-      "coordinates": [-73.9068506, 40.6199034]
+      "type":"Point",
+      "coordinates": [41.392669, 2.203956]
     },
     "image": "urltestlala",
     "offers": [
       {
         "consumableType": "food",
-        "offerType": "happy hour",
+        "offerType": "discount",
         "start": "09/12/2020",
         "end": "09/12/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "lalalalalalal",
+        "description": "half priced bigMac",
         "score": 5,
         "available": true
-      },
-      {
-        "consumableType": "food",
-        "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
-        "repeat": true,
-        "repeatEvery": "week",
-        "description": "lalalalalalal",
-        "score": 5,
-        "available": false
-      }
+      }    
     ]
   },
   {
-    "name": "test1",
+    "name": "Nomad Coffee Roaster’s Home",
     "zipcode": 12234,
     "location": {
-      "coordinates": [-73.9482609, 40.6408271]
+      "type":"Point",
+      "coordinates": [41.397899, 2.195658]
     },
     "image": "urltestlala",
-    "offers": [
+    "offers": [    
       {
         "consumableType": "food",
         "offerType": "happy hour",
@@ -78,20 +103,9 @@
         "end": "09/12/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "lalalalalalal",
+        "description": "20cents per cup of coffee",
         "score": 5,
         "available": true
-      },
-      {
-        "consumableType": "food",
-        "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
-        "repeat": true,
-        "repeatEvery": "week",
-        "description": "lalalalalalal",
-        "score": 5,
-        "available": false
       }
     ]
   },
@@ -99,38 +113,7 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "coordinates": [-74.0259567, 40.6353674]
-    },
-    "image": "urltestlala",
-    "offers": [
-      {
-        "consumableType": "food",
-        "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
-        "repeat": true,
-        "repeatEvery": "week",
-        "description": "lalalalalalal",
-        "score": 5,
-        "available": true
-      },
-      {
-        "consumableType": "food",
-        "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
-        "repeat": true,
-        "repeatEvery": "week",
-        "description": "lalalalalalal",
-        "score": 5,
-        "available": false
-      }
-    ]
-  },
-  {
-    "name": "test1",
-    "zipcode": 12234,
-    "location": {
+      "type":"Point",
       "coordinates": [-73.8642349, 40.75356]
     },
     "image": "urltestlala",
