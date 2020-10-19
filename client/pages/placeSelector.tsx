@@ -16,7 +16,6 @@ export default function addOffer() {
 
   const createGrid = () => {
     const root = document.documentElement;
-    console.log(root);
     root.style.setProperty('--total', Math.floor(((places.length+2) / 2)).toString());
   }
 
@@ -45,9 +44,7 @@ export default function addOffer() {
        {showPlaces()}
        <article
           className={places.length % 2 === 0 ? styles.place_even : styles.place_odd }
-          onClick={() => {
-            // search places on google based on location
-          }}
+          
         >
           <img src="cheapifyme.gif" className={styles['place-img']} />
           <h2>Search more places</h2>
