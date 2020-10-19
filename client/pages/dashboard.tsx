@@ -24,8 +24,6 @@ function Dashboard() {
     });
   }, []);
 
-  const molletTestCoords = { latitude: 41.395017, longitude: 2.198577 };
-
   return (
     <>
       <DashBar />
@@ -33,10 +31,7 @@ function Dashboard() {
       {/* <RepeatSearch /> */}
       {scriptLoad ? (
         // eslint-disable-next-line no-undef
-        <Map
-          mapType={google.maps.MapTypeId.ROADMAP}
-          coords={molletTestCoords}
-        />
+        <Map mapType={google.maps.MapTypeId.ROADMAP} coords={userCoords} />
       ) : (
         <p>Loading</p>
       )}
