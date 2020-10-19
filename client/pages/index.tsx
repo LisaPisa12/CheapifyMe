@@ -11,6 +11,7 @@ import { getPlaces } from '../Apollo/';
 import Input from '../components/input';
 
 export default function Home() {
+  const molletTestCoords = { latitude: 41.395017, longitude: 2.198577 };
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,14 +32,14 @@ export default function Home() {
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
-    console.log('click')
+    console.log('click');
 
     if (Coords) {
       dispatch(setCoordinates({ latitude, longitude }));
 
       getPlacesData({
         variables: {
-          location: { type: 'Point', coordinates: [latitude, longitude] }
+          location: { type: 'Point', coordinates: [41.395017, 2.198577] }
         }
       });
     }

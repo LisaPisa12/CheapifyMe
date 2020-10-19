@@ -2,20 +2,23 @@ import styles from '../styles/addOffer.module.css';
 
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
-
-import { RootState } from '../types/redux';
+import { setNewOffer } from '../redux/actions';
+import { RootState, place } from '../types/redux';
 import { insertOffer } from '../Apollo';
 
 export default function addOffer() {
+  const dispatch = useDispatch();
   const thisId = useSelector((state: RootState) => state.selectedId);
   const places = useSelector((state: RootState) => state.places);
-  let place: any;
+  let thisPlace: any;
   if (places.length > 0) {
-    place = places.find((el) => el.id === thisId);
+    thisPlace = places.find((el) => el.id === thisId);
   }
+
   const [mutateOffer, { data }] = useMutation(insertOffer);
+
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
     offerType: '',
@@ -23,9 +26,7 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: '',
-    score: 0,
-    available: true
+    description: ''
   });
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -41,7 +42,7 @@ export default function addOffer() {
   return (
     <section className={styles.section}>
       <article className={styles.restaurantData}>
-        <h2>{place?.name}</h2>
+        <h2>{thisPlace?.name}</h2>
       </article>
       <article className={styles.formContainer}>
         <h2>Type</h2>
@@ -176,10 +177,18 @@ export default function addOffer() {
       {thisOffer.description ? (
         <article className={styles.formContainer}>
           <button
-            onClick={() => {
-              mutateOffer({
-                variables: { id: place.id, offers: thisOffer }
+            onClick={async () => {
+              const newOffer = await mutateOffer({
+                variables: {
+                  id: thisPlace.id,
+                  name: thisPlace.name,
+                  location: thisPlace.location,
+                  offer: thisOffer
+                }
               });
+
+              dispatch(setNewOffer(newOffer.data.insertOffer));
+
               router.push('/dashboard');
             }}
           >
