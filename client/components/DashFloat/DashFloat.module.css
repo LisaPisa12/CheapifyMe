@@ -39,3 +39,17 @@
   height: 25px;
   width: 25px;
 }
+
+.float_offer {
+  height: 300px;
+  width: 300px;
+  overflow-x: auto;
+  place-items: center;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1em;  
+  scroll-behavior: smooth;
+}
+.offer {
+  height: 100%;
+  width: 100%;
+}
