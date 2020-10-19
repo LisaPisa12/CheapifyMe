@@ -31,7 +31,7 @@ export type place = {
 export interface RootState {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: string;
+  selectedId: number;
   coords: coords;
   places: place[];
 }

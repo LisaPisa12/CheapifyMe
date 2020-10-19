@@ -26,7 +26,7 @@ function AddButton() {
         className={styles.add_button}
         onClick={() => router.push('/placeSelector')}
       >
-        <p className={styles.p}>+</p>
+        +
       </button>
     </motion.div>
   );

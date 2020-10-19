@@ -7,10 +7,6 @@ import styles from './map.module.css';
 
 interface IMap {
   mapType: google.maps.MapTypeId | string;
-  coords: {
-    latitude: number;
-    longitude: number;
-  };
 }
 
 type GoogleLatLng = google.maps.LatLng;
