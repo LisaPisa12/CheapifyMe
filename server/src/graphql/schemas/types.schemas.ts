@@ -7,10 +7,10 @@ type Places {
     location:Point!
     image: String
     zipCode: Int
-    offers: [Offers]!
+    offers: [Offer]!
   }
 
-  type Offers {
+  type Offer {
     id:String!
     consumableType: String!
     offerType: String!
@@ -23,7 +23,7 @@ type Places {
     available: Boolean!
   }
 
-  input OffersInput {
+  input OfferInput {
     consumableType: String
     offerType: String
     start: String
@@ -33,6 +33,11 @@ type Places {
     description: String
     score: Int
     available: Boolean
+  }
+
+  input VoteInput {
+    id:String
+    score:Int
   }
 `;
 
