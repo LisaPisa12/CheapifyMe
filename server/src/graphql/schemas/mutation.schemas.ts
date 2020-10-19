@@ -3,7 +3,7 @@ export default `
 type Mutation {
   voteOffer(
     id:String!
-    offer:[OfferInput]!
+    offer:[VoteInput]!
     ):Places 
 
     insertOffer(

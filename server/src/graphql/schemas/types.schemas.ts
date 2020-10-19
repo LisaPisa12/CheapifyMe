@@ -34,6 +34,11 @@ type Places {
     score: Int
     available: Boolean
   }
+
+  input VoteInput {
+    id:String
+    score:Int
+  }
 `;
 
 // type Coordinates{

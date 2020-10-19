@@ -21,9 +21,14 @@ export default {
       const placeWithOffer = await Place.findById(id);
     
       if (placeWithOffer) {
-        const condition= {"Place.offers.$.id":offer.id};
-       Place.updateOne(condition, {$inc:{score:1}});
+        placeWithOffer.offers.forEach(el => {
+          if(el.id === offer.id) el.score =+ offer.score
+        });
+        console.log(placeWithOffer.offers)
+        placeWithOffer.save();
+        return placeWithOffer;
       }
+      
     } catch (error) {
       console.log(error);
     }
