@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedId, setShowFloat } from '../../redux/actions'; 
+import { setSelectedId, setShowFloat } from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
 import styles from './map.module.css';
@@ -16,8 +16,9 @@ interface IMap {
 type GoogleLatLng = google.maps.LatLng;
 type GoogleMap = google.maps.Map;
 
-const Map = ({ mapType, coords }: IMap) => {
+const Map = ({ mapType }: IMap) => {
   const dispatch = useDispatch();
+  const coords = useSelector((state: RootState) => state.coords);
   const places = useSelector((state: RootState) => state.places);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
@@ -65,7 +66,7 @@ const Map = ({ mapType, coords }: IMap) => {
     marker.addListener('click', function () {
       dispatch(setShowFloat(true));
       dispatch(setSelectedId(id));
-      map.addListener('click', () => {
+      map?.addListener('click', () => {
         dispatch(setShowFloat(false));
         google.maps.event.clearListeners(map, 'click');
       });
@@ -78,6 +79,7 @@ const Map = ({ mapType, coords }: IMap) => {
       addMarker(el.id, { lat, lng });
     });
   }
+  map?.setCenter({ lat: coords.latitude, lng: coords.longitude });
 
   return (
     <div className={styles.map_container} data-testid="map_container">

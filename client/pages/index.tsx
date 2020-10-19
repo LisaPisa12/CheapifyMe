@@ -10,7 +10,7 @@ import { getPlaces } from '../Apollo/';
 
 import Input from '../components/input';
 
-export default function Home() {
+export default function Home() { 
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
 
@@ -38,7 +38,10 @@ export default function Home() {
 
       getPlacesData({
         variables: {
-          location: { type: 'Point', coordinates: [latitude, longitude] }
+          location: {
+            type: 'Point',
+            coordinates: [latitude, longitude]
+          }
         }
       });
     }

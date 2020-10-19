@@ -17,16 +17,20 @@ function DashFloat() {
       <div className={styles.float_info}>
         <img src="floatTest.jpg" alt="" className={styles.float_img} />
         <div className={styles.float_text}>
-          {place?.offers.map((el, key) => (
-            <h3 key={key}>
-              <img
-                src="testOfferIcon.svg"
-                alt=""
-                className={styles.offer_icon}
-              />{' '}
-              {el.description}
-            </h3>
-          ))}
+          <div className={styles.float_offer}>
+            {place?.offers.map((el, key) => (
+              <div key={key} className={styles.offer}>
+                <h3>
+                  <img
+                    src="testOfferIcon.svg"
+                    alt=""
+                    className={styles.offer_icon}
+                  />{' '}
+                  {el.description}
+                </h3>
+              </div>
+            ))}
+          </div>
           <h5>{place?.name}</h5>
         </div>
       </div>
