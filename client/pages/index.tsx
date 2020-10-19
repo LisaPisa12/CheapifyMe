@@ -57,7 +57,10 @@ export default function Home() {
 
       getPlacesData({
         variables: {
-          location: { type: 'Point', coordinates: [latitude, longitude] },
+          location: {
+            type: 'Point',
+            coordinates: [latitude, longitude],
+          },
         },
       });
     }

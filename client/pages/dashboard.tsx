@@ -20,16 +20,6 @@ const stagger = {
   },
 };
 
-const mapAppear = {
-  initial: {
-    opacity: 0,
-  },
-
-  animate: {
-    opacity: 1,
-  },
-};
-
 const divStyle = {
   height: '100%',
   width: '100%',
@@ -39,7 +29,6 @@ function Dashboard() {
   const dispatch = useDispatch();
   const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
 
-  const userCoords = useSelector((state: RootState) => state.coords);
   const showFloat = useSelector((state: RootState) => state.showFloat);
   useEffect(() => {
     const googleMapScript = loadMapApi();
@@ -61,7 +50,7 @@ function Dashboard() {
         {/* <RepeatSearch /> */}
         {scriptLoad && (
           /* eslint-disable-next-line no-undef */
-          <Map mapType={google.maps.MapTypeId.ROADMAP} coords={userCoords} />
+          <Map mapType={google.maps.MapTypeId.ROADMAP} />
         )}
         {showFloat ? <DashFloat /> : ''}
         <DashList />
