@@ -3,12 +3,32 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
 
+import { motion } from 'framer-motion';
+
 import styles from '../styles/Home.module.css';
 import { setCoordinates, setPlaces } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
 import Input from '../components/input';
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+
+const mapAll = {
+  initial: {
+    y: -100,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+  exit: {
+    y: 100,
+  },
+};
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -19,7 +39,7 @@ export default function Home() {
   const Coords = useSelector((state: RootState) => state.coords);
 
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   });
 
   if (data && data.getOffersNearby) {
@@ -37,8 +57,8 @@ export default function Home() {
 
       getPlacesData({
         variables: {
-          location: { type: 'Point', coordinates: [latitude, longitude] }
-        }
+          location: { type: 'Point', coordinates: [latitude, longitude] },
+        },
       });
     }
   }
@@ -55,7 +75,7 @@ export default function Home() {
     setClicked(true);
   };
   return (
-    <>
+    <motion.div exit="exit" initial="initial" animate="animate">
       <section className={styles.section} data-testid="section">
         <div className={styles.childs} data-testid="child">
           <img
@@ -78,14 +98,18 @@ export default function Home() {
             />
           </button>
         </div>
-        <div className={styles.childs} data-testid="child">
+        <motion.div
+          className={styles.childs}
+          data-testid="child"
+          variants={mapAll}
+        >
           <img
             className={styles.map_placeholder}
             src="map-placeholder.jpg"
             data-testid="map-img"
           />
-        </div>
+        </motion.div>
       </section>
-    </>
+    </motion.div>
   );
 }
