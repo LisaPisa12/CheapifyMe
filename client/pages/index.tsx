@@ -14,14 +14,46 @@ import Input from '../components/input';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 
-const mapAll = {
+const AnimateLogo = {
   initial: {
-    y: -100,
+    y: -300,
   },
   animate: {
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 2,
+      ease: easing,
+    },
+  },
+  exit: {
+    y: 100,
+  },
+};
+
+const animateSearch = {
+  initial: {
+    x: 1000,
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 2,
+      ease: easing,
+    },
+  },
+  exit: {
+    x: 100,
+  },
+};
+
+const animateMap = {
+  initial: {
+    y: 300,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      duration: 2,
       ease: easing,
     },
   },
@@ -80,14 +112,22 @@ export default function Home() {
   return (
     <motion.div exit="exit" initial="initial" animate="animate">
       <section className={styles.section} data-testid="section">
-        <div className={styles.childs} data-testid="child">
+        <motion.div
+          variants={AnimateLogo}
+          className={styles.childs}
+          data-testid="child"
+        >
           <img
             className={styles.image}
             src="cheapifyme.gif"
             data-testid="img"
           />
-        </div>
-        <div className={styles.childs} data-testid="child">
+        </motion.div>
+        <motion.div
+          variants={animateSearch}
+          className={styles.childs}
+          data-testid="child"
+        >
           <Input />
           <button
             className={styles.button}
@@ -100,11 +140,11 @@ export default function Home() {
               data-testid="location-button"
             />
           </button>
-        </div>
+        </motion.div>
         <motion.div
           className={styles.childs}
           data-testid="child"
-          variants={mapAll}
+          variants={animateMap}
         >
           <img
             className={styles.map_placeholder}
