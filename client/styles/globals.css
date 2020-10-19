@@ -34,3 +34,9 @@ h2 {
 h2 {
   text-transform: uppercase;
 }
+
+::-webkit-scrollbar {
+    height: 1px;
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}

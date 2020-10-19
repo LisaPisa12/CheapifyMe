@@ -27,6 +27,12 @@ export function setPlaces(places: place[]) {
     payload: places
   };
 }
+export function setNewOffer(place: place) {
+  return {
+    type: 'SET_NEW_OFFER',
+    payload: place
+  };
+}
 
 export function setSelectedId(id: string) {
   return {

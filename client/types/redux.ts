@@ -22,9 +22,9 @@ export type location = {
 
 export type place = {
   id: string;
-  name: string;
-  location: location;
-  image: string;
+  name?: string;
+  location?: location;
+  image?: string;
   offers: offer[];
 };
 

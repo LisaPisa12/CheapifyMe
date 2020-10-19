@@ -28,6 +28,30 @@ const getPlaces = gql`
   }
 `;
 
+const insertOffer = gql`
+  mutation InsertOffer(
+    $id: String
+    $name: String!
+    $location: Point!
+    $offer: [OffersInput]!
+  ) {
+    insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
+      id
+      offers {
+        consumableType
+        offerType
+        start
+        end
+        repeat
+        repeatEvery
+        description
+        score
+        available
+      }
+    }
+  }
+`;
+
 // This goes under name in the query
 
-export { client, getPlaces };
+export { client, getPlaces, insertOffer };
