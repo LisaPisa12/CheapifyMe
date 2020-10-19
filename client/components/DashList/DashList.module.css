@@ -15,3 +15,26 @@
   text-transform: uppercase;
   color: var(--white);
 }
+
+.show_list_container{
+  position: relative; 
+  z-index: 999;
+  bottom: 40rem;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+}
+
+.close {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-color:var(--primary-light); 
+  z-index: 800;
+  padding: 0 2rem;
+  
+  bottom: 0;
+}

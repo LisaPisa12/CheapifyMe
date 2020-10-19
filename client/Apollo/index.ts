@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client';
 import fetch from 'cross-fetch';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://192.168.1.117:4000', fetch }),
+  link: new HttpLink({ uri: 'http://localhost:4000', fetch }),
   cache: new InMemoryCache()
 });
 
@@ -28,6 +28,30 @@ const getPlaces = gql`
   }
 `;
 
+const insertOffer = gql`
+  mutation InsertOffer(
+    $id: String
+    $name: String!
+    $location: Point!
+    $offer: [OffersInput]!
+  ) {
+    insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
+      id
+      offers {
+        consumableType
+        offerType
+        start
+        end
+        repeat
+        repeatEvery
+        description
+        score
+        available
+      }
+    }
+  }
+`;
+
 // This goes under name in the query
 
-export { client, getPlaces };
+export { client, getPlaces, insertOffer };
