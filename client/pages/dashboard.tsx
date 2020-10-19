@@ -6,16 +6,13 @@ import AddButton from '../components/AddButton';
 
 import { motion } from 'framer-motion';
 
-import { useEffect } from 'react';
-import { loadMapApi } from '../utils/googleMapsUtils';
-import { setScriptLoaded } from '../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../types/redux';
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.4,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -26,16 +23,7 @@ const divStyle = {
 };
 
 function Dashboard() {
-  const dispatch = useDispatch();
-  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
-
   const showFloat = useSelector((state: RootState) => state.showFloat);
-  useEffect(() => {
-    const googleMapScript = loadMapApi();
-    googleMapScript.addEventListener('load', () => {
-      dispatch(setScriptLoaded(true));
-    });
-  }, []);
 
   return (
     <motion.div
@@ -48,10 +36,8 @@ function Dashboard() {
         <DashBar />
         <AddButton />
         {/* <RepeatSearch /> */}
-        {scriptLoad && (
-          /* eslint-disable-next-line no-undef */
-          <Map mapType={google.maps.MapTypeId.ROADMAP} />
-        )}
+        {/* eslint-disable-next-line no-undef */}
+        <Map mapType={google.maps.MapTypeId.ROADMAP} />
         {showFloat ? <DashFloat /> : ''}
         <DashList />
       </motion.div>

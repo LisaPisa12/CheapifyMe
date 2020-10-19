@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
@@ -6,11 +6,15 @@ import { useLazyQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates, setPlaces } from '../redux/actions';
+import { setCoordinates, setPlaces, setScriptLoaded } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
+import Map from '../components/map';
+
 import Input from '../components/input';
+
+import { loadMapApi } from '../utils/googleMapsUtils';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -63,6 +67,7 @@ const animateMap = {
 };
 
 export default function Home() {
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
 
@@ -73,6 +78,13 @@ export default function Home() {
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
     fetchPolicy: 'network-only',
   });
+
+  useEffect(() => {
+    const googleMapScript = loadMapApi();
+    googleMapScript.addEventListener('load', () => {
+      dispatch(setScriptLoaded(true));
+    });
+  }, []);
 
   if (data && data.getOffersNearby) {
     router.push('/dashboard');
@@ -110,7 +122,12 @@ export default function Home() {
     setClicked(true);
   };
   return (
-    <motion.div exit="exit" initial="initial" animate="animate">
+    <motion.div
+      exit="exit"
+      initial="initial"
+      animate="animate"
+      className={styles.container}
+    >
       <section className={styles.section} data-testid="section">
         <motion.div
           variants={AnimateLogo}
@@ -146,11 +163,7 @@ export default function Home() {
           data-testid="child"
           variants={animateMap}
         >
-          <img
-            className={styles.map_placeholder}
-            src="map-placeholder.jpg"
-            data-testid="map-img"
-          />
+          {scriptLoad && <Map mapType={google.maps.MapTypeId.ROADMAP} />}
         </motion.div>
       </section>
     </motion.div>

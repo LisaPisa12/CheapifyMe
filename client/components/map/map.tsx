@@ -30,7 +30,7 @@ const Map = ({ mapType }: IMap) => {
       coords.latitude,
       coords.longitude
     );
-    initMap(17, defaultAdress);
+    initMap(14, defaultAdress);
   };
 
   const initMap = (zoomLevel: number, address: GoogleLatLng): void => {

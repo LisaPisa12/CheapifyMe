@@ -9,8 +9,8 @@ const initialState: state = {
   selectedId: -1,
   scriptLoaded: false,
   coords: {
-    latitude: 41.384723,
-    longitude: 2.199172,
+    latitude: 41.404278,
+    longitude: 2.175098,
   },
   places: [],
 };
