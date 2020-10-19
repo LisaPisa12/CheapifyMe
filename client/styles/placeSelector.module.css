@@ -15,9 +15,10 @@
   place-items: center;
   scroll-snap-type: x mandatory;
   scroll-padding: 1em;
+  padding-bottom: 30px;
 }
 
-.place_even {
+.place_even, .place_odd {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -28,29 +29,18 @@
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   cursor: pointer;
-  grid-row-start: 1;
   text-align: center;
   scroll-snap-align: start;
   overflow: visible;
   scroll-snap-stop: always;
 }
 
+.place_even {
+  grid-row-start: 1;
+}
+
 .place_odd {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 90%;
-  height: 90%;
-  background-color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  cursor: pointer;
   grid-row-start: 2;
-  text-align: center;
-  scroll-snap-align: start;
-  overflow: visible;
-  scroll-snap-stop: always;
 }
 
 .blank_div {
@@ -60,7 +50,7 @@
   background-color: transparent;
 }
 
-.place:active {
+.place_odd:active, .place_even:active {
   transform: scale(0.97);
   /* Scaling button to 0.98 to its original size */
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
