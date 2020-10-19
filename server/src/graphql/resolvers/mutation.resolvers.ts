@@ -22,9 +22,8 @@ export default {
     
       if (placeWithOffer) {
         placeWithOffer.offers.forEach(el => {
-          if(el.id === offer.id) el.score =+ offer.score
+          if(el.id === offer[0].id) el.score+=offer[0].score;
         });
-        console.log(placeWithOffer.offers)
         placeWithOffer.save();
         return placeWithOffer;
       }
