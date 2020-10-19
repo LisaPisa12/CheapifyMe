@@ -38,7 +38,6 @@ const apollo = new ApolloServer({
   }
 });
 
-<<<<<<< HEAD
 
 const app = express();
 apollo.applyMiddleware({app});
@@ -61,10 +60,5 @@ server.listen({ port: config.port }, () => {
     '🚀  Server ready at ',
     `http${config.ssl ? 's' : ''}://${config.hostname}:${config.port}${apollo.graphqlPath}`
     );
-=======
-const PORT = 4000;
-server.listen({ port: PORT }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
->>>>>>> efedad902b6e4a6203e25b3f010e55643304874d
 });
 export default server;
