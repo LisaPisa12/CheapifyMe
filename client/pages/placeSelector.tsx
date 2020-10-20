@@ -14,12 +14,13 @@ import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function addOffer() {
   const router = useRouter();
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const places = useSelector((state: RootState) => state.places);
   const service = useSelector((state: RootState) => state.serviceAPI);
   const coordinates = useSelector((state: RootState) => state.coords);
 
   useEffect(() => {
-    if (!google) {
+    if (!scriptLoad) {
       const googleMapScript = loadMapApi();
       googleMapScript.addEventListener('load', () => {
         dispatch(setScriptLoaded(true));
