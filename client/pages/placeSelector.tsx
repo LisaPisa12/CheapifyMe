@@ -114,7 +114,7 @@ export default function addOffer() {
     <section className={styles.section}>
       <div className={styles.results}>
         {showPlaces()}
-        {googlePlaces ? showGooglePlaces() : ''}
+        {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
         <article
           className={
             places.length % 2 === 0 ? styles.place_even : styles.place_odd

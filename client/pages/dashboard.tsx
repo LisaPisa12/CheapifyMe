@@ -56,7 +56,7 @@ function Dashboard() {
         <AddButton />
         {/* <RepeatSearch /> */}
         {/* eslint-disable-next-line no-undef */}
-        <Map mapType={google.maps.MapTypeId.ROADMAP} />
+        {scriptLoad && <Map mapType={google.maps.MapTypeId.ROADMAP} />}
         {showFloat ? <DashFloat /> : ''}
         <DashList />
       </motion.div>
