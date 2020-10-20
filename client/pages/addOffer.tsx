@@ -1,12 +1,15 @@
+/* global google */
 import styles from '../styles/addOffer.module.css';
 
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
-import { setNewOffer } from '../redux/actions';
+import { setNewOffer, setScriptLoaded } from '../redux/actions';
 import { RootState } from '../types/redux';
 import { insertOffer } from '../Apollo';
+
+import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function addOffer() {
   const dispatch = useDispatch();
@@ -15,6 +18,15 @@ export default function addOffer() {
   const newPlace = useSelector((state: RootState) => state.newPlace);
   let thisPlace: any;
   let location: any;
+
+  useEffect(() => {
+    if (!google) {
+      const googleMapScript = loadMapApi();
+      googleMapScript.addEventListener('load', () => {
+        dispatch(setScriptLoaded(true));
+      });
+    }
+  }, []);
 
   if (newPlace) {
     thisPlace = newPlace;
