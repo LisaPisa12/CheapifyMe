@@ -6,7 +6,6 @@
   "scripts": {
     "postinstall": "tsc",
     "deploy": "git add . && git commit -m Heroku && git push heroku main",
-    "build": "tsc -p ./src",
     "build:live": "nodemon --watch './' --exec ts-node src/server.ts",
     "start": "npm run build:live",
     "commit": "git-cz",
