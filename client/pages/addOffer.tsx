@@ -32,14 +32,14 @@ export default function addOffer() {
     thisPlace = newPlace;
     location = {
       type: 'Point',
-      coordinates: [thisPlace.location.lat, thisPlace.location.lng],
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
     };
   } else if (places.length > 0) {
     thisPlace = places[thisId];
     console.log(thisPlace);
     location = thisPlace.location;
   }
-  console.log(thisPlace, location);
+
   const [mutateOffer] = useMutation(insertOffer);
 
   const [thisOffer, setThisOffer] = useState({
@@ -49,7 +49,7 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: '',
+    description: ''
   });
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -77,7 +77,6 @@ export default function addOffer() {
                 id="food"
                 name="consumableType"
                 value="Food"
-                // checked={thisOffer.consumableType === 'food'}
                 onChange={handleChange}
               />
               <label htmlFor="offerType">Food</label>
@@ -88,7 +87,6 @@ export default function addOffer() {
                 id="drink"
                 name="consumableType"
                 value="drink"
-                // checked={thisOffer.consumableType === 'drink'}
                 onChange={handleChange}
               />
               <label htmlFor="offerType">Drinks</label>
@@ -105,7 +103,6 @@ export default function addOffer() {
                   id="offerType"
                   name="offerType"
                   value="2x1"
-                  // checked={thisOffer.offerType === '2x1'}
                   onChange={handleChange}
                 />
                 <label htmlFor="offerType">2x1</label>
@@ -116,7 +113,6 @@ export default function addOffer() {
                   id="offerType"
                   name="offerType"
                   value="happy hour"
-                  // checked={thisOffer.offerType === 'happy_hour'}
                   onChange={handleChange}
                 />
                 <label htmlFor="offerType">Happy hours</label>
@@ -127,7 +123,6 @@ export default function addOffer() {
                   id="offerType"
                   name="offerType"
                   value="Percentage"
-                  // checked={thisOffer.offerType === 'Percentage'}
                   onChange={handleChange}
                 />
                 <label htmlFor="offerType">Percentage</label>
@@ -211,8 +206,8 @@ export default function addOffer() {
                     id: thisPlace.id,
                     name: thisPlace.name,
                     location: location,
-                    offer: thisOffer,
-                  },
+                    offer: thisOffer
+                  }
                 });
 
                 dispatch(setNewOffer(newOffer.data.insertOffer));
