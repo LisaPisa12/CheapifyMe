@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedId,
   setShowFloat,
-  setServiceAPI
+  setServiceAPI,
 } from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
@@ -74,10 +74,10 @@ const Map = ({ mapType }: IMap) => {
   }
 
   if (places.length > 0) {
-    places.forEach((el) => {
+    places.forEach((el, index) => {
       let lat, lng;
       if (el.location) [lat, lng] = el.location.coordinates;
-      addMarker(el.id, { lat, lng });
+      addMarker(index, { lat, lng });
     });
   }
   map?.setCenter({ lat: coords.latitude, lng: coords.longitude });
