@@ -11,9 +11,9 @@ const initialState: state = {
   serviceAPI: undefined,
   coords: {
     latitude: 41.404278,
-    longitude: 2.175098,
+    longitude: 2.175098
   },
-  places: [],
+  places: []
 };
 
 const reducer = createReducer(initialState, {
@@ -39,8 +39,8 @@ const reducer = createReducer(initialState, {
     state.newPlace = action.payload;
   },
   SET_NEW_OFFER: (state, action) => {
-    let place = state.places.find((el) => el.id === action.payload.id);
-    if (place) place = action.payload;
+    const place = state.places.find((el) => el.id === action.payload.id);
+    if (place) place.offers = action.payload.offers;
     else state.places.push(action.payload);
   }
 });
