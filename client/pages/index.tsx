@@ -54,9 +54,11 @@ const animateSearch = {
 const animateMap = {
   initial: {
     y: 300,
+    x: '-25%',
   },
   animate: {
     y: 0,
+    x: '-25%',
     transition: {
       duration: 2,
       ease: easing,
@@ -64,6 +66,7 @@ const animateMap = {
   },
   exit: {
     y: 100,
+    x: '-25%',
   },
 };
 
@@ -122,6 +125,7 @@ export default function Home() {
     navigator.geolocation.getCurrentPosition(success, positionError);
     setClicked(true);
   };
+
   return (
     <motion.div
       exit="exit"

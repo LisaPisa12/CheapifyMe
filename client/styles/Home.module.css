@@ -67,6 +67,8 @@
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  width: 200%;
+  transform: translateX(-25%);
   border-radius: 50% 50% 0 0;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
