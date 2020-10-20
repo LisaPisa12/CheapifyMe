@@ -138,12 +138,14 @@ export default function addOffer() {
       <div className={styles.search}>
         {/* Search on the list based on the keys added  */}
         <Input />
-        <button
-          className={styles.button}
-          onClick={() => router.push('/dashboard')}
-        >
-          Cancel
-        </button>
+        {scriptLoad && (
+          <button
+            className={styles.button}
+            onClick={() => router.push('/dashboard')}
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </section>
   );
