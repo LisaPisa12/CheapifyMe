@@ -6,14 +6,13 @@ import { useState, useEffect } from 'react';
 import { RootState } from '../types/redux';
 import { setSelectedId, setNewPlace, setScriptLoaded } from '../redux/actions';
 
-import Input from '../components/input';
-
 import { useRouter } from 'next/router';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function PlaceSelector() {
   const router = useRouter();
+
   const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const places = useSelector((state: RootState) => state.places);
   const service = useSelector((state: RootState) => state.serviceAPI);
@@ -24,7 +23,6 @@ export default function PlaceSelector() {
       const googleMapScript = loadMapApi();
       googleMapScript.addEventListener('load', () => {
         dispatch(setScriptLoaded(true));
-        loadWhenScriptIsLoaded();
       });
     }
   }, []);
@@ -37,36 +35,38 @@ export default function PlaceSelector() {
 
   const createGrid = () => {
     const root = document.documentElement;
-    root.style.setProperty(
-      '--total',
-      Math.floor((places.length + 2) / 2).toString()
-    );
+    const placesLength = places.length ? places.length : 0;
+    const length = googlePlaces
+      ? googlePlaces.length + placesLength
+      : placesLength;
+    root.style.setProperty('--total', Math.floor(length + 1).toString());
   };
 
   const showPlaces = () =>
     places.map((place, key) => {
       createGrid();
+
+      console.log(place);
       return (
         scriptLoad && (
-          <>
-            <article
-              key={place.id}
-              className={key % 2 === 0 ? styles.place_even : styles.place_odd}
-              onClick={() => {
-                dispatch(setSelectedId(key));
-                router.push('/addOffer');
-              }}
-            >
-              <img src="cheapifyme.gif" className={styles['place-img']} />
-              <h2>{place.name}</h2>
-            </article>
-          </>
+          <article
+            key={place.id}
+            className={styles.place}
+            onClick={() => {
+              dispatch(setSelectedId(key));
+              router.push('/addOffer');
+            }}
+          >
+            <h2>{place.name}</h2>
+          </article>
         )
       );
     });
 
   let nearbyCoords;
   let request: google.maps.places.PlaceSearchRequest;
+
+  const [radius, setRadius] = useState(400);
 
   const getPlaces = () => {
     nearbyCoords = new google.maps.LatLng(
@@ -76,15 +76,17 @@ export default function PlaceSelector() {
 
     request = {
       location: nearbyCoords,
-      radius: 400,
-      type: 'restaurant'
+      radius: radius,
+      type: 'restaurant',
     };
+
     if (service) {
       service.nearbySearch(
         request,
         (results: google.maps.places.PlaceResult[], status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             setGooglePlaces(results);
+            setRadius(radius + 400);
           }
         }
       );
@@ -92,28 +94,27 @@ export default function PlaceSelector() {
   };
 
   const showGooglePlaces = () =>
-    googlePlaces?.map((place, key) => {
+    googlePlaces?.map((place) => {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.geometry?.location.toJSON()
+        location: place.geometry?.location.toJSON(),
       };
+
       return (
-        <>
-          {scriptLoad && (
-            <article
-              key={place.name}
-              className={key % 2 === 0 ? styles.place_even : styles.place_odd}
-              onClick={() => {
-                dispatch(setNewPlace(thisPlace));
-                router.push('/addOffer');
-              }}
-            >
-              <img src="cheapifyme.gif" className={styles['place-img']} />
-              <h2>{place.name}</h2>
-            </article>
-          )}
-        </>
+        scriptLoad && (
+          <article
+            key={place.place_id}
+            className={styles.place}
+            onClick={() => {
+              dispatch(setNewPlace(thisPlace));
+              router.push('/addOffer');
+            }}
+          >
+            <h2>{place.name}</h2>
+            <p>{place.vicinity}</p>
+          </article>
+        )
       );
     });
 
@@ -123,37 +124,21 @@ export default function PlaceSelector() {
         <div className={styles.results}>
           {showPlaces()}
           {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
+
           {scriptLoad && (
             <article
-              className={
-                places.length % 2 === 0 ? styles.place_even : styles.place_odd
-              }
+              className={styles.place}
               onClick={getPlaces}
+              key={'loadMore'}
             >
-              <img src="cheapifyme.gif" className={styles['place-img']} />
-              <h2>Search more places</h2>
+              <h2>
+                {places.length || googlePlaces?.length
+                  ? 'Search more places'
+                  : `There isn't any offer nearby. Click me for search for near places!`}
+              </h2>
             </article>
           )}
-          {places.length % 2 === 1 ? (
-            <div className={styles.blank_div}></div>
-          ) : (
-            <>
-              <div className={styles.blank_div}></div>
-              <div className={styles.blank_div}></div>
-            </>
-          )}
-        </div>
-        <div className={styles.search}>
-          {/* Search on the list based on the keys added  */}
-          <Input />
-          {scriptLoad && (
-            <button
-              className={styles.button}
-              onClick={() => router.push('/dashboard')}
-            >
-              Cancel
-            </button>
-          )}
+          <div className={styles.blank_div}></div>
         </div>
       </section>
     )
