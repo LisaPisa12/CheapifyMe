@@ -30,6 +30,15 @@
   gap: 4em;
   width: 100%;
 }
+.starter_consumable_type {
+  margin-top: 15rem;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
 .dates {
   display: flex;
@@ -41,4 +50,18 @@
   width: 90%;
   height: 60px;
   padding: 1em;
+}
+
+.hidden_button{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+ .img {
+  cursor: pointer;
+}
+
+.icon {
+  height: 100px;
+  width: auto;
 }
