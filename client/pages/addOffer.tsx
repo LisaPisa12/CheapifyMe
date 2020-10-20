@@ -1,4 +1,3 @@
-/* global google */
 import styles from '../styles/addOffer.module.css';
 
 import { useState, ChangeEvent, useEffect } from 'react';
@@ -13,6 +12,7 @@ import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function addOffer() {
   const dispatch = useDispatch();
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const thisId = useSelector((state: RootState) => state.selectedId);
   const places = useSelector((state: RootState) => state.places);
   const newPlace = useSelector((state: RootState) => state.newPlace);
@@ -20,7 +20,7 @@ export default function addOffer() {
   let location: any;
 
   useEffect(() => {
-    if (!google) {
+    if (!scriptLoad) {
       const googleMapScript = loadMapApi();
       googleMapScript.addEventListener('load', () => {
         dispatch(setScriptLoaded(true));

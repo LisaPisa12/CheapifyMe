@@ -31,11 +31,12 @@ const divStyle = {
 };
 
 function Dashboard() {
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const dispatch = useDispatch();
   const showFloat = useSelector((state: RootState) => state.showFloat);
 
   useEffect(() => {
-    if (!google) {
+    if (!scriptLoad) {
       const googleMapScript = loadMapApi();
       googleMapScript.addEventListener('load', () => {
         dispatch(setScriptLoaded(true));

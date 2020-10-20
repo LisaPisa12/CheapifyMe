@@ -12,6 +12,8 @@ import { useRouter } from 'next/router';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 
+const google = (window.google = window.google ? window.google : {});
+
 export default function addOffer() {
   const router = useRouter();
   const places = useSelector((state: RootState) => state.places);
