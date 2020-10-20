@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedId, setShowFloat } from '../../redux/actions';
+import {
+  setSelectedId,
+  setShowFloat,
+  setServiceAPI
+} from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
 import styles from './map.module.css';
@@ -70,12 +74,17 @@ const Map = ({ mapType }: IMap) => {
   }
 
   if (places.length > 0) {
-    places.forEach((el, index) => {
-      const [lat, lng] = el.location.coordinates;
-      addMarker(index, { lat, lng });
+    places.forEach((el) => {
+      let lat, lng;
+      if (el.location) [lat, lng] = el.location.coordinates;
+      addMarker(el.id, { lat, lng });
     });
   }
   map?.setCenter({ lat: coords.latitude, lng: coords.longitude });
+  if (map) {
+    const service = new google.maps.places.PlacesService(map);
+    dispatch(setServiceAPI(service));
+  }
 
   return (
     <div className={styles.map_container} data-testid="map_container">

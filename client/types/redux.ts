@@ -31,7 +31,15 @@ export type place = {
 export interface RootState {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: number;
+  selectedId: string;
+  serviceAPI?: google.maps.places.PlacesService;
+  newPlace?: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+    };
+  };
   coords: coords;
   places: place[];
 }
@@ -39,7 +47,15 @@ export interface RootState {
 export interface state {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: number;
+  selectedId: string;
+  serviceAPI?: google.maps.places.PlacesService;
+  newPlace?: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+    };
+  };
   coords: coords;
   places: place[];
 }
