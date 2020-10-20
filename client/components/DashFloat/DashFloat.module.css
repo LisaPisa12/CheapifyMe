@@ -1,55 +1,88 @@
 .float_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
   margin-top: -300px;
+  width: 100%;
   height: auto;
   min-height: 200px;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(var(--total), 100%) 1px;
+  grid-template-rows: 200px;
+  overflow: auto;
+  scroll-padding: 1em;
+  scroll-snap-type: x mandatory;
 }
 
-.float_info {
-  display: flex;
-  height: auto;
-  min-height: 160px;
-  width: 80%;
-  background-color:var(--white);
+.container {
+  width: 90%;
+  background: white;
+  height: 180px;
   z-index: 10;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
-.float_img {
-  height: auto;
-  min-height: 160px;
-  width: 120px;
-  border-radius: 10px 0 0 10px;
+.container:focus {
+  outline: none;
 }
 
-.float_text {
-  height: auto;
-  width: inherit;  
-  background-color: var(--white);
-  border-radius: 0 10px 10px 0;
-  padding: 10px;
-}
-
-.offer_icon {
-  margin-right: 10px;
-  height: 25px;
-  width: 25px;
-}
-
-.float_offer {
-  height: 300px;
-  width: 300px;
-  overflow-x: auto;
-  place-items: center;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 1em;  
-  scroll-behavior: smooth;
-}
-.offer {
+.empty {
   height: 100%;
   width: 100%;
+}
+
+.restaurant_data {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+.restaurant_offers {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.blue {
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.red {
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.yellow {
+  background-color: yellow;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.WatchedElement {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.WatchedElement:focus {
+  outline: none;
 }

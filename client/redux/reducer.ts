@@ -6,13 +6,13 @@ import ReduxThunk from 'redux-thunk';
 
 const initialState: state = {
   showFloat: false,
-  selectedId: '',
+  selectedId: -1,
   scriptLoaded: false,
   coords: {
-    latitude: 41.384723,
-    longitude: 2.199172
+    latitude: 41.404278,
+    longitude: 2.175098,
   },
-  places: []
+  places: [],
 };
 
 const reducer = createReducer(initialState, {
@@ -34,7 +34,7 @@ const reducer = createReducer(initialState, {
   SET_NEW_OFFER: (state, action) => {
     const place = state.places.find((el) => el.id === action.payload.id);
     if (place) place.offers = action.payload.offers;
-  }
+  },
 });
 
 export const store = createStore(

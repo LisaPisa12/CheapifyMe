@@ -1,16 +1,73 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
 
+import { motion } from 'framer-motion';
+
 import styles from '../styles/Home.module.css';
-import { setCoordinates, setPlaces } from '../redux/actions';
+import { setCoordinates, setPlaces, setScriptLoaded } from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
+import Map from '../components/map';
+
 import Input from '../components/input';
 
-export default function Home() { 
+import { loadMapApi } from '../utils/googleMapsUtils';
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+
+const AnimateLogo = {
+  initial: {
+    y: -300,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      duration: 2,
+      ease: easing,
+    },
+  },
+  exit: {
+    y: 100,
+  },
+};
+
+const animateSearch = {
+  initial: {
+    x: 1000,
+  },
+  animate: {
+    x: 0,
+    transition: {
+      duration: 2,
+      ease: easing,
+    },
+  },
+  exit: {
+    x: 100,
+  },
+};
+
+const animateMap = {
+  initial: {
+    y: 300,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      duration: 2,
+      ease: easing,
+    },
+  },
+  exit: {
+    y: 100,
+  },
+};
+
+export default function Home() {
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
 
@@ -19,8 +76,15 @@ export default function Home() {
   const Coords = useSelector((state: RootState) => state.coords);
 
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   });
+
+  useEffect(() => {
+    const googleMapScript = loadMapApi();
+    googleMapScript.addEventListener('load', () => {
+      dispatch(setScriptLoaded(true));
+    });
+  }, []);
 
   if (data && data.getOffersNearby) {
     router.push('/dashboard');
@@ -39,9 +103,9 @@ export default function Home() {
         variables: {
           location: {
             type: 'Point',
-            coordinates: [latitude, longitude]
-          }
-        }
+            coordinates: [latitude, longitude],
+          },
+        },
       });
     }
   }
@@ -58,16 +122,29 @@ export default function Home() {
     setClicked(true);
   };
   return (
-    <>
+    <motion.div
+      exit="exit"
+      initial="initial"
+      animate="animate"
+      className={styles.container}
+    >
       <section className={styles.section} data-testid="section">
-        <div className={styles.childs} data-testid="child">
+        <motion.div
+          variants={AnimateLogo}
+          className={styles.childs}
+          data-testid="child"
+        >
           <img
             className={styles.image}
             src="cheapifyme.gif"
             data-testid="img"
           />
-        </div>
-        <div className={styles.childs} data-testid="child">
+        </motion.div>
+        <motion.div
+          variants={animateSearch}
+          className={styles.childs}
+          data-testid="child"
+        >
           <Input />
           <button
             className={styles.button}
@@ -80,15 +157,15 @@ export default function Home() {
               data-testid="location-button"
             />
           </button>
-        </div>
-        <div className={styles.childs} data-testid="child">
-          <img
-            className={styles.map_placeholder}
-            src="map-placeholder.jpg"
-            data-testid="map-img"
-          />
-        </div>
+        </motion.div>
+        <motion.div
+          className={styles.childs}
+          data-testid="child"
+          variants={animateMap}
+        >
+          {scriptLoad && <Map mapType={google.maps.MapTypeId.ROADMAP} />}
+        </motion.div>
       </section>
-    </>
+    </motion.div>
   );
 }

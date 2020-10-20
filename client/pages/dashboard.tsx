@@ -3,40 +3,45 @@ import DashFloat from '../components/DashFloat';
 import DashBar from '../components/DashBar';
 import DashList from '../components/DashList';
 import AddButton from '../components/AddButton';
-import RepeatSearch from '../components/RepeatSearch';
 
-import { useEffect } from 'react';
-import { loadMapApi } from '../utils/googleMapsUtils';
-import { setScriptLoaded } from '../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+
+import { useSelector } from 'react-redux';
 import { RootState } from '../types/redux';
 
-function Dashboard() {
-  const dispatch = useDispatch();
-  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
+const divStyle = {
+  height: '100%',
+  width: '100%',
+};
+
+function Dashboard() {
   const showFloat = useSelector((state: RootState) => state.showFloat);
-  useEffect(() => {
-    const googleMapScript = loadMapApi();
-    googleMapScript.addEventListener('load', () => {
-      dispatch(setScriptLoaded(true));
-    });
-  }, []);
 
   return (
-    <>
-      <DashBar />
-      <AddButton />
-      {/* <RepeatSearch /> */}
-      {scriptLoad ? (
-        // eslint-disable-next-line no-undef
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial="initial"
+      animate="animate"
+      style={divStyle}
+    >
+      <motion.div variants={stagger} style={divStyle}>
+        <DashBar />
+        <AddButton />
+        {/* <RepeatSearch /> */}
+        {/* eslint-disable-next-line no-undef */}
         <Map mapType={google.maps.MapTypeId.ROADMAP} />
-      ) : (
-        <p>Loading</p>
-      )}
-      {showFloat ? <DashFloat /> : ''}
-      <DashList />
-    </>
+        {showFloat ? <DashFloat /> : ''}
+        <DashList />
+      </motion.div>
+    </motion.div>
   );
 }
 
