@@ -1,3 +1,4 @@
+/* global google */
 export type coords = {
   latitude: number;
   longitude: number;
