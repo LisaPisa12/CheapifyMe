@@ -24,6 +24,7 @@ export default function PlaceSelector() {
       const googleMapScript = loadMapApi();
       googleMapScript.addEventListener('load', () => {
         dispatch(setScriptLoaded(true));
+        loadWhenScriptIsLoaded();
       });
     }
   }, []);
@@ -64,16 +65,22 @@ export default function PlaceSelector() {
       );
     });
 
-  const nearbyCoords = new google.maps.LatLng(
-    coordinates.latitude,
-    coordinates.longitude
-  );
+  let nearbyCoords;
+  let request: google.maps.places.PlaceSearchRequest;
 
-  const request: google.maps.places.PlaceSearchRequest = {
-    location: nearbyCoords,
-    radius: 400,
-    type: 'restaurant',
+  const loadWhenScriptIsLoaded = () => {
+    nearbyCoords = new google.maps.LatLng(
+      coordinates.latitude,
+      coordinates.longitude
+    );
+
+    request = {
+      location: nearbyCoords,
+      radius: 400,
+      type: 'restaurant',
+    };
   };
+
   const getPlaces = () => {
     if (service) {
       service.nearbySearch(
