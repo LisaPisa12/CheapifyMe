@@ -62,7 +62,7 @@ export default function addOffer() {
     }
   }
   const router = useRouter();
-  return (
+  return scriptLoad && 
     <section className={styles.section}>
       <article className={styles.restaurantData}>
         {scriptLoad && thisPlace ? <h2>{thisPlace?.name}</h2> : ''}
