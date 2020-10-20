@@ -1,19 +1,33 @@
+/* global google */
 import styles from '../styles/placeSelector.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { RootState } from '../types/redux';
-import { setSelectedId, setNewPlace } from '../redux/actions';
+import { setSelectedId, setNewPlace, setScriptLoaded } from '../redux/actions';
 
 import Input from '../components/input';
 
 import { useRouter } from 'next/router';
 
-export default function addOffer() {
+import { loadMapApi } from '../utils/googleMapsUtils';
+
+export default function PlaceSelector() {
   const router = useRouter();
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const places = useSelector((state: RootState) => state.places);
   const service = useSelector((state: RootState) => state.serviceAPI);
   const coordinates = useSelector((state: RootState) => state.coords);
+
+  useEffect(() => {
+    if (!scriptLoad) {
+      const googleMapScript = loadMapApi();
+      googleMapScript.addEventListener('load', () => {
+        dispatch(setScriptLoaded(true));
+        loadWhenScriptIsLoaded();
+      });
+    }
+  }, []);
 
   const [googlePlaces, setGooglePlaces] = useState<
     google.maps.places.PlaceResult[]
@@ -33,35 +47,41 @@ export default function addOffer() {
     places.map((place, key) => {
       createGrid();
       return (
-        <>
-          <article
-            key={place.id}
-            className={key % 2 === 0 ? styles.place_even : styles.place_odd}
-            onClick={() => {
-              dispatch(setSelectedId(place.id));
-              router.push('/addOffer');
-            }}
-          >
-            <img src="cheapifyme.gif" className={styles['place-img']} />
-            <h2>{place.name}</h2>
-          </article>
-        </>
+        scriptLoad && (
+          <>
+            <article
+              key={place.id}
+              className={key % 2 === 0 ? styles.place_even : styles.place_odd}
+              onClick={() => {
+                dispatch(setSelectedId(key));
+                router.push('/addOffer');
+              }}
+            >
+              <img src="cheapifyme.gif" className={styles['place-img']} />
+              <h2>{place.name}</h2>
+            </article>
+          </>
+        )
       );
     });
 
-  const nearbyCoords = new google.maps.LatLng(
-    coordinates.latitude,
-    coordinates.longitude
-  );
+  let nearbyCoords;
+  let request: google.maps.places.PlaceSearchRequest;
 
-  const request: google.maps.places.PlaceSearchRequest = {
-    location: nearbyCoords,
-    radius: 400,
-    type: 'restaurant'
+  const loadWhenScriptIsLoaded = () => {
+    nearbyCoords = new google.maps.LatLng(
+      coordinates.latitude,
+      coordinates.longitude
+    );
+
+    request = {
+      location: nearbyCoords,
+      radius: 400,
+      type: 'restaurant',
+    };
   };
-  const getPlaces = () => {
-    console.log('called');
 
+  const getPlaces = () => {
     if (service) {
       service.nearbySearch(
         request,
@@ -73,63 +93,72 @@ export default function addOffer() {
       );
     }
   };
+
   const showGooglePlaces = () =>
-    googlePlaces.map((place, key) => {
+    googlePlaces?.map((place, key) => {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.geometry?.location.toJSON()
+        location: place.geometry?.location.toJSON(),
       };
       return (
         <>
-          <article
-            key={place.name}
-            className={key % 2 === 0 ? styles.place_even : styles.place_odd}
-            onClick={() => {
-              dispatch(setNewPlace(thisPlace));
-              router.push('/addOffer');
-            }}
-          >
-            <img src="cheapifyme.gif" className={styles['place-img']} />
-            <h2>{place.name}</h2>
-          </article>
+          {scriptLoad && (
+            <article
+              key={place.name}
+              className={key % 2 === 0 ? styles.place_even : styles.place_odd}
+              onClick={() => {
+                dispatch(setNewPlace(thisPlace));
+                router.push('/addOffer');
+              }}
+            >
+              <img src="cheapifyme.gif" className={styles['place-img']} />
+              <h2>{place.name}</h2>
+            </article>
+          )}
         </>
       );
     });
 
   return (
-    <section className={styles.section}>
-      <div className={styles.results}>
-        {showPlaces()}
-        {googlePlaces ? showGooglePlaces() : ''}
-        <article
-          className={
-            places.length % 2 === 0 ? styles.place_even : styles.place_odd
-          }
-          onClick={getPlaces}
-        >
-          <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Search more places</h2>
-        </article>
-        {places.length % 2 === 1 ? (
-          <div className={styles.blank_div}></div>
-        ) : (
-          <>
+    scriptLoad && (
+      <section className={styles.section}>
+        <div className={styles.results}>
+          {showPlaces()}
+          {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
+          {scriptLoad && (
+            <article
+              className={
+                places.length % 2 === 0 ? styles.place_even : styles.place_odd
+              }
+              onClick={getPlaces}
+            >
+              <img src="cheapifyme.gif" className={styles['place-img']} />
+              <h2>Search more places</h2>
+            </article>
+          )}
+          {places.length % 2 === 1 ? (
             <div className={styles.blank_div}></div>
-            <div className={styles.blank_div}></div>
-          </>
-        )}
-      </div>
-      <div className={styles.search}>
-        {/* Search on the list based on the keys added  */}
-        <Input />
-        <button
-          className={styles.button}
-          onClick={() => router.push('/dashboard')}
-        >
-          Cancel
-        </button>
-      </div>
-    </section>
+          ) : (
+            <>
+              <div className={styles.blank_div}></div>
+              <div className={styles.blank_div}></div>
+            </>
+          )}
+        </div>
+        <div className={styles.search}>
+          {/* Search on the list based on the keys added  */}
+          <Input />
+          {scriptLoad && (
+            <button
+              className={styles.button}
+              onClick={() => router.push('/dashboard')}
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </section>
+    )
   );
 }
