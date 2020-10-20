@@ -39,4 +39,6 @@ type Places {
     id:String
     score:Int
   }
+
+
 `;
