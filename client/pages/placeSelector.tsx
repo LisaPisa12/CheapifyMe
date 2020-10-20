@@ -84,6 +84,7 @@ export default function addOffer() {
       );
     }
   };
+
   const showGooglePlaces = () =>
     googlePlaces?.map((place, key) => {
       createGrid();
@@ -111,42 +112,44 @@ export default function addOffer() {
     });
 
   return (
-    <section className={styles.section}>
-      <div className={styles.results}>
-        {showPlaces()}
-        {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
-        {scriptLoad && (
-          <article
-            className={
-              places.length % 2 === 0 ? styles.place_even : styles.place_odd
-            }
-            onClick={getPlaces}
-          >
-            <img src="cheapifyme.gif" className={styles['place-img']} />
-            <h2>Search more places</h2>
-          </article>
-        )}
-        {places.length % 2 === 1 ? (
-          <div className={styles.blank_div}></div>
-        ) : (
-          <>
+    scriptLoad && (
+      <section className={styles.section}>
+        <div className={styles.results}>
+          {showPlaces()}
+          {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
+          {scriptLoad && (
+            <article
+              className={
+                places.length % 2 === 0 ? styles.place_even : styles.place_odd
+              }
+              onClick={getPlaces}
+            >
+              <img src="cheapifyme.gif" className={styles['place-img']} />
+              <h2>Search more places</h2>
+            </article>
+          )}
+          {places.length % 2 === 1 ? (
             <div className={styles.blank_div}></div>
-            <div className={styles.blank_div}></div>
-          </>
-        )}
-      </div>
-      <div className={styles.search}>
-        {/* Search on the list based on the keys added  */}
-        <Input />
-        {scriptLoad && (
-          <button
-            className={styles.button}
-            onClick={() => router.push('/dashboard')}
-          >
-            Cancel
-          </button>
-        )}
-      </div>
-    </section>
+          ) : (
+            <>
+              <div className={styles.blank_div}></div>
+              <div className={styles.blank_div}></div>
+            </>
+          )}
+        </div>
+        <div className={styles.search}>
+          {/* Search on the list based on the keys added  */}
+          <Input />
+          {scriptLoad && (
+            <button
+              className={styles.button}
+              onClick={() => router.push('/dashboard')}
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </section>
+    )
   );
 }
