@@ -17,7 +17,7 @@ function DashFloat() {
   createGrid();
 
   const selectCorrectDiv = () => {
-    if (window && document) document?.getElementById('focus').focus();
+    if (window && document) document?.getElementById('focus')?.focus();
   };
 
   setTimeout(() => {
