@@ -47,7 +47,7 @@ export interface RootState {
 export interface state {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: string;
+  selectedId: number;
   serviceAPI?: google.maps.places.PlacesService;
   newPlace?: {
     name: string;
