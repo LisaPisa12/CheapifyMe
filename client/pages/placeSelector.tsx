@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 
-export default function addOffer() {
+export default function PlaceSelector() {
   const router = useRouter();
   const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const places = useSelector((state: RootState) => state.places);
