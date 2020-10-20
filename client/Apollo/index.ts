@@ -37,6 +37,9 @@ const insertOffer = gql`
   ) {
     insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
       id
+      name
+      location
+      image
       offers {
         consumableType
         offerType

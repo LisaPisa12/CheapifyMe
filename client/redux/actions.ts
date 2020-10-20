@@ -27,6 +27,18 @@ export function setPlaces(places: place[]) {
     payload: places
   };
 }
+export function setServiceAPI(service: any) {
+  return {
+    type: 'SET_SERVICE_API',
+    payload: service
+  };
+}
+export function setNewPlace(newPlace: any) {
+  return {
+    type: 'SET_NEW_PLACE',
+    payload: newPlace
+  };
+}
 export function setNewOffer(place: place) {
   return {
     type: 'SET_NEW_OFFER',
@@ -40,18 +52,3 @@ export function setSelectedId(id: string) {
     payload: id
   };
 }
-// export function fetchPlaces(coords: coords) {
-//   return function (dispatch: () => {}) {
-//     const result = fetch(`someURL`, {
-//       headers: {
-//         Accept: 'application/json'
-//       },
-//       body: JSON.stringify(coords)
-//     })
-//       .then((r) => r.json())
-//       .then((response: place[]) => {
-//         dispatch(setPlaces(response));
-//       });
-//     console.log(result);
-//   };
-// }

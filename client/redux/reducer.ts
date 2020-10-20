@@ -8,6 +8,7 @@ const initialState: state = {
   showFloat: false,
   selectedId: '',
   scriptLoaded: false,
+  serviceAPI: undefined,
   coords: {
     latitude: 41.384723,
     longitude: 2.199172
@@ -28,12 +29,19 @@ const reducer = createReducer(initialState, {
   SET_SELECTED_ID: (state, action) => {
     state.selectedId = action.payload;
   },
+  SET_SERVICE_API: (state, action) => {
+    state.serviceAPI = action.payload;
+  },
   SET_PLACES: (state, action) => {
     state.places = action.payload;
   },
+  SET_NEW_PLACE: (state, action) => {
+    state.newPlace = action.payload;
+  },
   SET_NEW_OFFER: (state, action) => {
-    const place = state.places.find((el) => el.id === action.payload.id);
-    if (place) place.offers = action.payload.offers;
+    let place = state.places.find((el) => el.id === action.payload.id);
+    if (place) place = action.payload;
+    else state.places.push(action.payload);
   }
 });
 

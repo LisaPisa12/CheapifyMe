@@ -12,11 +12,21 @@ export default function addOffer() {
   const dispatch = useDispatch();
   const thisId = useSelector((state: RootState) => state.selectedId);
   const places = useSelector((state: RootState) => state.places);
+  const newPlace = useSelector((state: RootState) => state.newPlace);
   let thisPlace: any;
-  if (places.length > 0) {
-    thisPlace = places.find((el) => el.id === thisId);
-  }
+  let location: any;
 
+  if (newPlace) {
+    thisPlace = newPlace;
+    location = {
+      type: 'Point',
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
+    };
+  } else if (places.length > 0) {
+    thisPlace = places.find((el) => el.id === thisId);
+    location = thisPlace.location;
+  }
+  console.log(thisPlace, location);
   const [mutateOffer, { data }] = useMutation(insertOffer);
 
   const [thisOffer, setThisOffer] = useState({
@@ -42,7 +52,7 @@ export default function addOffer() {
   return (
     <section className={styles.section}>
       <article className={styles.restaurantData}>
-        <h2>{thisPlace?.name}</h2>
+        {thisPlace ? <h2>{thisPlace?.name}</h2> : ''}
       </article>
       <article className={styles.formContainer}>
         <h2>Type</h2>
@@ -182,7 +192,7 @@ export default function addOffer() {
                 variables: {
                   id: thisPlace.id,
                   name: thisPlace.name,
-                  location: thisPlace.location,
+                  location: location,
                   offer: thisOffer
                 }
               });
