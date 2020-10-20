@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cd server && npm start",
     "build": "cd server && npm run build",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "install": "cd server && npm i"
   },
   "repository": {
     "type": "git",
