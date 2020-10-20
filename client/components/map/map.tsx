@@ -79,7 +79,8 @@ const Map = ({ mapType }: IMap) => {
 
   if (places.length > 0) {
     places.forEach((el) => {
-      const [lat, lng] = el.location.coordinates;
+      let lat, lng;
+      if (el.location) [lat, lng] = el.location.coordinates;
       addMarker(el.id, { lat, lng });
     });
   }
