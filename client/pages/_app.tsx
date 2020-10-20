@@ -8,15 +8,11 @@ import { client } from '../Apollo';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import AppLayout from '../layout/Container';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const divStyle = {
-    height: '100%',
-    width: '100%'
-  };
   return (
     <AppLayout>
       <Head>
@@ -42,22 +38,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       </Head>
       <ApolloProvider client={client}>
         <Provider store={store}>
-          <motion.div
-            key={router.route}
-            initial="pageInitial"
-            animate="pageAnimate"
-            variants={{
-              pageInitial: {
-                opacity: 0
-              },
-              pageAnimate: {
-                opacity: 1
-              }
-            }}
-            style={divStyle}
-          >
+          <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} />
-          </motion.div>
+          </AnimatePresence>
         </Provider>
       </ApolloProvider>
     </AppLayout>

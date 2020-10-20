@@ -23,7 +23,6 @@ export default function addOffer() {
 
   const createGrid = () => {
     const root = document.documentElement;
-    console.log(root);
     root.style.setProperty(
       '--total',
       Math.floor((places.length + 2) / 2).toString()

@@ -1,29 +1,20 @@
 import {  Place } from '../../models/places';
 
 export default {
-  // insertOffer: async (_: any, { id, offers }: any) => {
-  //   try {
-  
-  //     const offerAtLocation = await Place.findById(id);
-  //     if (offerAtLocation) {
-  //       offerAtLocation.offers.push(...offers);
-  //       offerAtLocation.save();
 
-  //       return offerAtLocation;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
-
-  voteOffer: async (_: any, { id, offerType }: any) => {
+  voteOffer: async (_: any, { id, offer }: any) => {
     try {
       const placeWithOffer = await Place.findById(id);
     
       if (placeWithOffer) {
-        const condition= {"Place.offers.$.offerType":offerType};
-       Place.updateOne(condition, {$inc:{score:1}});
+        placeWithOffer.offers.forEach(el => {
+          if(el.id === offer[0].id) el.score+=offer[0].score;
+          if(el.score === -25) el.available = false
+        });
+        placeWithOffer.save();
+        return placeWithOffer;
       }
+      
     } catch (error) {
       console.log(error);
     }

@@ -6,14 +6,14 @@ import ReduxThunk from 'redux-thunk';
 
 const initialState: state = {
   showFloat: false,
-  selectedId: '',
+  selectedId: -1,
   scriptLoaded: false,
   serviceAPI: undefined,
   coords: {
-    latitude: 41.384723,
-    longitude: 2.199172
+    latitude: 41.404278,
+    longitude: 2.175098,
   },
-  places: []
+  places: [],
 };
 
 const reducer = createReducer(initialState, {

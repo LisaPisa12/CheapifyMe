@@ -11,10 +11,6 @@ import styles from './map.module.css';
 
 interface IMap {
   mapType: google.maps.MapTypeId | string;
-  coords: {
-    latitude: number;
-    longitude: number;
-  };
 }
 
 type GoogleLatLng = google.maps.LatLng;
@@ -38,7 +34,7 @@ const Map = ({ mapType }: IMap) => {
       coords.latitude,
       coords.longitude
     );
-    initMap(17, defaultAdress);
+    initMap(14, defaultAdress);
   };
 
   const initMap = (zoomLevel: number, address: GoogleLatLng): void => {
@@ -55,17 +51,17 @@ const Map = ({ mapType }: IMap) => {
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
-          gestureHandling: 'cooperative'
+          gestureHandling: 'cooperative',
         } as google.maps.MapOptions)
       );
     }
   };
 
-  function addMarker(id: string, coordinates: any) {
+  function addMarker(id: number, coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
       icon: 'test.png',
-      map
+      map,
     });
     marker.addListener('click', function () {
       dispatch(setShowFloat(true));

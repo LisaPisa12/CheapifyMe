@@ -1,4 +1,7 @@
 import { ReactNode } from 'react';
+
+import { motion } from 'framer-motion';
+
 import styles from './index.module.css';
 
 type IAppLayout = {
@@ -7,10 +10,16 @@ type IAppLayout = {
 
 export default function AppLayout({ children }: IAppLayout) {
   return (
-    <div className={styles.center} data-testid="center-div">
-      <main className={styles.main} data-testid="main">
-        {children}
-      </main>
-    </div>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <div className={styles.center} data-testid="center-div">
+        <main className={styles.main} data-testid="main">
+          {children}
+        </main>
+      </div>
+    </motion.div>
   );
 }

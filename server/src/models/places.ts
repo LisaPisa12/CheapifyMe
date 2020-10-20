@@ -30,7 +30,7 @@ interface IPlace extends mongoose.Document {
 
   };
   image?: String;
-  offers: [IOffer];
+  offers: IOffer[];
 }
 
 const offerSchema = new Schema({
