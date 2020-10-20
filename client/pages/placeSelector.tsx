@@ -38,7 +38,7 @@ export default function addOffer() {
             key={place.id}
             className={key % 2 === 0 ? styles.place_even : styles.place_odd}
             onClick={() => {
-              dispatch(setSelectedId(place.id));
+              dispatch(setSelectedId(key));
               router.push('/addOffer');
             }}
           >
@@ -57,7 +57,7 @@ export default function addOffer() {
   const request: google.maps.places.PlaceSearchRequest = {
     location: nearbyCoords,
     radius: 400,
-    type: 'restaurant'
+    type: 'restaurant',
   };
   const getPlaces = () => {
     console.log('called');
@@ -74,11 +74,11 @@ export default function addOffer() {
     }
   };
   const showGooglePlaces = () =>
-    googlePlaces.map((place, key) => {
+    googlePlaces?.map((place, key) => {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.geometry?.location.toJSON()
+        location: place.geometry?.location.toJSON(),
       };
       return (
         <>

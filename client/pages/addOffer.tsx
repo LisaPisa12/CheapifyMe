@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
 import { setNewOffer } from '../redux/actions';
-import { RootState, place } from '../types/redux';
+import { RootState } from '../types/redux';
 import { insertOffer } from '../Apollo';
 
 export default function addOffer() {
@@ -20,14 +20,15 @@ export default function addOffer() {
     thisPlace = newPlace;
     location = {
       type: 'Point',
-      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng],
     };
   } else if (places.length > 0) {
-    thisPlace = places.find((el) => el.id === thisId);
+    thisPlace = places[thisId];
+    console.log(thisPlace);
     location = thisPlace.location;
   }
   console.log(thisPlace, location);
-  const [mutateOffer, { data }] = useMutation(insertOffer);
+  const [mutateOffer] = useMutation(insertOffer);
 
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
@@ -36,7 +37,7 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: ''
+    description: '',
   });
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -193,8 +194,8 @@ export default function addOffer() {
                   id: thisPlace.id,
                   name: thisPlace.name,
                   location: location,
-                  offer: thisOffer
-                }
+                  offer: thisOffer,
+                },
               });
 
               dispatch(setNewOffer(newOffer.data.insertOffer));
