@@ -115,15 +115,17 @@ export default function addOffer() {
       <div className={styles.results}>
         {showPlaces()}
         {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
-        <article
-          className={
-            places.length % 2 === 0 ? styles.place_even : styles.place_odd
-          }
-          onClick={getPlaces}
-        >
-          <img src="cheapifyme.gif" className={styles['place-img']} />
-          <h2>Search more places</h2>
-        </article>
+        {scriptLoad && (
+          <article
+            className={
+              places.length % 2 === 0 ? styles.place_even : styles.place_odd
+            }
+            onClick={getPlaces}
+          >
+            <img src="cheapifyme.gif" className={styles['place-img']} />
+            <h2>Search more places</h2>
+          </article>
+        )}
         {places.length % 2 === 1 ? (
           <div className={styles.blank_div}></div>
         ) : (
