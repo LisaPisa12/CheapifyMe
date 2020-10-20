@@ -3,55 +3,52 @@ import { coords, place } from '../types/redux';
 export function setScriptLoaded(loaded: boolean) {
   return {
     type: 'SET_SCRIPT_LOADED',
-    payload: loaded
+    payload: loaded,
   };
 }
 
 export function setCoordinates(coords: coords) {
   return {
     type: 'SET_COORDINATES',
-    payload: coords
+    payload: coords,
   };
 }
 
 export function setShowFloat(showFloat: boolean) {
   return {
     type: 'SET_SHOW_FLOAT',
-    payload: showFloat
+    payload: showFloat,
   };
 }
 
 export function setPlaces(places: place[]) {
   return {
     type: 'SET_PLACES',
-    payload: places
+    payload: places,
+  };
+}
+export function setServiceAPI(service: any) {
+  return {
+    type: 'SET_SERVICE_API',
+    payload: service
+  };
+}
+export function setNewPlace(newPlace: any) {
+  return {
+    type: 'SET_NEW_PLACE',
+    payload: newPlace
   };
 }
 export function setNewOffer(place: place) {
   return {
     type: 'SET_NEW_OFFER',
-    payload: place
+    payload: place,
   };
 }
 
-export function setSelectedId(id: string) {
+export function setSelectedId(id: number) {
   return {
     type: 'SET_SELECTED_ID',
-    payload: id
+    payload: id,
   };
 }
-// export function fetchPlaces(coords: coords) {
-//   return function (dispatch: () => {}) {
-//     const result = fetch(`someURL`, {
-//       headers: {
-//         Accept: 'application/json'
-//       },
-//       body: JSON.stringify(coords)
-//     })
-//       .then((r) => r.json())
-//       .then((response: place[]) => {
-//         dispatch(setPlaces(response));
-//       });
-//     console.log(result);
-//   };
-// }

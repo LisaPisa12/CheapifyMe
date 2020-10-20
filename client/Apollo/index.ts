@@ -2,8 +2,8 @@ import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client';
 import fetch from 'cross-fetch';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://localhost:4000', fetch }),
-  cache: new InMemoryCache()
+  link: new HttpLink({ uri: 'http://localhost:5000/graphql', fetch }),
+  cache: new InMemoryCache(),
 });
 
 const getPlaces = gql`
@@ -33,10 +33,13 @@ const insertOffer = gql`
     $id: String
     $name: String!
     $location: Point!
-    $offer: [OffersInput]!
+    $offer: [OfferInput]!
   ) {
     insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
       id
+      name
+      location
+      image
       offers {
         consumableType
         offerType
