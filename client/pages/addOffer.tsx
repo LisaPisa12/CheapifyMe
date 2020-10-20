@@ -65,7 +65,7 @@ export default function addOffer() {
   return (
     <section className={styles.section}>
       <article className={styles.restaurantData}>
-        {thisPlace ? <h2>{thisPlace?.name}</h2> : ''}
+        {scriptLoad && thisPlace ? <h2>{thisPlace?.name}</h2> : ''}
       </article>
       <article className={styles.formContainer}>
         <h2>Type</h2>
