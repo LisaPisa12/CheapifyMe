@@ -75,7 +75,7 @@ export default function Home() {
   const router = useRouter();
 
   const Coords = useSelector((state: RootState) => state.coords);
-  let geocoder: any;
+  let geocoder: google.maps.Geocoder;
   if (scriptLoad) {
     geocoder = new google.maps.Geocoder();
   }
@@ -136,7 +136,7 @@ export default function Home() {
       }
     };
 
-    geocoder.geocode(request, (result: any, status: any) => {
+    geocoder.geocode(request, (result, status) => {
       if (status === 'OK') {
         const res = result[0].geometry.location.toJSON();
         dispatch(

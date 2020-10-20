@@ -2,7 +2,7 @@ import style from './index.module.css';
 import { useState } from 'react';
 
 type Iinput = {
-  props: any;
+  props?: any;
 };
 
 export default function Input({ props }: Iinput) {
