@@ -1,3 +1,4 @@
+/* global google */
 export type coords = {
   latitude: number;
   longitude: number;
@@ -31,7 +32,7 @@ export type place = {
 export interface RootState {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: string;
+  selectedId: number;
   serviceAPI?: google.maps.places.PlacesService;
   newPlace?: {
     name: string;
@@ -47,7 +48,7 @@ export interface RootState {
 export interface state {
   showFloat: boolean;
   scriptLoaded: boolean;
-  selectedId: string;
+  selectedId: number;
   serviceAPI?: google.maps.places.PlacesService;
   newPlace?: {
     name: string;

@@ -33,7 +33,7 @@ const insertOffer = gql`
     $id: String
     $name: String!
     $location: Point!
-    $offer: [OffersInput]!
+    $offer: [OfferInput]!
   ) {
     insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
       id

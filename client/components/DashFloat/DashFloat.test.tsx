@@ -8,7 +8,7 @@ describe.only('Dashboard Floating element', () => {
     cleanup();
   });
   it('Renders the float container', () => {
-    const component = renderComponent();
+    renderComponent();
     expect(screen.queryByTestId('float_container')).toBeTruthy();
   });
 });

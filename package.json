@@ -1,0 +1,20 @@
+{
+  "name": "CheapifyMe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd server && npm i && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LisaPisa12/CheapifyMe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LisaPisa12/CheapifyMe/issues"
+  },
+  "homepage": "https://github.com/LisaPisa12/CheapifyMe#readme"
+}
