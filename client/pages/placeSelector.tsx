@@ -73,8 +73,6 @@ export default function addOffer() {
     type: 'restaurant',
   };
   const getPlaces = () => {
-    console.log('called');
-
     if (service) {
       service.nearbySearch(
         request,
