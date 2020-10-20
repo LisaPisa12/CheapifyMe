@@ -95,17 +95,19 @@ export default function addOffer() {
       };
       return (
         <>
-          <article
-            key={place.name}
-            className={key % 2 === 0 ? styles.place_even : styles.place_odd}
-            onClick={() => {
-              dispatch(setNewPlace(thisPlace));
-              router.push('/addOffer');
-            }}
-          >
-            <img src="cheapifyme.gif" className={styles['place-img']} />
-            <h2>{place.name}</h2>
-          </article>
+          {scriptLoad && (
+            <article
+              key={place.name}
+              className={key % 2 === 0 ? styles.place_even : styles.place_odd}
+              onClick={() => {
+                dispatch(setNewPlace(thisPlace));
+                router.push('/addOffer');
+              }}
+            >
+              <img src="cheapifyme.gif" className={styles['place-img']} />
+              <h2>{place.name}</h2>
+            </article>
+          )}
         </>
       );
     });
