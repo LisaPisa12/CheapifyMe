@@ -68,28 +68,45 @@ export default function addOffer() {
         <article className={styles.restaurantData}>
           {scriptLoad && thisPlace ? <h2>{thisPlace?.name}</h2> : ''}
         </article>
-        <article className={styles.formContainer}>
+        <article
+          className={
+            thisOffer.consumableType
+              ? styles.formContainer
+              : styles.starter_consumable_type
+          }
+        >
           <h2>Type</h2>
           <div className={styles.offersType}>
             <div>
               <input
+                className={styles.hidden_button}
                 type="radio"
                 id="food"
                 name="consumableType"
-                value="Food"
+                value="food"
                 onChange={handleChange}
               />
-              <label htmlFor="offerType">Food</label>
+              <label htmlFor="food">
+                <img src="testfoodIcon.svg" alt="" className={styles.icon} />
+              </label>
             </div>
             <div>
               <input
+                className={styles.hidden_button}
                 type="radio"
                 id="drink"
                 name="consumableType"
                 value="drink"
                 onChange={handleChange}
               />
-              <label htmlFor="offerType">Drinks</label>
+
+              <label htmlFor="drink">
+                <img
+                  src="testdrinkIcon.svg"
+                  alt="test"
+                  className={styles.icon}
+                />
+              </label>
             </div>
           </div>
         </article>
@@ -99,33 +116,42 @@ export default function addOffer() {
             <div className={styles.offersType}>
               <div>
                 <input
+                  className={styles.hidden_button}
                   type="radio"
-                  id="offerType"
+                  id="2x1"
                   name="offerType"
                   value="2x1"
                   onChange={handleChange}
                 />
-                <label htmlFor="offerType">2x1</label>
+                <label htmlFor="2x1">
+                  <img src="test2X1.svg" alt="" className={styles.icon} />
+                </label>
               </div>
               <div>
                 <input
+                  className={styles.hidden_button}
                   type="radio"
-                  id="offerType"
+                  id="happy"
                   name="offerType"
                   value="happy hour"
                   onChange={handleChange}
                 />
-                <label htmlFor="offerType">Happy hours</label>
+                <label htmlFor="happy">
+                  <img src="testHappy.svg" alt="" className={styles.icon} />
+                </label>
               </div>
               <div>
                 <input
+                  className={styles.hidden_button}
                   type="radio"
-                  id="offerType"
+                  id="percent"
                   name="offerType"
                   value="Percentage"
                   onChange={handleChange}
                 />
-                <label htmlFor="offerType">Percentage</label>
+                <label htmlFor="percent">
+                  <img src="test2X1.svg" alt="" className={styles.icon} />
+                </label>
               </div>
             </div>
           </article>

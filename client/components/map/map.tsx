@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedId,
   setShowFloat,
-  setServiceAPI,
+  setServiceAPI
 } from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
@@ -52,17 +52,17 @@ const Map = ({ mapType }: IMap) => {
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
-          gestureHandling: 'cooperative',
+          gestureHandling: 'cooperative'
         } as google.maps.MapOptions)
       );
     }
   };
 
-  function addMarker(id: number, coordinates: any) {
+  function addMarker(id: number, type: string, coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
-      icon: 'test.png',
-      map,
+      icon: `test${type.toLowerCase()}Icon.svg`,
+      map
     });
     marker.addListener('click', function () {
       dispatch(setShowFloat(true));
@@ -78,10 +78,10 @@ const Map = ({ mapType }: IMap) => {
     places.forEach((el, index) => {
       let lat, lng;
       if (el.location) [lat, lng] = el.location.coordinates;
-      addMarker(index, { lat, lng });
+      addMarker(index, el.offers[0].consumableType, { lat, lng });
     });
   }
-  map?.setCenter({ lat: coords.latitude, lng: coords.longitude });
+  map?.panTo({ lat: coords.latitude, lng: coords.longitude });
   if (map) {
     const service = new google.maps.places.PlacesService(map);
     dispatch(setServiceAPI(service));
