@@ -21,50 +21,50 @@ const easing = [0.6, -0.05, 0.01, 0.99];
 
 const AnimateLogo = {
   initial: {
-    y: -300,
+    y: -300
   },
   animate: {
     y: 0,
     transition: {
       duration: 2,
-      ease: easing,
-    },
+      ease: easing
+    }
   },
   exit: {
-    y: 100,
-  },
+    y: 100
+  }
 };
 
 const animateSearch = {
   initial: {
-    x: 1000,
+    x: 1000
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing,
-    },
+      ease: easing
+    }
   },
   exit: {
-    x: 100,
-  },
+    x: 100
+  }
 };
 
 const animateMap = {
   initial: {
-    y: 300,
+    y: 300
   },
   animate: {
     y: 0,
     transition: {
       duration: 2,
-      ease: easing,
-    },
+      ease: easing
+    }
   },
   exit: {
-    y: 100,
-  },
+    y: 100
+  }
 };
 
 export default function Home() {
@@ -75,9 +75,13 @@ export default function Home() {
   const router = useRouter();
 
   const Coords = useSelector((state: RootState) => state.coords);
+  let geocoder: google.maps.Geocoder;
+  if (scriptLoad) {
+    geocoder = new google.maps.Geocoder();
+  }
 
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'network-only'
   });
 
   useEffect(() => {
@@ -86,13 +90,14 @@ export default function Home() {
       dispatch(setScriptLoaded(true));
     });
   }, []);
-
-  if (data && data.getOffersNearby) {
-    router.push('/dashboard');
-    if (data.getOffersNearby.length > 0) {
-      dispatch(setPlaces(data.getOffersNearby));
+  useEffect(() => {
+    if (data && data.getOffersNearby) {
+      router.push('/dashboard');
+      if (data.getOffersNearby.length > 0) {
+        dispatch(setPlaces(data.getOffersNearby));
+      }
     }
-  }
+  }, [data]);
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
@@ -104,9 +109,9 @@ export default function Home() {
         variables: {
           location: {
             type: 'Point',
-            coordinates: [latitude, longitude],
-          },
-        },
+            coordinates: [latitude, longitude]
+          }
+        }
       });
     }
   }
@@ -122,6 +127,38 @@ export default function Home() {
     navigator.geolocation.getCurrentPosition(success, positionError);
     setClicked(true);
   };
+
+  const manualLocation = (text: string) => {
+    const request = {
+      address: text,
+      componentRestrictions: {
+        country: 'ES'
+      }
+    };
+
+    geocoder.geocode(request, (result, status) => {
+      if (status === 'OK') {
+        const res = result[0].geometry.location.toJSON();
+        dispatch(
+          setCoordinates({
+            latitude: res.lat,
+            longitude: res.lng
+          })
+        );
+        getPlacesData({
+          variables: {
+            location: {
+              type: 'Point',
+              coordinates: [res.lat, res.lng]
+            }
+          }
+        });
+      } else {
+        alert('Geocode was not succesful for the following reason: ' + status);
+      }
+    });
+  };
+
   return (
     <motion.div
       exit="exit"
@@ -146,7 +183,7 @@ export default function Home() {
           className={styles.childs}
           data-testid="child"
         >
-          <Input />
+          <Input props={manualLocation} />
           <button
             className={styles.button}
             onClick={askGeolocalization}
