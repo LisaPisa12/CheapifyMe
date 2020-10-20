@@ -1,20 +1,31 @@
 /* global google */
 import styles from '../styles/placeSelector.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { RootState } from '../types/redux';
-import { setSelectedId, setNewPlace } from '../redux/actions';
+import { setSelectedId, setNewPlace, setScriptLoaded } from '../redux/actions';
 
 import Input from '../components/input';
 
 import { useRouter } from 'next/router';
+
+import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function addOffer() {
   const router = useRouter();
   const places = useSelector((state: RootState) => state.places);
   const service = useSelector((state: RootState) => state.serviceAPI);
   const coordinates = useSelector((state: RootState) => state.coords);
+
+  useEffect(() => {
+    if (!google) {
+      const googleMapScript = loadMapApi();
+      googleMapScript.addEventListener('load', () => {
+        dispatch(setScriptLoaded(true));
+      });
+    }
+  }, []);
 
   const [googlePlaces, setGooglePlaces] = useState<
     google.maps.places.PlaceResult[]

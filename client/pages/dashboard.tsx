@@ -1,3 +1,4 @@
+/* global google */
 import Map from '../components/map';
 import DashFloat from '../components/DashFloat';
 import DashBar from '../components/DashBar';
@@ -6,8 +7,15 @@ import AddButton from '../components/AddButton';
 
 import { motion } from 'framer-motion';
 
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import { RootState } from '../types/redux';
+
+import { setScriptLoaded } from '../redux/actions';
+
+import { loadMapApi } from '../utils/googleMapsUtils';
 
 const stagger = {
   animate: {
@@ -23,7 +31,17 @@ const divStyle = {
 };
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const showFloat = useSelector((state: RootState) => state.showFloat);
+
+  useEffect(() => {
+    if (!google) {
+      const googleMapScript = loadMapApi();
+      googleMapScript.addEventListener('load', () => {
+        dispatch(setScriptLoaded(true));
+      });
+    }
+  }, []);
 
   return (
     <motion.div
