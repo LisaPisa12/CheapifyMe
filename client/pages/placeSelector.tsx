@@ -68,7 +68,7 @@ export default function PlaceSelector() {
   let nearbyCoords;
   let request: google.maps.places.PlaceSearchRequest;
 
-  const loadWhenScriptIsLoaded = () => {
+  const getPlaces = () => {
     nearbyCoords = new google.maps.LatLng(
       coordinates.latitude,
       coordinates.longitude
@@ -77,11 +77,8 @@ export default function PlaceSelector() {
     request = {
       location: nearbyCoords,
       radius: 400,
-      type: 'restaurant',
+      type: 'restaurant'
     };
-  };
-
-  const getPlaces = () => {
     if (service) {
       service.nearbySearch(
         request,
@@ -99,7 +96,7 @@ export default function PlaceSelector() {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.geometry?.location.toJSON(),
+        location: place.geometry?.location.toJSON()
       };
       return (
         <>

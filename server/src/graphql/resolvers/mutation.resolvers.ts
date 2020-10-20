@@ -1,3 +1,4 @@
+import { UserInputError } from 'apollo-server';
 import {  Place } from '../../models/places';
 
 export default {
@@ -35,7 +36,7 @@ export default {
 
       }
     } catch (error) {
-      console.log(error);
+      throw new UserInputError('You must provide the all the information required');
     }
   },
 };

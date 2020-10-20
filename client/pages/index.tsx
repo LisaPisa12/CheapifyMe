@@ -78,6 +78,10 @@ export default function Home() {
   const router = useRouter();
 
   const Coords = useSelector((state: RootState) => state.coords);
+  let geocoder: google.maps.Geocoder;
+  if (scriptLoad) {
+    geocoder = new google.maps.Geocoder();
+  }
 
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
     fetchPolicy: 'network-only',
@@ -89,13 +93,14 @@ export default function Home() {
       dispatch(setScriptLoaded(true));
     });
   }, []);
-
-  if (data && data.getOffersNearby) {
-    router.push('/dashboard');
-    if (data.getOffersNearby.length > 0) {
-      dispatch(setPlaces(data.getOffersNearby));
+  useEffect(() => {
+    if (data && data.getOffersNearby) {
+      router.push('/dashboard');
+      if (data.getOffersNearby.length > 0) {
+        dispatch(setPlaces(data.getOffersNearby));
+      }
     }
-  }
+  }, [data]);
 
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
@@ -126,6 +131,37 @@ export default function Home() {
     setClicked(true);
   };
 
+  const manualLocation = (text: string) => {
+    const request = {
+      address: text,
+      componentRestrictions: {
+        country: 'ES',
+      },
+    };
+
+    geocoder.geocode(request, (result, status) => {
+      if (status === 'OK') {
+        const res = result[0].geometry.location.toJSON();
+        dispatch(
+          setCoordinates({
+            latitude: res.lat,
+            longitude: res.lng,
+          })
+        );
+        getPlacesData({
+          variables: {
+            location: {
+              type: 'Point',
+              coordinates: [res.lat, res.lng],
+            },
+          },
+        });
+      } else {
+        alert('Geocode was not succesful for the following reason: ' + status);
+      }
+    });
+  };
+
   return (
     <motion.div
       exit="exit"
@@ -150,7 +186,7 @@ export default function Home() {
           className={styles.childs}
           data-testid="child"
         >
-          <Input />
+          <Input props={manualLocation} />
           <button
             className={styles.button}
             onClick={askGeolocalization}

@@ -39,14 +39,6 @@ type Places {
     id:String
     score:Int
   }
+
+
 `;
-
-// type Coordinates{
-//   lat:Float!
-//   lon:Float!
-// }
-
-// input CoordinatesInput {
-//   lat:Float!
-//   lon:Float!
-// }
