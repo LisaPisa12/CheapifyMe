@@ -320,7 +320,6 @@ export default function addOffer() {
                       dateFormat="Pp"
                       startDate={dates.start}
                       endDate={dates.end}
-                      selectsRange
                       name="start"
                       showTimeSelect
                     />
@@ -382,6 +381,7 @@ export default function addOffer() {
                   />
                   <div className={styles.container}>
                     <motion.span
+                      initial={{ opacity: 0 }}
                       animate={controls}
                       style={{
                         color: mapRemainingToColor(charactersRemaining),
