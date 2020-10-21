@@ -52,6 +52,11 @@
   display: flex;
   flex-direction: column;
   text-align: center; 
+  
+  border: 1px solid #44A671;
+  box-shadow: 0 0 3px 3px #44A671;
+  border-color: #44A671;
+  border-radius: 5px;
 }
 .calendar {
   font-size: 8px !important;
