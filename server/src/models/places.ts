@@ -52,12 +52,12 @@ const offerSchema = new Schema({
   end: String,
   repeat: {
     type: Boolean,
- 
+   // required:true
   },
   repeatEvery: String,
   description: {
     type: String,
-   
+   // required:true
   },
   score: {
     type: Number,
