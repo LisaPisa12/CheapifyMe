@@ -9,19 +9,26 @@ const initialState: state = {
   selectedId: -1,
   scriptLoaded: false,
   serviceAPI: undefined,
-  coords: {
+  mapCoords: {
     latitude: 41.404278,
-    longitude: 2.175098
+    longitude: 2.175098,
   },
-  places: []
+  userCoords: {
+    latitude: 0,
+    longitude: 0,
+  },
+  places: [],
 };
 
 const reducer = createReducer(initialState, {
   SET_SCRIPT_LOADED: (state, action) => {
     state.scriptLoaded = action.payload;
   },
-  SET_COORDINATES: (state, action) => {
-    state.coords = action.payload;
+  SET_MAP_COORDINATES: (state, action) => {
+    state.mapCoords = action.payload;
+  },
+  SET_USER_COORDINATES: (state, action) => {
+    state.userCoords = action.payload;
   },
   SET_SHOW_FLOAT: (state, action) => {
     state.showFloat = action.payload;
@@ -42,7 +49,7 @@ const reducer = createReducer(initialState, {
     const place = state.places.find((el) => el.id === action.payload.id);
     if (place) place.offers = action.payload.offers;
     else state.places.push(action.payload);
-  }
+  },
 });
 
 export const store = createStore(

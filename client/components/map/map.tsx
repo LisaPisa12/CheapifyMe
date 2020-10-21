@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedId,
   setShowFloat,
-  setServiceAPI
+  setServiceAPI,
 } from '../../redux/actions';
 
 import { RootState } from '../../types/redux';
@@ -19,7 +19,7 @@ type GoogleMap = google.maps.Map;
 
 const Map = ({ mapType }: IMap) => {
   const dispatch = useDispatch();
-  const coords = useSelector((state: RootState) => state.coords);
+  const coords = useSelector((state: RootState) => state.mapCoords);
   const places = useSelector((state: RootState) => state.places);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
@@ -52,7 +52,7 @@ const Map = ({ mapType }: IMap) => {
           useStaticMap: true,
           fullscreenControl: false,
           streetViewControl: false,
-          gestureHandling: 'cooperative'
+          gestureHandling: 'cooperative',
         } as google.maps.MapOptions)
       );
     }
@@ -62,7 +62,7 @@ const Map = ({ mapType }: IMap) => {
     const marker = new google.maps.Marker({
       position: coordinates,
       icon: `test${type.toLowerCase()}Icon.svg`,
-      map
+      map,
     });
     marker.addListener('click', function () {
       dispatch(setShowFloat(true));

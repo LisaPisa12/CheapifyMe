@@ -11,6 +11,7 @@ import { insertOffer } from '../Apollo';
 import { loadMapApi } from '../utils/googleMapsUtils';
 
 export default function addOffer() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const thisId = useSelector((state: RootState) => state.selectedId);
@@ -18,6 +19,16 @@ export default function addOffer() {
   const newPlace = useSelector((state: RootState) => state.newPlace);
   let thisPlace: any;
   let location: any;
+
+  const coordinates = useSelector((state: RootState) => state.userCoords);
+
+  const coordsNotProvided =
+    typeof window !== 'undefined' &&
+    coordinates.longitude === 0 &&
+    coordinates.latitude === 0;
+  const placeNotProvided = typeof window !== 'undefined' && thisId;
+
+  if (coordsNotProvided || placeNotProvided) router.push('/');
 
   useEffect(() => {
     if (!scriptLoad) {
@@ -32,7 +43,7 @@ export default function addOffer() {
     thisPlace = newPlace;
     location = {
       type: 'Point',
-      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng],
     };
   } else if (places.length > 0) {
     thisPlace = places[thisId];
@@ -49,7 +60,7 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: ''
+    description: '',
   });
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -61,7 +72,7 @@ export default function addOffer() {
       setThisOffer({ ...thisOffer, [e.target.name]: value });
     }
   }
-  const router = useRouter();
+
   return (
     scriptLoad && (
       <section className={styles.section}>
@@ -232,8 +243,8 @@ export default function addOffer() {
                     id: thisPlace.id,
                     name: thisPlace.name,
                     location: location,
-                    offer: thisOffer
-                  }
+                    offer: thisOffer,
+                  },
                 });
 
                 dispatch(setNewOffer(newOffer.data.insertOffer));

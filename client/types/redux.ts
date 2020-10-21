@@ -25,6 +25,7 @@ export type place = {
   id: string;
   name?: string;
   location?: location;
+  address?: string;
   image?: string;
   offers: offer[];
 };
@@ -41,7 +42,8 @@ export interface RootState {
       longitude: number;
     };
   };
-  coords: coords;
+  mapCoords: coords;
+  userCoords: coords;
   places: place[];
 }
 
@@ -57,6 +59,7 @@ export interface state {
       longitude: number;
     };
   };
-  coords: coords;
+  mapCoords: coords;
+  userCoords: coords;
   places: place[];
 }
