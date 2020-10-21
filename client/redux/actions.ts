@@ -7,9 +7,16 @@ export function setScriptLoaded(loaded: boolean) {
   };
 }
 
-export function setCoordinates(coords: coords) {
+export function setMapCoordinates(coords: coords) {
   return {
-    type: 'SET_COORDINATES',
+    type: 'SET_MAP_COORDINATES',
+    payload: coords,
+  };
+}
+
+export function setUserCoordinates(coords: coords) {
+  return {
+    type: 'SET_USER_COORDINATES',
     payload: coords,
   };
 }
@@ -30,13 +37,13 @@ export function setPlaces(places: place[]) {
 export function setServiceAPI(service: any) {
   return {
     type: 'SET_SERVICE_API',
-    payload: service
+    payload: service,
   };
 }
 export function setNewPlace(newPlace: any) {
   return {
     type: 'SET_NEW_PLACE',
-    payload: newPlace
+    payload: newPlace,
   };
 }
 export function setNewOffer(place: place) {
@@ -50,5 +57,12 @@ export function setSelectedId(id: number) {
   return {
     type: 'SET_SELECTED_ID',
     payload: id,
+  };
+}
+
+export function setFilteredPlaces(type: string) {
+  return {
+    type: 'SET_FILTERED_PLACES',
+    payload: type,
   };
 }

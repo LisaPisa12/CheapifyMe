@@ -5,6 +5,10 @@
   grid-template-rows: 60px repeat(4, 1fr) 60px;
   background-color: var(--primary-light);
 }
+.motion_container{
+  height: 100%;
+  width: 100%;
+}
 
 .restaurantData {
   width: 100%;
@@ -30,6 +34,15 @@
   gap: 4em;
   width: 100%;
 }
+.starter_consumable_type {
+  margin-top: 15rem;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
 .dates {
   display: flex;
@@ -41,4 +54,41 @@
   width: 90%;
   height: 60px;
   padding: 1em;
+}
+
+.hidden_button{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+ .hidden_button ~ .icon {
+  cursor: pointer;
+}
+
+.icon {
+  height: 100px;
+  width: auto;
+}
+.hidden_button:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #fff;
+  border-radius: 100%;
+}
+.container{
+  color: #ccc;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 20%
+  );
+  position: absolute;
+  top: 78%;
+  right: 6%;
+  transform: translateY(-50%);
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 30px;
+}
+.container span{
+  display: block;
 }

@@ -7,7 +7,12 @@ import { useLazyQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates, setPlaces, setScriptLoaded } from '../redux/actions';
+import {
+  setMapCoordinates,
+  setUserCoordinates,
+  setPlaces,
+  setScriptLoaded,
+} from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
@@ -21,50 +26,53 @@ const easing = [0.6, -0.05, 0.01, 0.99];
 
 const AnimateLogo = {
   initial: {
-    y: -300
+    y: -300,
   },
   animate: {
     y: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   exit: {
-    y: 100
-  }
+    y: 100,
+  },
 };
 
 const animateSearch = {
   initial: {
-    x: 1000
+    x: 1000,
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   exit: {
-    x: 100
-  }
+    x: 100,
+  },
 };
 
 const animateMap = {
   initial: {
-    y: 300
+    y: 300,
+    x: '-25%',
   },
   animate: {
     y: 0,
+    x: '-25%',
     transition: {
       duration: 2,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   exit: {
-    y: 100
-  }
+    y: 100,
+    x: '-25%',
+  },
 };
 
 export default function Home() {
@@ -74,14 +82,13 @@ export default function Home() {
 
   const router = useRouter();
 
-  const Coords = useSelector((state: RootState) => state.coords);
   let geocoder: google.maps.Geocoder;
   if (scriptLoad) {
     geocoder = new google.maps.Geocoder();
   }
 
   const [getPlacesData, { data }] = useLazyQuery(getPlaces, {
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
   });
 
   useEffect(() => {
@@ -90,8 +97,9 @@ export default function Home() {
       dispatch(setScriptLoaded(true));
     });
   }, []);
+
   useEffect(() => {
-    if (data && data.getOffersNearby) {
+    if (data) {
       router.push('/dashboard');
       if (data.getOffersNearby.length > 0) {
         dispatch(setPlaces(data.getOffersNearby));
@@ -102,16 +110,16 @@ export default function Home() {
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
 
-    if (Coords) {
-      dispatch(setCoordinates({ latitude, longitude }));
-
+    if (position.coords) {
+      dispatch(setMapCoordinates({ latitude, longitude }));
+      dispatch(setUserCoordinates({ latitude, longitude }));
       getPlacesData({
         variables: {
           location: {
             type: 'Point',
-            coordinates: [latitude, longitude]
-          }
-        }
+            coordinates: [latitude, longitude],
+          },
+        },
       });
     }
   }
@@ -132,26 +140,32 @@ export default function Home() {
     const request = {
       address: text,
       componentRestrictions: {
-        country: 'ES'
-      }
+        country: 'ES',
+      },
     };
 
     geocoder.geocode(request, (result, status) => {
       if (status === 'OK') {
         const res = result[0].geometry.location.toJSON();
         dispatch(
-          setCoordinates({
+          setMapCoordinates({
             latitude: res.lat,
-            longitude: res.lng
+            longitude: res.lng,
+          })
+        );
+        dispatch(
+          setUserCoordinates({
+            latitude: res.lat,
+            longitude: res.lng,
           })
         );
         getPlacesData({
           variables: {
             location: {
               type: 'Point',
-              coordinates: [res.lat, res.lng]
-            }
-          }
+              coordinates: [res.lat, res.lng],
+            },
+          },
         });
       } else {
         alert('Geocode was not succesful for the following reason: ' + status);

@@ -6,7 +6,7 @@ import styles from './DashFloat.module.css';
 import { place, RootState } from '../../types/redux';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setCoordinates, setSelectedId } from '../../redux/actions';
+import { setMapCoordinates, setSelectedId } from '../../redux/actions';
 
 type IWatchedElement = {
   children: ReactElement;
@@ -27,7 +27,7 @@ export const WatchedElement = ({ children, place, index }: IWatchedElement) => {
     if (place.location) {
       const [latitude, longitude] = place.location.coordinates;
       const coords = { latitude, longitude };
-      if (place.id === places[thisId].id) dispatch(setCoordinates(coords));
+      if (place.id === places[thisId].id) dispatch(setMapCoordinates(coords));
     }
   }
 

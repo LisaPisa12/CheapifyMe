@@ -13,13 +13,13 @@ type Places {
 
   type Offer {
     id:String!
-    consumableType: String!
-    offerType: String!
+    consumableType: String
+    offerType: String
     start: String!
     end: String!
-    repeat: Boolean!
-    repeatEvery: String!
-    description: String!
+    repeat: Boolean
+    repeatEvery: String
+    description: String
     score: Int!
     available: Boolean!
   }

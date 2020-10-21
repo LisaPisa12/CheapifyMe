@@ -19,8 +19,9 @@ type GoogleMap = google.maps.Map;
 
 const Map = ({ mapType }: IMap) => {
   const dispatch = useDispatch();
-  const coords = useSelector((state: RootState) => state.coords);
+  const coords = useSelector((state: RootState) => state.mapCoords);
   const places = useSelector((state: RootState) => state.places);
+  const serviceLoaded = useSelector((state: RootState) => state.serviceAPI);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
@@ -58,10 +59,10 @@ const Map = ({ mapType }: IMap) => {
     }
   };
 
-  function addMarker(id: number, coordinates: any) {
+  function addMarker(id: number, type: string, coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
-      icon: 'test.png',
+      icon: `test${type.toLowerCase()}Icon.svg`,
       map,
     });
     marker.addListener('click', function () {
@@ -78,11 +79,11 @@ const Map = ({ mapType }: IMap) => {
     places.forEach((el, index) => {
       let lat, lng;
       if (el.location) [lat, lng] = el.location.coordinates;
-      addMarker(index, { lat, lng });
+      addMarker(index, el.offers[0].consumableType, { lat, lng });
     });
   }
-  map?.setCenter({ lat: coords.latitude, lng: coords.longitude });
-  if (map) {
+  map?.panTo({ lat: coords.latitude, lng: coords.longitude });
+  if (map && !serviceLoaded) {
     const service = new google.maps.places.PlacesService(map);
     dispatch(setServiceAPI(service));
   }
