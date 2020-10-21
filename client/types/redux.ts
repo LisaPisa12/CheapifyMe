@@ -37,6 +37,7 @@ export interface RootState {
   serviceAPI?: google.maps.places.PlacesService;
   newPlace?: {
     name: string;
+    address: string;
     location: {
       latitude: number;
       longitude: number;
@@ -55,6 +56,7 @@ export interface state {
   serviceAPI?: google.maps.places.PlacesService;
   newPlace?: {
     name: string;
+    address: string;
     location: {
       latitude: number;
       longitude: number;

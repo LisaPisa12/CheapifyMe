@@ -11,14 +11,14 @@ const initialState: state = {
   serviceAPI: undefined,
   mapCoords: {
     latitude: 41.404278,
-    longitude: 2.175098,
+    longitude: 2.175098
   },
   places: [],
   filteredPlaces: [],
   userCoords: {
     latitude: 0,
-    longitude: 0,
-  },
+    longitude: 0
+  }
 };
 
 const reducer = createReducer(initialState, {
@@ -51,6 +51,7 @@ const reducer = createReducer(initialState, {
     const place = state.places.find((el) => el.id === action.payload.id);
     if (place) place.offers = action.payload.offers;
     else state.places.push(action.payload);
+    state.filteredPlaces = state.places;
   },
   SET_FILTERED_PLACES: (state, action) => {
     if (action.payload === 'all') {
@@ -63,7 +64,7 @@ const reducer = createReducer(initialState, {
           ))
       );
     }
-  },
+  }
 });
 
 export const store = createStore(
