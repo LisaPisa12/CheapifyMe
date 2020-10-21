@@ -279,6 +279,7 @@ export default function addOffer() {
                   <div className={styles.dates}>
                     <Calendar
                       value={dates}
+                      colorPrimary="#44A671"
                       calendarClassName={styles.calendar}
                       onChange={({ from, to }: any) => {
                         setDates({ from, to });
@@ -332,6 +333,7 @@ export default function addOffer() {
             >
               <article className={styles.formContainer}>
                 <button
+                  className={styles.submit_button}
                   onClick={async () => {
                     const newOffer = await mutateOffer({
                       variables: {
