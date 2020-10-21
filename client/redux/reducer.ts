@@ -12,6 +12,7 @@ const initialState: state = {
   mapCoords: {
     latitude: 41.404278,
     longitude: 2.175098,
+<<<<<<< HEAD
   },
   places: [],
   filteredPlaces: [],
@@ -19,6 +20,14 @@ const initialState: state = {
     latitude: 0,
     longitude: 0,
   },
+=======
+  },
+  userCoords: {
+    latitude: 0,
+    longitude: 0,
+  },
+  places: [],
+>>>>>>> b48f336b2f089b71795947dba1d7cd71a90c1449
 };
 
 const reducer = createReducer(initialState, {

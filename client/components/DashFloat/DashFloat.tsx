@@ -1,7 +1,5 @@
 import styles from './DashFloat.module.css';
 
-import moment from 'moment';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '../../types/redux';
 

@@ -46,6 +46,10 @@
   place-items: center;
   text-align: center;
   color: white;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
 
 .restaurant_data h2 {
