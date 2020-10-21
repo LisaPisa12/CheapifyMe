@@ -62,7 +62,7 @@ const Map = ({ mapType }: IMap) => {
   function addMarker(id: number, type: string, coordinates: any) {
     const marker = new google.maps.Marker({
       position: coordinates,
-      icon: `test${type.toLowerCase()}Icon.svg`,
+      icon: `${type.toLowerCase()}Pin.svg`,
       map
     });
     marker.addListener('click', function () {

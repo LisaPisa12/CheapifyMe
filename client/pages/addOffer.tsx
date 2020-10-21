@@ -179,11 +179,7 @@ export default function addOffer() {
                     onChange={handleChange}
                   />
                   <label htmlFor="food">
-                    <img
-                      src="testfoodIcon.svg"
-                      alt=""
-                      className={styles.icon}
-                    />
+                    <img src="foodIcon.svg" alt="" className={styles.icon} />
                   </label>
                 </motion.div>
                 <motion.div
@@ -201,7 +197,7 @@ export default function addOffer() {
 
                   <label htmlFor="drink">
                     <img
-                      src="testdrinkIcon.svg"
+                      src="drinkIcon.svg"
                       alt="test"
                       className={styles.icon}
                     />
@@ -231,7 +227,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="2x1">
-                      <img src="test2X1.svg" alt="" className={styles.icon} />
+                      <img src="2x1.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                   <motion.div
@@ -247,7 +243,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="happy">
-                      <img src="testHappy.svg" alt="" className={styles.icon} />
+                      <img src="happyHour.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                   <motion.div
@@ -263,7 +259,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="percent">
-                      <img src="test2X1.svg" alt="" className={styles.icon} />
+                      <img src="discount.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                 </div>
