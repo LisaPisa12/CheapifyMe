@@ -53,6 +53,12 @@ const reducer = createReducer(initialState, {
     else state.places.push(action.payload);
     state.filteredPlaces = state.places;
   },
+
+  SET_IF_INSIDE_RADIUS: (state, action) => {
+    const place = state.places.find((el) => el.id === action.payload.id);
+    if (place) place.isInsideRadius = action.payload.isInsideRadius;
+  },
+
   SET_FILTERED_PLACES: (state, action) => {
     if (action.payload === 'all') {
       state.filteredPlaces = state.places;

@@ -81,6 +81,17 @@ export default function PlaceSelector() {
             }}
           >
             <h2>{place.name}</h2>
+            {place.address ? <p>{place.address}</p> : ''}
+            <p>
+              Distance:{' '}
+              {calculateDistance(
+                place.location?.coordinates[0],
+                place.location?.coordinates[1],
+                coordinates.latitude,
+                coordinates.longitude
+              )}{' '}
+              km
+            </p>
           </article>
         )
       );
@@ -159,6 +170,7 @@ export default function PlaceSelector() {
           >
             <h2>{place.name}</h2>
             <p>{place.address}</p>
+            <p>distance: {place.distance} km</p>
           </article>
         )
       );

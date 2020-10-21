@@ -14,6 +14,13 @@ export function setMapCoordinates(coords: coords) {
   };
 }
 
+export function setIfInsideRadius(place: place) {
+  return {
+    type: 'SET_IF_INSIDE_RADIUS',
+    payload: place,
+  };
+}
+
 export function setUserCoordinates(coords: coords) {
   return {
     type: 'SET_USER_COORDINATES',
