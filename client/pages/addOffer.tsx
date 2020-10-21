@@ -1,7 +1,9 @@
 import styles from '../styles/addOffer.module.css';
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
+
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import { Calendar, utils } from 'react-modern-calendar-datepicker';
 
 import { useState, ChangeEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -10,14 +12,10 @@ import { useMutation } from '@apollo/client';
 import { setNewOffer, setScriptLoaded } from '../redux/actions';
 import { RootState } from '../types/redux';
 import { insertOffer } from '../Apollo';
-import { motion, useAnimation, transform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 const easing = [0.6, -0.05, 0.01, 0.99];
-
-const maxLength = 50;
-const mapRemainingToColor = transform([2, 6], ['#ff008c', '#ccc']);
-const mapRemainingToSpringVelocity = transform([0, 5], [50, 0]);
 
 const AnimateConsumable = {
   initial: {
@@ -119,15 +117,14 @@ export default function addOffer() {
     };
   } else if (places.length > 0) {
     thisPlace = places[thisId];
-    console.log(thisPlace);
     location = thisPlace.location;
   }
 
   const [mutateOffer] = useMutation(insertOffer);
 
   const [dates, setDates] = useState({
-    start: new Date(),
-    end: new Date()
+    from: null,
+    to: null
   });
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
@@ -138,22 +135,6 @@ export default function addOffer() {
     repeatEvery: undefined,
     description: ''
   });
-
-  const charactersRemaining = maxLength - thisOffer.description.length;
-  const controls = useAnimation();
-  useEffect(() => {
-    if (charactersRemaining > 6) return;
-
-    controls.start({
-      scale: 1,
-      transition: {
-        type: 'spring',
-        velocity: mapRemainingToSpringVelocity(charactersRemaining),
-        stiffness: 700,
-        damping: 80
-      }
-    });
-  }, [thisOffer.description.length]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -300,62 +281,16 @@ export default function addOffer() {
                 <h2>Dates</h2>
                 <div className={styles.offersType}>
                   <div className={styles.dates}>
-                    <label>Start</label>
-                    <DatePicker
-                      placeholderText="Click to select start date"
-                      minDate={new Date()}
-                      selected={dates.start}
-                      onChange={(date) => {
-                        if (date instanceof Date) {
-                          setDates({ ...dates, start: date });
-                          setThisOffer({
-                            ...thisOffer,
-                            start: date.toLocaleString()
-                          });
-                        }
-                      }}
-                      timeFormat="p"
-                      timeIntervals={30}
-                      dateFormat="Pp"
-                      startDate={dates.start}
-                      endDate={dates.end}
-                      name="start"
-                      showTimeSelect
-                    />
-                  </div>
-                  <div className={styles.dates}>
-                    <label>End</label>
-                    <DatePicker
-                      placeholderText="Click to select end date"
-                      selected={dates.end}
-                      onChange={(date) => {
-                        if (date instanceof Date) {
-                          setDates({ ...dates, end: date });
-                          setThisOffer({
-                            ...thisOffer,
-                            end: date.toLocaleString()
-                          });
-                        }
-                      }}
-                      minDate={dates.start}
-                      timeFormat="p"
-                      timeIntervals={30}
-                      dateFormat="Pp"
-                      startDate={dates.start}
-                      endDate={dates.end}
-                      name="start"
-                      showTimeSelect
-                      popperPlacement="bottom-end"
-                      popperModifiers={{
-                        offset: {
-                          enabled: true,
-                          offset: '5px, 10px'
-                        },
-                        preventOverflow: {
-                          enabled: true,
-                          escapeWithReference: false,
-                          boundariesElement: 'viewport'
-                        }
+                    <Calendar
+                      value={dates}
+                      calendarClassName={styles.calendar}
+                      onChange={({ from, to }: any) => {
+                        setDates({ from, to });
+                        setThisOffer({
+                          ...thisOffer,
+                          start: moment(from).format('Do MMM YYYY'),
+                          end: moment(to).format('Do MMM YYYY')
+                        });
                       }}
                     />
                   </div>
@@ -378,17 +313,6 @@ export default function addOffer() {
                     className={styles.input}
                     onChange={handleChange}
                   />
-                  <div className={styles.container}>
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={controls}
-                      style={{
-                        color: mapRemainingToColor(charactersRemaining)
-                      }}
-                    >
-                      {charactersRemaining}
-                    </motion.span>
-                  </div>
                 </div>
               </article>
             </motion.div>
