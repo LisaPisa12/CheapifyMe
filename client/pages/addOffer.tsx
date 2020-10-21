@@ -21,66 +21,66 @@ const mapRemainingToSpringVelocity = transform([0, 5], [50, 0]);
 
 const AnimateConsumable = {
   initial: {
-    y: -300
+    y: -300,
   },
   animate: {
     y: 200,
     transition: {
       duration: 1.4,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.4,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 const AnimateOfferType = {
   initial: {
-    y: 600
+    y: 600,
   },
   animate: {
     y: 100,
     transition: {
       duration: 1.6,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 
 const AnimateTime = {
   initial: {
-    x: 600
+    x: 600,
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 const AnimateDescription = {
   initial: {
-    x: -600
+    x: -600,
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 
 export default function addOffer() {
@@ -128,7 +128,7 @@ export default function addOffer() {
 
   const [dates, setDates] = useState({
     start: new Date(),
-    end: new Date()
+    end: new Date(),
   });
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
@@ -151,8 +151,8 @@ export default function addOffer() {
         type: 'spring',
         velocity: mapRemainingToSpringVelocity(charactersRemaining),
         stiffness: 700,
-        damping: 80
-      }
+        damping: 80,
+      },
     });
   }, [thisOffer.description.length]);
 
@@ -167,10 +167,6 @@ export default function addOffer() {
     }
   }
 
-<<<<<<< HEAD
-  const router = useRouter();
-=======
->>>>>>> feat(client): location things
   return (
     scriptLoad && (
       <motion.div
@@ -315,7 +311,7 @@ export default function addOffer() {
                           setDates({ ...dates, start: date });
                           setThisOffer({
                             ...thisOffer,
-                            start: date.toLocaleString()
+                            start: date.toLocaleString(),
                           });
                         }
                       }}
@@ -339,7 +335,7 @@ export default function addOffer() {
                           setDates({ ...dates, end: date });
                           setThisOffer({
                             ...thisOffer,
-                            end: date.toLocaleString()
+                            end: date.toLocaleString(),
                           });
                         }
                       }}
@@ -355,13 +351,13 @@ export default function addOffer() {
                       popperModifiers={{
                         offset: {
                           enabled: true,
-                          offset: '5px, 10px'
+                          offset: '5px, 10px',
                         },
                         preventOverflow: {
                           enabled: true,
                           escapeWithReference: false,
-                          boundariesElement: 'viewport'
-                        }
+                          boundariesElement: 'viewport',
+                        },
                       }}
                     />
                   </div>
@@ -388,7 +384,7 @@ export default function addOffer() {
                     <motion.span
                       animate={controls}
                       style={{
-                        color: mapRemainingToColor(charactersRemaining)
+                        color: mapRemainingToColor(charactersRemaining),
                       }}
                     >
                       {charactersRemaining}
@@ -410,8 +406,8 @@ export default function addOffer() {
                 scale: 1,
                 transition: {
                   duration: 1,
-                  ease: easing
-                }
+                  ease: easing,
+                },
               }}
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
@@ -423,8 +419,8 @@ export default function addOffer() {
                         id: thisPlace.id,
                         name: thisPlace.name,
                         location: location,
-                        offer: thisOffer
-                      }
+                        offer: thisOffer,
+                      },
                     });
 
                     dispatch(setNewOffer(newOffer.data.insertOffer));

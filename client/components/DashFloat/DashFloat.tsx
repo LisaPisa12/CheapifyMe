@@ -47,9 +47,10 @@ function DashFloat() {
                   userCoords.longitude,
                   element.location?.coordinates[0],
                   element.location?.coordinates[1]
-                )}
-                km from your position
+                )}{' '}
+                km far away
               </p>
+              <p>{element.offers.length} offers</p>
             </div>
             <div className={styles.restaurant_offers}>
               {element.offers.map((offer) => (
@@ -57,8 +58,7 @@ function DashFloat() {
                   <p>{offer.description}</p>
                   <p>{offer.offerType}</p>
                   <p className={styles.dates}>
-                    Offers ends on{' '}
-                    {moment(offer.end).format('dddd, Do of MMMM')}
+                    Offers ends on {offer.end ? offer.end : ''}
                   </p>
                 </div>
               ))}
