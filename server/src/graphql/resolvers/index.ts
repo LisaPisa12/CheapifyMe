@@ -1,11 +1,10 @@
-import query from './query.resolvers';
-import types from './types.resolvers';
+import Query from './query.resolvers';
+import Types from './types.resolvers';
 import Mutation from './mutation.resolvers';
 
 const resolvers = {
-  Query: query,
-  ...types,
-
+  Query,
+  ...Types,
   Mutation,
 };
 

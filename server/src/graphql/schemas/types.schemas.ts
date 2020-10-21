@@ -5,6 +5,7 @@ type Places {
     id:String!
     name: String!
     location:Point!
+    address:String
     image: String
     zipCode: Int
     offers: [Offer]!
@@ -12,13 +13,13 @@ type Places {
 
   type Offer {
     id:String!
-    consumableType: String!
-    offerType: String!
+    consumableType: String
+    offerType: String
     start: String!
     end: String!
-    repeat: Boolean!
-    repeatEvery: String!
-    description: String!
+    repeat: Boolean
+    repeatEvery: String
+    description: String
     score: Int!
     available: Boolean!
   }
@@ -39,14 +40,6 @@ type Places {
     id:String
     score:Int
   }
+
+
 `;
-
-// type Coordinates{
-//   lat:Float!
-//   lon:Float!
-// }
-
-// input CoordinatesInput {
-//   lat:Float!
-//   lon:Float!
-// }

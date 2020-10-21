@@ -17,6 +17,7 @@ interface IOffer extends mongoose.Document {
 interface IPlace extends mongoose.Document {
   name: String; // needs to be iunique. not now bc it will fuckup mock data queries
   zipcode?: Number;
+  address?:String;
   location: {
     type: {
       type: String;
@@ -77,6 +78,7 @@ const placeSchema = new Schema({
     required : true, 
   },
   zipcode: Number,
+  address:String,
   location: {
     type: {
       type: String,

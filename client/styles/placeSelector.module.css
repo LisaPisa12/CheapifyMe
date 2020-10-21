@@ -1,66 +1,60 @@
 .section {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-rows: 7fr 3fr;
-  grid-template-columns: 1fr;
   background-color: var(--primary-light);
 }
 
 .results {
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(var(--total), 50%) 16px;
-  grid-template-rows: 1fr 1fr;
-  overflow-y: auto;
+  grid-template-rows: repeat(var(--total), 25%) 0.1em;
+  grid-template-columns: 100%;
   place-items: center;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 1em;
-  padding-bottom: 30px;
+  scroll-snap-type: y mandatory;
+  overflow: auto;
 }
 
-.place_even, .place_odd {
+.place {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
+  height: 80%;
   justify-content: space-evenly;
-  align-items: center;
-  width: 90%;
-  height: 90%;
-  background-color: white;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  scroll-snap-align: start;
   overflow: visible;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
+  scroll-margin-top: 0.5em;
+  scroll-margin-bottom: 0.9em;
+  text-align: center;
+  width: 80%;
 }
 
-.place_even {
-  grid-row-start: 1;
+.place h2 {
+  width: 90%;
 }
 
-.place_odd {
-  grid-row-start: 2;
+.place p {
+  width: 80%;
+  color: grey;
+  font-size: 0.8em;
 }
 
 .blank_div {
-  margin-right: 1em;
   width: 100%;
   height: 100%;
   background-color: transparent;
 }
 
-.place_odd:active, .place_even:active {
+.place:active {
   transform: scale(0.97);
   /* Scaling button to 0.98 to its original size */
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
   /* Lowering the shadow */
-}
-
-.place-img {
-  max-height: 100px;
-  width: auto;
-  height: auto;
 }
 
 .search {

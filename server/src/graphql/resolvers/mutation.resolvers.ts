@@ -1,3 +1,4 @@
+import { UserInputError } from 'apollo-server';
 import {  Place } from '../../models/places';
 
 export default {
@@ -20,12 +21,12 @@ export default {
     }
   },
 
-  insertOffer: async (_: any, { id, name, location, offer }: any) => {
+  insertOffer: async (_: any, { id, name, location, address, offer }: any) => {
     try {
      
       const place = await Place.findById(id);
       if (!place) {
-        const newPlace = new Place({name, location, offers:offer})
+        const newPlace = new Place({name, location, address, offers:offer})
         newPlace.save(); 
          return newPlace;  
       }else{
@@ -35,7 +36,7 @@ export default {
 
       }
     } catch (error) {
-      console.log(error);
+      throw new UserInputError('You must provide the all the information required');
     }
   },
 };

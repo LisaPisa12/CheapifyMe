@@ -1,7 +1,7 @@
 export const loadMapApi = () => {
   let mapsURL;
   if (
-    process.env.NODE_ENV === 'development' ||
+    !process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'test'
   ) {
     mapsURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places`;

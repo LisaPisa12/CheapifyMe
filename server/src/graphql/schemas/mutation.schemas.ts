@@ -10,6 +10,7 @@ type Mutation {
     id: String
     name: String!
     location:Point!
+    address:String
     offer:[OfferInput]!
     ):Places  
 }

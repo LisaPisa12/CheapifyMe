@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd server && npm i && npm run build"
+    "start": "cd server && npm start",
+    "build": "cd server && npm run build",
+    "postinstall": "npm run build",
+    "install": "cd server && npm i"
   },
   "repository": {
     "type": "git",
