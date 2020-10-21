@@ -27,6 +27,7 @@ export type place = {
   location?: location;
   address?: string;
   image?: string;
+  isInsideRadius?: boolean;
   offers: offer[];
 };
 

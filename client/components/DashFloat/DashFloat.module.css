@@ -68,6 +68,35 @@
   place-items: center;
 }
 
+.offers_data_with_vote {
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 1fr 1fr 1fr;
+  place-items: center;
+}
+
+.description_vote {
+  grid-column: 1;
+  width: 90%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.votes {
+  height: 100%;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .WatchedElement {
   z-index: 100;
   width: 100%;
@@ -82,4 +111,5 @@
 .dates {
   color: grey;
   font-size: 0.8em;
+  text-align: center;
 }
