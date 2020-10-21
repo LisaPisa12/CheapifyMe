@@ -21,6 +21,7 @@ const Map = ({ mapType }: IMap) => {
   const dispatch = useDispatch();
   const coords = useSelector((state: RootState) => state.coords);
   const places = useSelector((state: RootState) => state.places);
+  const serviceLoaded = useSelector((state: RootState) => state.serviceAPI);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
   const startMap = (): void => {
@@ -82,7 +83,7 @@ const Map = ({ mapType }: IMap) => {
     });
   }
   map?.panTo({ lat: coords.latitude, lng: coords.longitude });
-  if (map) {
+  if (map && !serviceLoaded) {
     const service = new google.maps.places.PlacesService(map);
     dispatch(setServiceAPI(service));
   }
