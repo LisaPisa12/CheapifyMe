@@ -12,20 +12,20 @@ const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
   initial: {
     y: 100,
-    opacity: 0,
+    opacity: 0
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.6,
-      ease: easing,
-    },
-  },
+      ease: easing
+    }
+  }
 };
 
 function DashList() {
-  const places = useSelector((state: RootState) => state.places);
+  const places = useSelector((state: RootState) => state.filteredPlaces);
   const [showList, setShowList] = useState(false);
   let counter = 0;
   function getOffer(places: place[]) {

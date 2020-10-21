@@ -13,7 +13,8 @@ const initialState: state = {
     latitude: 41.404278,
     longitude: 2.175098
   },
-  places: []
+  places: [],
+  filteredPlaces: []
 };
 
 const reducer = createReducer(initialState, {
@@ -34,6 +35,7 @@ const reducer = createReducer(initialState, {
   },
   SET_PLACES: (state, action) => {
     state.places = action.payload;
+    state.filteredPlaces = action.payload;
   },
   SET_NEW_PLACE: (state, action) => {
     state.newPlace = action.payload;
@@ -42,6 +44,18 @@ const reducer = createReducer(initialState, {
     const place = state.places.find((el) => el.id === action.payload.id);
     if (place) place.offers = action.payload.offers;
     else state.places.push(action.payload);
+  },
+  SET_FILTERED_PLACES: (state, action) => {
+    if (action.payload === 'all') {
+      state.filteredPlaces = state.places;
+    } else {
+      state.filteredPlaces.forEach(
+        (el) =>
+          (el.offers = el.offers.filter(
+            (el) => el.consumableType.toLowerCase() === action.payload
+          ))
+      );
+    }
   }
 });
 

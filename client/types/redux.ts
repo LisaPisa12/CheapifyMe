@@ -43,6 +43,7 @@ export interface RootState {
   };
   coords: coords;
   places: place[];
+  filteredPlaces: place[];
 }
 
 export interface state {
@@ -59,4 +60,5 @@ export interface state {
   };
   coords: coords;
   places: place[];
+  filteredPlaces: place[];
 }
