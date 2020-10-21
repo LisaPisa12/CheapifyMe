@@ -1,7 +1,9 @@
 import styles from '../styles/addOffer.module.css';
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
+
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import { Calendar, utils } from 'react-modern-calendar-datepicker';
 
 import { useState, ChangeEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -10,77 +12,73 @@ import { useMutation } from '@apollo/client';
 import { setNewOffer, setScriptLoaded } from '../redux/actions';
 import { RootState } from '../types/redux';
 import { insertOffer } from '../Apollo';
-import { motion, useAnimation, transform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 const easing = [0.6, -0.05, 0.01, 0.99];
 
-const maxLength = 50;
-const mapRemainingToColor = transform([2, 6], ['#ff008c', '#ccc']);
-const mapRemainingToSpringVelocity = transform([0, 5], [50, 0]);
-
 const AnimateConsumable = {
   initial: {
-    y: -300,
+    y: -300
   },
   animate: {
     y: 200,
     transition: {
       duration: 1.4,
-      ease: easing,
-    },
+      ease: easing
+    }
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.4,
-      ease: easing,
-    },
-  },
+      ease: easing
+    }
+  }
 };
 const AnimateOfferType = {
   initial: {
-    y: 600,
+    y: 600
   },
   animate: {
     y: 100,
     transition: {
       duration: 1.6,
-      ease: easing,
-    },
+      ease: easing
+    }
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.2,
-      ease: easing,
-    },
-  },
+      ease: easing
+    }
+  }
 };
 
 const AnimateTime = {
   initial: {
-    x: 600,
+    x: 600
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing,
-    },
-  },
+      ease: easing
+    }
+  }
 };
 const AnimateDescription = {
   initial: {
-    x: -600,
+    x: -600
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing,
-    },
-  },
+      ease: easing
+    }
+  }
 };
 
 export default function addOffer() {
@@ -99,9 +97,8 @@ export default function addOffer() {
     typeof window !== 'undefined' &&
     coordinates.longitude === 0 &&
     coordinates.latitude === 0;
-  const placeNotProvided = typeof window !== 'undefined' && thisId;
 
-  if (coordsNotProvided || placeNotProvided) router.push('/');
+  if (coordsNotProvided) router.push('/');
 
   useEffect(() => {
     if (!scriptLoad) {
@@ -116,19 +113,18 @@ export default function addOffer() {
     thisPlace = newPlace;
     location = {
       type: 'Point',
-      coordinates: [thisPlace.location.lat, thisPlace.location.lng],
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
     };
   } else if (places.length > 0) {
     thisPlace = places[thisId];
-    console.log(thisPlace);
     location = thisPlace.location;
   }
 
   const [mutateOffer] = useMutation(insertOffer);
 
   const [dates, setDates] = useState({
-    start: new Date(),
-    end: new Date(),
+    from: null,
+    to: null
   });
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
@@ -137,24 +133,8 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: '',
+    description: ''
   });
-
-  const charactersRemaining = maxLength - thisOffer.description.length;
-  const controls = useAnimation();
-  useEffect(() => {
-    if (charactersRemaining > 6) return;
-
-    controls.start({
-      scale: 1,
-      transition: {
-        type: 'spring',
-        velocity: mapRemainingToSpringVelocity(charactersRemaining),
-        stiffness: 700,
-        damping: 80,
-      },
-    });
-  }, [thisOffer.description.length]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const value = e.target.value;
@@ -199,11 +179,7 @@ export default function addOffer() {
                     onChange={handleChange}
                   />
                   <label htmlFor="food">
-                    <img
-                      src="testfoodIcon.svg"
-                      alt=""
-                      className={styles.icon}
-                    />
+                    <img src="foodIcon.svg" alt="" className={styles.icon} />
                   </label>
                 </motion.div>
                 <motion.div
@@ -221,7 +197,7 @@ export default function addOffer() {
 
                   <label htmlFor="drink">
                     <img
-                      src="testdrinkIcon.svg"
+                      src="drinkIcon.svg"
                       alt="test"
                       className={styles.icon}
                     />
@@ -251,7 +227,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="2x1">
-                      <img src="test2X1.svg" alt="" className={styles.icon} />
+                      <img src="2x1.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                   <motion.div
@@ -267,7 +243,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="happy">
-                      <img src="testHappy.svg" alt="" className={styles.icon} />
+                      <img src="happyHour.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                   <motion.div
@@ -283,7 +259,7 @@ export default function addOffer() {
                       onChange={handleChange}
                     />
                     <label htmlFor="percent">
-                      <img src="test2X1.svg" alt="" className={styles.icon} />
+                      <img src="discount.svg" alt="" className={styles.icon} />
                     </label>
                   </motion.div>
                 </div>
@@ -301,62 +277,17 @@ export default function addOffer() {
                 <h2>Dates</h2>
                 <div className={styles.offersType}>
                   <div className={styles.dates}>
-                    <label>Start</label>
-                    <DatePicker
-                      placeholderText="Click to select start date"
-                      minDate={new Date()}
-                      selected={dates.start}
-                      onChange={(date) => {
-                        if (date instanceof Date) {
-                          setDates({ ...dates, start: date });
-                          setThisOffer({
-                            ...thisOffer,
-                            start: date.toLocaleString(),
-                          });
-                        }
-                      }}
-                      timeFormat="p"
-                      timeIntervals={30}
-                      dateFormat="Pp"
-                      startDate={dates.start}
-                      endDate={dates.end}
-                      name="start"
-                      showTimeSelect
-                    />
-                  </div>
-                  <div className={styles.dates}>
-                    <label>End</label>
-                    <DatePicker
-                      placeholderText="Click to select end date"
-                      selected={dates.end}
-                      onChange={(date) => {
-                        if (date instanceof Date) {
-                          setDates({ ...dates, end: date });
-                          setThisOffer({
-                            ...thisOffer,
-                            end: date.toLocaleString(),
-                          });
-                        }
-                      }}
-                      minDate={dates.start}
-                      timeFormat="p"
-                      timeIntervals={30}
-                      dateFormat="Pp"
-                      startDate={dates.start}
-                      endDate={dates.end}
-                      name="start"
-                      showTimeSelect
-                      popperPlacement="bottom-end"
-                      popperModifiers={{
-                        offset: {
-                          enabled: true,
-                          offset: '5px, 10px',
-                        },
-                        preventOverflow: {
-                          enabled: true,
-                          escapeWithReference: false,
-                          boundariesElement: 'viewport',
-                        },
+                    <Calendar
+                      value={dates}
+                      colorPrimary="#44A671"
+                      calendarClassName={styles.calendar}
+                      onChange={({ from, to }: any) => {
+                        setDates({ from, to });
+                        setThisOffer({
+                          ...thisOffer,
+                          start: moment(from).format('Do MMM YYYY'),
+                          end: moment(to).format('Do MMM YYYY')
+                        });
                       }}
                     />
                   </div>
@@ -379,17 +310,6 @@ export default function addOffer() {
                     className={styles.input}
                     onChange={handleChange}
                   />
-                  <div className={styles.container}>
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={controls}
-                      style={{
-                        color: mapRemainingToColor(charactersRemaining),
-                      }}
-                    >
-                      {charactersRemaining}
-                    </motion.span>
-                  </div>
                 </div>
               </article>
             </motion.div>
@@ -406,21 +326,23 @@ export default function addOffer() {
                 scale: 1,
                 transition: {
                   duration: 1,
-                  ease: easing,
-                },
+                  ease: easing
+                }
               }}
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
               <article className={styles.formContainer}>
                 <button
+                  className={styles.submit_button}
                   onClick={async () => {
                     const newOffer = await mutateOffer({
                       variables: {
                         id: thisPlace.id,
                         name: thisPlace.name,
+                        address: thisPlace.address,
                         location: location,
-                        offer: thisOffer,
-                      },
+                        offer: thisOffer
+                      }
                     });
 
                     dispatch(setNewOffer(newOffer.data.insertOffer));

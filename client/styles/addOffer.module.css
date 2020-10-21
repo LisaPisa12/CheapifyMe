@@ -19,7 +19,7 @@
   color: white;
 }
 
-.formContainer {
+.formContainer {  
   width: 100%;
   color: white;
   display: flex;
@@ -29,6 +29,8 @@
 }
 
 .offersType {
+  margin-top: 2%;
+  margin-bottom: 1%;
   display: flex;
   justify-content: center;
   gap: 4em;
@@ -45,9 +47,19 @@
 }
 
 .dates {
+  margin:5px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: center; 
+  
+  border: 1px solid #44A671;
+  box-shadow: 0 0 3px 3px #44A671;
+  border-color: aqua;
+  border-radius: 5px;
+}
+.calendar {
+  font-size: 8px !important;
 }
 
 .input {
@@ -74,21 +86,13 @@
   box-shadow: 0 0 3px 3px #fff;
   border-radius: 100%;
 }
-.container{
-  color: #ccc;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 20%
-  );
-  position: absolute;
-  top: 78%;
-  right: 6%;
-  transform: translateY(-50%);
+.submit_button {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
   padding: 10px;
-  padding-right: 20px;
-  padding-left: 30px;
-}
-.container span{
-  display: block;
+  margin-top: 1%;
+  border: none;
+  border-radius: 5px;
+  font-size: medium;
+  background-color: #44A671 ;
+  color: var(--white);
 }

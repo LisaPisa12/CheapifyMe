@@ -1,6 +1,8 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFilteredPlaces } from '../../redux/actions';
+import { motion } from 'framer-motion';
+import styles from './Filter.module.css';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -18,36 +20,47 @@ function Filter() {
     previusVal = e.target.value;
   };
   return (
-    <div>
+    <div className={styles.filter_container}>
       <div className="all">
-        <input
-          type="radio"
-          name="filter"
-          id="all"
-          value={'all'}
-          onChange={handleClick}
-        />
-        <label htmlFor="all">All Offers</label>
+        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+          <input
+            type="radio"
+            name="filter"
+            id="all"
+            value={'all'}
+            onChange={handleClick}
+            className={styles.hidde_button}
+          />
+          <label htmlFor="all">All Offers</label>
+        </motion.div>
       </div>
+
       <div className="food">
-        <input
-          type="radio"
-          name="filter"
-          id="food"
-          value={'food'}
-          onChange={handleClick}
-        />
-        <label htmlFor="food">Food </label>
+        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+          <input
+            type="radio"
+            name="filter"
+            id="food"
+            value={'food'}
+            onChange={handleClick}
+            className={styles.hidde_button}
+          />
+          <label htmlFor="food">Food </label>
+        </motion.div>
       </div>
+
       <div className="drink">
-        <input
-          type="radio"
-          name="filter"
-          id="drink"
-          value={'drink'}
-          onChange={handleClick}
-        />
-        <label htmlFor="drink"> Drink</label>
+        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+          <input
+            type="radio"
+            name="filter"
+            id="drink"
+            value={'drink'}
+            onChange={handleClick}
+            className={styles.hidde_button}
+          />
+          <label htmlFor="drink"> Drink</label>
+        </motion.div>
       </div>
     </div>
   );

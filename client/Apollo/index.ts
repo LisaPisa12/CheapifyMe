@@ -32,10 +32,17 @@ const insertOffer = gql`
   mutation InsertOffer(
     $id: String
     $name: String!
+    $address: String
     $location: Point!
     $offer: [OfferInput]!
   ) {
-    insertOffer(id: $id, name: $name, location: $location, offer: $offer) {
+    insertOffer(
+      id: $id
+      name: $name
+      address: $address
+      location: $location
+      offer: $offer
+    ) {
       id
       name
       location

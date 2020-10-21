@@ -20,7 +20,7 @@ export const WatchedElement = ({ children, place, index }: IWatchedElement) => {
 
   const dispatch = useDispatch();
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 1
   });
 
   if (inView) {

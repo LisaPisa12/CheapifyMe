@@ -26,7 +26,7 @@ type newPlaces = newPlace[];
 
 const divStyle = {
   height: '100%',
-  width: '100%',
+  width: '100%'
 };
 
 export default function PlaceSelector() {
@@ -100,7 +100,7 @@ export default function PlaceSelector() {
     request = {
       location: nearbyCoords,
       radius: radius,
-      type: 'restaurant',
+      type: 'restaurant'
     };
 
     if (service) {
@@ -143,7 +143,8 @@ export default function PlaceSelector() {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.location.toJSON(),
+        address: place.address,
+        location: place.location.toJSON()
       };
 
       return (
