@@ -121,7 +121,10 @@ function DashFloat() {
                             );
                             if (div) div.style.opacity = '0';
                           }}
-                        ></button>
+                          className={styles.button}
+                        >
+                          <img src="2.svg" />
+                        </button>
                         <button
                           onClick={(e) => {
                             e.preventDefault();
@@ -130,7 +133,10 @@ function DashFloat() {
                             );
                             if (div) div.style.opacity = '0';
                           }}
-                        ></button>
+                          className={styles.button}
+                        >
+                          <img src="1.svg" />
+                        </button>
                       </div>
                     )}
                   </div>
