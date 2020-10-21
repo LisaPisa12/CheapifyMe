@@ -15,6 +15,7 @@ export type offer = {
   description: string;
   score: number;
   available: boolean;
+  voted?: boolean;
 };
 export type location = {
   type: string;
@@ -28,7 +29,7 @@ export type place = {
   address?: string;
   image?: string;
   isInsideRadius?: boolean;
-  offers: offer[];
+  offers?: offer[];
 };
 
 export interface RootState {

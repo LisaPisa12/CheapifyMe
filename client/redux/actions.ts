@@ -28,6 +28,13 @@ export function setUserCoordinates(coords: coords) {
   };
 }
 
+export function voteNewOffer(vote: any) {
+  return {
+    type: 'SET_VOTED_OFFER',
+    payload: vote,
+  };
+}
+
 export function setShowFloat(showFloat: boolean) {
   return {
     type: 'SET_SHOW_FLOAT',

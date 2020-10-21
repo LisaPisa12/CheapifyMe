@@ -56,7 +56,13 @@ const reducer = createReducer(initialState, {
 
   SET_IF_INSIDE_RADIUS: (state, action) => {
     const place = state.places.find((el) => el.id === action.payload.id);
-    if (place) place.isInsideRadius = action.payload.isInsideRadius;
+    if (place && !action.payload.voted)
+      place.isInsideRadius = action.payload.isInsideRadius;
+  },
+
+  SET_VOTED_OFFER: (state, action) => {
+    const place = state.places.find((el) => el.id === action.payload.id);
+    if (place) place.offers = action.payload.offers;
   },
 
   SET_FILTERED_PLACES: (state, action) => {
@@ -65,7 +71,7 @@ const reducer = createReducer(initialState, {
     } else {
       state.filteredPlaces.forEach(
         (el) =>
-          (el.offers = el.offers.filter(
+          (el.offers = el.offers?.filter(
             (el) => el.consumableType.toLowerCase() === action.payload
           ))
       );
