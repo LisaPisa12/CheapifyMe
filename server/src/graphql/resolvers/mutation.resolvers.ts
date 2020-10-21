@@ -21,12 +21,12 @@ export default {
     }
   },
 
-  insertOffer: async (_: any, { id, name, location, offer }: any) => {
+  insertOffer: async (_: any, { id, name, location, address, offer }: any) => {
     try {
      
       const place = await Place.findById(id);
       if (!place) {
-        const newPlace = new Place({name, location, offers:offer})
+        const newPlace = new Place({name, location, address, offers:offer})
         newPlace.save(); 
          return newPlace;  
       }else{
