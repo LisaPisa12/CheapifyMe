@@ -5,6 +5,8 @@ import DashBar from '../components/DashBar';
 import DashList from '../components/DashList';
 import AddButton from '../components/AddButton';
 
+import { useRouter } from 'next/router';
+
 import { motion } from 'framer-motion';
 
 import { useEffect } from 'react';
@@ -31,9 +33,18 @@ const divStyle = {
 };
 
 function Dashboard() {
-  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
+  const router = useRouter();
   const dispatch = useDispatch();
+  const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const showFloat = useSelector((state: RootState) => state.showFloat);
+  const coordinates = useSelector((state: RootState) => state.userCoords);
+
+  if (
+    typeof window !== 'undefined' &&
+    coordinates.longitude === 0 &&
+    coordinates.latitude === 0
+  )
+    router.push('/');
 
   useEffect(() => {
     if (!scriptLoad) {
@@ -53,7 +64,11 @@ function Dashboard() {
     >
       <motion.div variants={stagger} style={divStyle}>
         <DashBar />
-        <AddButton />
+        <AddButton
+          click={() => router.push('/placeSelector')}
+          text={'+'}
+          finalPosition="0"
+        />
         {/* <RepeatSearch /> */}
         {/* eslint-disable-next-line no-undef */}
         {scriptLoad && <Map mapType={google.maps.MapTypeId.ROADMAP} />}

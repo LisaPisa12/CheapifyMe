@@ -7,7 +7,12 @@ import { useLazyQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
 import styles from '../styles/Home.module.css';
-import { setCoordinates, setPlaces, setScriptLoaded } from '../redux/actions';
+import {
+  setMapCoordinates,
+  setUserCoordinates,
+  setPlaces,
+  setScriptLoaded,
+} from '../redux/actions';
 import { RootState, coords } from '../types/redux';
 import { getPlaces } from '../Apollo/';
 
@@ -77,7 +82,6 @@ export default function Home() {
 
   const router = useRouter();
 
-  const Coords = useSelector((state: RootState) => state.coords);
   let geocoder: google.maps.Geocoder;
   if (scriptLoad) {
     geocoder = new google.maps.Geocoder();
@@ -93,8 +97,9 @@ export default function Home() {
       dispatch(setScriptLoaded(true));
     });
   }, []);
+
   useEffect(() => {
-    if (data && data.getOffersNearby) {
+    if (data) {
       router.push('/dashboard');
       if (data.getOffersNearby.length > 0) {
         dispatch(setPlaces(data.getOffersNearby));
@@ -105,9 +110,9 @@ export default function Home() {
   function success(position: { coords: coords }) {
     const { latitude, longitude } = position.coords;
 
-    if (Coords) {
-      dispatch(setCoordinates({ latitude, longitude }));
-
+    if (position.coords) {
+      dispatch(setMapCoordinates({ latitude, longitude }));
+      dispatch(setUserCoordinates({ latitude, longitude }));
       getPlacesData({
         variables: {
           location: {
@@ -143,7 +148,13 @@ export default function Home() {
       if (status === 'OK') {
         const res = result[0].geometry.location.toJSON();
         dispatch(
-          setCoordinates({
+          setMapCoordinates({
+            latitude: res.lat,
+            longitude: res.lng,
+          })
+        );
+        dispatch(
+          setUserCoordinates({
             latitude: res.lat,
             longitude: res.lng,
           })
