@@ -5,23 +5,17 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, place } from '../../types/redux';
 
-import { setIfInsideRadius, voteNewOffer } from '../../redux/actions';
+import { setIfInsideRadius } from '../../redux/actions';
 
 import calculateDistance from '../../helpers/calcDistance';
 
 import { WatchedElement } from './element';
-
-import { useMutation } from '@apollo/client';
-
-import { voteOffer } from '../../Apollo/';
 
 function DashFloat() {
   const dispatch = useDispatch();
   const places = useSelector((state: RootState) => state.places);
   const thisId = useSelector((state: RootState) => state.selectedId);
   const userCoords = useSelector((state: RootState) => state.userCoords);
-
-  const [mutateOffer] = useMutation(voteOffer);
 
   const createGrid = () => {
     const root = document.documentElement;
@@ -56,35 +50,6 @@ function DashFloat() {
       newElement.isInsideRadius = distance ? distance < 0.36 : false;
       dispatch(setIfInsideRadius(newElement));
     });
-  };
-
-  const vote = async (vote: number, placeId: string, offerId: number) => {
-    const thisOffer = {
-      id: offerId,
-      score: vote,
-    };
-    const place = await mutateOffer({
-      variables: {
-        id: placeId,
-        offer: thisOffer,
-      },
-    });
-
-    const newOffers = place?.offers?.map((offer, index) => {
-      if (index === offerId) offer.voted = true;
-      else offer.voted = false;
-      return offer;
-    });
-
-    if (place) {
-      const votedOffer = {
-        id: placeId,
-        offers: newOffers,
-        vote: true,
-      };
-
-      dispatch(voteNewOffer(votedOffer));
-    }
   };
 
   useEffect(() => {
