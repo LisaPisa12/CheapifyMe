@@ -21,7 +21,7 @@ const fadeInUp = {
 function DashBar() {
   return (
     <motion.div className={styles.dashbar_container} variants={fadeInUp}>
-      <img src="cheapifyme.gif" alt="" className={styles.logo} />
+      <img src="logo.png" alt="" className={styles.logo} />
       <button className={styles.filter_button}>
         <img src="testFilter.svg" className={styles.filter_img}></img>
       </button>

@@ -188,7 +188,7 @@ export default function Home() {
         >
           <img
             className={styles.image}
-            src="cheapifyme.gif"
+            src="logo.png"
             data-testid="img"
           />
         </motion.div>
