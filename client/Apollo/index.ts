@@ -3,7 +3,7 @@ import fetch from 'cross-fetch';
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: 'http://localhost:5000/graphql', fetch }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 const getPlaces = gql`
@@ -55,6 +55,25 @@ const insertOffer = gql`
   }
 `;
 
+const voteOffer = gql`
+  mutation VoteOffer($id: String!, $offer: [VoteInput]!) {
+    voteOffer(id: $id, offer: $offer) {
+      id
+      offers {
+        consumableType
+        offerType
+        start
+        end
+        repeat
+        repeatEvery
+        description
+        score
+        available
+      }
+    }
+  }
+`;
+
 // This goes under name in the query
 
-export { client, getPlaces, insertOffer };
+export { client, getPlaces, insertOffer, voteOffer };
