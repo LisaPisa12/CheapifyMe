@@ -5,6 +5,7 @@ type Places {
     id:String!
     name: String!
     location:Point!
+    address:String
     image: String
     zipCode: Int
     offers: [Offer]!
