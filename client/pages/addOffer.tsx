@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/client';
 import { setNewOffer, setScriptLoaded } from '../redux/actions';
 import { RootState } from '../types/redux';
 import { insertOffer } from '../Apollo';
-import { animate, motion, useAnimation, transform } from 'framer-motion';
+import { motion, useAnimation, transform } from 'framer-motion';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 const easing = [0.6, -0.05, 0.01, 0.99];
