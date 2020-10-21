@@ -5,7 +5,7 @@
   grid-template-rows: 60px repeat(4, 1fr) 60px;
   background-color: var(--primary-light);
 }
-.motion_container{
+.motion_container {
   height: 100%;
   width: 100%;
 }
@@ -19,7 +19,7 @@
   color: white;
 }
 
-.formContainer {  
+.formContainer {
   width: 100%;
   color: white;
   display: flex;
@@ -47,14 +47,14 @@
 }
 
 .dates {
-  margin:5px;
+  margin: 5px;
   padding: 5px;
   display: flex;
   flex-direction: column;
-  text-align: center; 
-  
-  border: 1px solid #44A671;
-  box-shadow: 0 0 3px 3px #44A671;
+  text-align: center;
+
+  border: 1px solid #44a671;
+  box-shadow: 0 0 3px 3px #44a671;
   border-color: aqua;
   border-radius: 5px;
 }
@@ -68,12 +68,12 @@
   padding: 1em;
 }
 
-.hidden_button{
+.hidden_button {
   opacity: 0;
   width: 0;
   height: 0;
 }
- .hidden_button ~ .icon {
+.hidden_button ~ .icon {
   cursor: pointer;
 }
 
@@ -81,7 +81,7 @@
   height: 100px;
   width: auto;
 }
-.hidden_button:checked + label>img {
+.hidden_button:checked + label > img {
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px #fff;
   border-radius: 100%;
@@ -93,6 +93,11 @@
   border: none;
   border-radius: 5px;
   font-size: medium;
-  background-color: #44A671 ;
-  color: var(--white);
+  background-color: var(--white);
+  color: #44a671;
+}
+
+.submit_button:active,
+.submit_button:focus {
+  outline: none;
 }
