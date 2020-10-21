@@ -23,7 +23,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 80%;
   justify-content: space-evenly;
   overflow: visible;
   scroll-snap-align: start;
@@ -31,7 +31,7 @@
   scroll-margin-top: 0.5em;
   scroll-margin-bottom: 0.9em;
   text-align: center;
-  width: 90%;
+  width: 80%;
 }
 
 .place h2 {

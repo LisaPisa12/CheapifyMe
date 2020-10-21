@@ -10,13 +10,39 @@ import { useRouter } from 'next/router';
 
 import { loadMapApi } from '../utils/googleMapsUtils';
 
+import AddButton from '../components/AddButton';
+import { motion } from 'framer-motion';
+
+import calculateDistance from '../helpers/calcDistance';
+
+type newPlace = {
+  name?: string;
+  distance?: number;
+  location?: any;
+  address?: string;
+  placeId?: string;
+};
+type newPlaces = newPlace[];
+
+const divStyle = {
+  height: '100%',
+  width: '100%',
+};
+
 export default function PlaceSelector() {
   const router = useRouter();
 
   const scriptLoad = useSelector((state: RootState) => state.scriptLoaded);
   const places = useSelector((state: RootState) => state.places);
   const service = useSelector((state: RootState) => state.serviceAPI);
-  const coordinates = useSelector((state: RootState) => state.coords);
+  const coordinates = useSelector((state: RootState) => state.userCoords);
+
+  if (
+    typeof window !== 'undefined' &&
+    coordinates.longitude === 0 &&
+    coordinates.latitude === 0
+  )
+    router.push('/');
 
   useEffect(() => {
     if (!scriptLoad) {
@@ -27,9 +53,7 @@ export default function PlaceSelector() {
     }
   }, []);
 
-  const [googlePlaces, setGooglePlaces] = useState<
-    google.maps.places.PlaceResult[]
-  >();
+  const [googlePlaces, setGooglePlaces] = useState<newPlaces>();
 
   const dispatch = useDispatch();
 
@@ -46,7 +70,6 @@ export default function PlaceSelector() {
     places.map((place, key) => {
       createGrid();
 
-      console.log(place);
       return (
         scriptLoad && (
           <article
@@ -85,7 +108,29 @@ export default function PlaceSelector() {
         request,
         (results: google.maps.places.PlaceResult[], status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            setGooglePlaces(results);
+            const formatedResult: newPlaces = results?.map((place) => {
+              const newPlace: newPlace = {};
+              newPlace.distance = calculateDistance(
+                place.geometry?.location.lat(),
+                place.geometry?.location.lng(),
+                coordinates.latitude,
+                coordinates.longitude
+              );
+              newPlace.name = place.name;
+              newPlace.address = place.formatted_address
+                ? place.formatted_address
+                : place.vicinity;
+              newPlace.location = place.geometry?.location;
+              newPlace.placeId = place.place_id;
+              return newPlace;
+            });
+
+            const sortedResult = formatedResult.sort((a, b) => {
+              if (a.distance && b.distance) return a.distance - b.distance;
+              else return 0;
+            });
+
+            setGooglePlaces(sortedResult);
             setRadius(radius + 400);
           }
         }
@@ -98,13 +143,13 @@ export default function PlaceSelector() {
       createGrid();
       const thisPlace = {
         name: place.name,
-        location: place.geometry?.location.toJSON(),
+        location: place.location.toJSON(),
       };
 
       return (
         scriptLoad && (
           <article
-            key={place.place_id}
+            key={place.placeId}
             className={styles.place}
             onClick={() => {
               dispatch(setNewPlace(thisPlace));
@@ -112,7 +157,7 @@ export default function PlaceSelector() {
             }}
           >
             <h2>{place.name}</h2>
-            <p>{place.vicinity}</p>
+            <p>{place.address}</p>
           </article>
         )
       );
@@ -120,27 +165,39 @@ export default function PlaceSelector() {
 
   return (
     scriptLoad && (
-      <section className={styles.section}>
-        <div className={styles.results}>
-          {showPlaces()}
-          {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
+      <motion.div
+        style={divStyle}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <section className={styles.section}>
+          <div className={styles.results}>
+            <AddButton
+              click={() => router.push('/dashboard')}
+              text={'X'}
+              finalPosition={-100}
+            />
+            {showPlaces()}
+            {scriptLoad && googlePlaces ? showGooglePlaces() : ''}
 
-          {scriptLoad && (
-            <article
-              className={styles.place}
-              onClick={getPlaces}
-              key={'loadMore'}
-            >
-              <h2>
-                {places.length || googlePlaces?.length
-                  ? 'Search more places'
-                  : `There isn't any offer nearby. Click me for search for near places!`}
-              </h2>
-            </article>
-          )}
-          <div className={styles.blank_div}></div>
-        </div>
-      </section>
+            {scriptLoad && (
+              <article
+                className={styles.place}
+                onClick={getPlaces}
+                key={'loadMore'}
+              >
+                <h2>
+                  {places.length || googlePlaces?.length
+                    ? 'Search more places'
+                    : `There isn't any offer nearby. Click me for search for near places!`}
+                </h2>
+              </article>
+            )}
+            <div className={styles.blank_div}></div>
+          </div>
+        </section>
+      </motion.div>
     )
   );
 }
