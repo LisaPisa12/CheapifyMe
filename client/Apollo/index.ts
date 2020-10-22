@@ -10,6 +10,7 @@ const getPlaces = gql`
   query($location: Point!) {
     getOffersNearby(location: $location) {
       id
+      address
       name
       location
       image

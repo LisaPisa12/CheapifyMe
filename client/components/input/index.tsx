@@ -14,6 +14,7 @@ export default function Input({ props }: Iinput) {
       className={style.input}
       data-testid="location-textbox"
       value={text}
+      placeholder="Where are you?"
       onChange={(e) => {
         setText(e.target.value);
       }}

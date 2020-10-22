@@ -1,65 +1,56 @@
 [
   {
-    "name": "navbar",
+    "name": "Madre Lievito",
     "zipcode": 12234,
+    "address": "Carrer de la Llacuna, 1, 08005 Barcelona",
     "location": {
-      "type":"Point",
-      "coordinates": [41.391527, 2.188049]
+      "type": "Point",
+      "coordinates": [41.397582, 2.20328]
     },
     "image": "urltestlala",
     "offers": [
       {
         "consumableType": "food",
-        "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
+        "offerType": "percentage",
+        "start": "10/22/2020",
+        "end": "10/24/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "meteor burgers for 3 euros",
+        "description": "Pineapple free in any pizza you want if your name is Leo",
         "score": 5,
         "available": true
-      },
-      {
-        "consumableType": "drink",
-        "offerType": "2x1",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
-        "repeat": true,
-        "repeatEvery": "week",
-        "description": "2x1 in margaritas",
-        "score": 5,
-        "available": false
       }
     ]
   },
   {
     "name": "L'Ovella Negra Marina",
     "zipcode": 12234,
+    "address": "Carrer de Zamora, 78, 08018 Barcelona",
     "location": {
-      "type":"Point",
-      "coordinates": [41.3903651,2.1941609]
+      "type": "Point",
+      "coordinates": [41.395774, 2.190262]
     },
     "image": "urltestlala",
     "offers": [
       {
-        "consumableType": "food",
+        "consumableType": "Drink",
         "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
+        "start": "10/21/2020",
+        "end": "10/27/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "lalalalalalal",
+        "description": "Free shot every 10€",
         "score": 5,
         "available": true
       },
       {
-        "consumableType": "food",
+        "consumableType": "Drink",
         "offerType": "happy hour",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
+        "start": "10/21/2020",
+        "end": "10/27/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "lalalalalalal",
+        "description": "2 free shot every 17,5€",
         "score": 5,
         "available": true
       }
@@ -68,34 +59,35 @@
   {
     "name": "mcDonalds",
     "zipcode": 12234,
+    "address": "Parc de Mar |, Carrer de Jaume Vicens i Vives, nº 2, 08005 Barcelona",
     "location": {
-      "type":"Point",
-      "coordinates": [41.392669, 2.203956]
+      "type": "Point",
+      "coordinates": [41.39262, 2.203553]
     },
     "image": "urltestlala",
     "offers": [
       {
         "consumableType": "food",
-        "offerType": "discount",
-        "start": "09/12/2020",
-        "end": "09/12/2020",
+        "offerType": "2x1",
+        "start": "10/20/2020",
+        "end": "10/30/2020",
         "repeat": true,
         "repeatEvery": "week",
-        "description": "half priced bigMac",
+        "description": "Buy a big menu and get another",
         "score": 5,
         "available": true
-      }    
+      }
     ]
   },
   {
     "name": "Nomad Coffee Roaster’s Home",
     "zipcode": 12234,
     "location": {
-      "type":"Point",
+      "type": "Point",
       "coordinates": [41.397899, 2.195658]
     },
     "image": "urltestlala",
-    "offers": [    
+    "offers": [
       {
         "consumableType": "food",
         "offerType": "happy hour",
@@ -113,7 +105,7 @@
     "name": "test1",
     "zipcode": 12234,
     "location": {
-      "type":"Point",
+      "type": "Point",
       "coordinates": [-73.8642349, 40.75356]
     },
     "image": "urltestlala",

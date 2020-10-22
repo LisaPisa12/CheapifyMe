@@ -5,7 +5,7 @@
   align-items: center;
   height: 80px;
   width: 100%;
-  background-color:var(--primary-light); 
+  background-color: var(--primary-light);
   z-index: 800;
   padding: 0 2rem;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -16,30 +16,30 @@
   color: var(--white);
 }
 
-.show_list_container{
-  position: relative; 
+.show_list_container {
+  position: relative;
   z-index: 999;
   bottom: 40rem;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
-.fixingScroll{
+.fixingScroll {
   height: 100%;
   width: 100%;
 }
 
 .close {
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 80px;
   width: 100%;
   border-radius: 10px 10px 0 0;
-  background-color:var(--primary-light); 
+  background-color: var(--primary-light);
   z-index: 800;
   padding: 0 2rem;
-  
+
   bottom: 0;
 }
 
@@ -53,5 +53,5 @@
   place-items: center;
   overflow: scroll;
   background-color: var(--white);
-
+  grid-template-rows: repeat(3, 31%);
 }

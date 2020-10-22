@@ -99,15 +99,13 @@ function DashFloat() {
                     >
                       {offer.description}
                     </p>
-                    <p
-                      className={
-                        element.isInsideRadius
-                          ? styles.offerType_vote
-                          : styles.offerType
-                      }
-                    >
-                      {offer.offerType}
-                    </p>
+                    {offer.offerType === '2x1' ? (
+                      <img src="2x1.svg"></img>
+                    ) : offer.offerType === 'happy hour' ? (
+                      <img src="happyHour.svg"></img>
+                    ) : (
+                      <img src="discount.svg"></img>
+                    )}
                     <p className={styles.dates}>
                       Offers ends on {offer.end ? offer.end : ''}
                     </p>

@@ -19,66 +19,66 @@ const easing = [0.6, -0.05, 0.01, 0.99];
 
 const AnimateConsumable = {
   initial: {
-    y: -300
+    y: -300,
   },
   animate: {
     y: 200,
     transition: {
       duration: 1.4,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.4,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 const AnimateOfferType = {
   initial: {
-    y: 600
+    y: 600,
   },
   animate: {
     y: 100,
     transition: {
       duration: 1.6,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   clicked: {
     y: 0,
     transition: {
       duration: 1.2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 
 const AnimateTime = {
   initial: {
-    x: 600
+    x: 600,
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 const AnimateDescription = {
   initial: {
-    x: -600
+    x: -600,
   },
   animate: {
     x: 0,
     transition: {
       duration: 2,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 };
 
 export default function addOffer() {
@@ -113,7 +113,7 @@ export default function addOffer() {
     thisPlace = newPlace;
     location = {
       type: 'Point',
-      coordinates: [thisPlace.location.lat, thisPlace.location.lng]
+      coordinates: [thisPlace.location.lat, thisPlace.location.lng],
     };
   } else if (places.length > 0) {
     thisPlace = places[thisId];
@@ -124,7 +124,7 @@ export default function addOffer() {
 
   const [dates, setDates] = useState({
     from: null,
-    to: null
+    to: null,
   });
   const [thisOffer, setThisOffer] = useState({
     consumableType: '',
@@ -133,7 +133,7 @@ export default function addOffer() {
     end: '',
     repeat: false,
     repeatEvery: undefined,
-    description: ''
+    description: '',
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -286,7 +286,7 @@ export default function addOffer() {
                         setThisOffer({
                           ...thisOffer,
                           start: moment(from).format('Do MMM YYYY'),
-                          end: moment(to).format('Do MMM YYYY')
+                          end: moment(to).format('Do MMM YYYY'),
                         });
                       }}
                     />
@@ -309,6 +309,7 @@ export default function addOffer() {
                     value={thisOffer.description}
                     className={styles.input}
                     onChange={handleChange}
+                    autoComplete="off"
                   />
                 </div>
               </article>
@@ -326,8 +327,8 @@ export default function addOffer() {
                 scale: 1,
                 transition: {
                   duration: 1,
-                  ease: easing
-                }
+                  ease: easing,
+                },
               }}
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
@@ -341,8 +342,8 @@ export default function addOffer() {
                         name: thisPlace.name,
                         address: thisPlace.address,
                         location: location,
-                        offer: thisOffer
-                      }
+                        offer: thisOffer,
+                      },
                     });
 
                     dispatch(setNewOffer(newOffer.data.insertOffer));

@@ -87,6 +87,13 @@
   text-align: center;
 }
 
+.description {
+  width: 90%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
 .votes {
   height: 100%;
   width: 100%;
@@ -106,9 +113,15 @@
   place-items: center;
 }
 
+.offerType_vote,
+.offerType {
+  text-transform: uppercase;
+}
+
 .WatchedElement:focus {
   outline: none;
 }
+
 .dates {
   color: grey;
   font-size: 0.8em;
