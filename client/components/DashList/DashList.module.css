@@ -22,7 +22,11 @@
   bottom: 40rem;
   width: 100%; 
   height: 100%; 
-  overflow: auto;
+  overflow: hidden;
+}
+.fixingScroll{
+  height: 100%;
+  width: 100%;
 }
 
 .close {
@@ -37,4 +41,17 @@
   padding: 0 2rem;
   
   bottom: 0;
+}
+
+.list_item_container {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  scroll-snap-type: y mandatory;
+  scroll-margin: 1em;
+  flex-direction: column;
+  place-items: center;
+  overflow: scroll;
+  background-color: var(--white);
+
 }

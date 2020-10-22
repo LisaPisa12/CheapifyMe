@@ -79,7 +79,8 @@ const Map = ({ mapType }: IMap) => {
     places.forEach((el, index) => {
       let lat, lng;
       if (el.location) [lat, lng] = el.location.coordinates;
-      addMarker(index, el.offers[0].consumableType, { lat, lng });
+      if (el.offers && el.offers.length > 0)
+        addMarker(index, el.offers[0].consumableType, { lat, lng });
     });
   }
   map?.panTo({ lat: coords.latitude, lng: coords.longitude });

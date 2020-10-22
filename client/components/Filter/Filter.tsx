@@ -15,6 +15,7 @@ function Filter() {
       dispatch(setFilteredPlaces('all'));
       dispatch(setFilteredPlaces(e.target.value));
     } else {
+      dispatch(setFilteredPlaces('all'));
       dispatch(setFilteredPlaces(e.target.value));
     }
     previusVal = e.target.value;
@@ -31,12 +32,14 @@ function Filter() {
             onChange={handleClick}
             className={styles.hidde_button}
           />
-          <label htmlFor="all">All Offers</label>
+          <label htmlFor="all">
+            <img src="allOffers.svg" alt="" className={styles.icon} />
+          </label>
         </motion.div>
       </div>
 
       <div className="food">
-        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <input
             type="radio"
             name="filter"
@@ -45,7 +48,9 @@ function Filter() {
             onChange={handleClick}
             className={styles.hidde_button}
           />
-          <label htmlFor="food">Food </label>
+          <label htmlFor="food">
+            <img src="foodIcon.svg" alt="" className={styles.icon} />
+          </label>
         </motion.div>
       </div>
 
@@ -59,7 +64,10 @@ function Filter() {
             onChange={handleClick}
             className={styles.hidde_button}
           />
-          <label htmlFor="drink"> Drink</label>
+          <label htmlFor="drink">
+            {' '}
+            <img src="drinkIcon.svg" alt="" className={styles.icon} />
+          </label>
         </motion.div>
       </div>
     </div>

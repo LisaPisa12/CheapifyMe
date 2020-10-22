@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  color:white;
 }
 .hidde_button{
   opacity: 0;
@@ -9,8 +10,11 @@
   height: 0;
 }
 
-.hidden_button:checked + label>img {
+.hidden_button:checked + label > img {
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px #fff;
   border-radius: 100%;
+}
+.icon {
+  height: 65px;
 }
