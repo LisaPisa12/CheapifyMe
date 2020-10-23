@@ -23,7 +23,7 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
    ```
 
 3. Start the client and the server 
- ```bash
+   ```bash
    cd client
    npm start
    
