@@ -13,6 +13,6 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
 # Tech Stack
 
 # Developers
-Erik Pastor - https://github.com/erikpr1994 - https://www.linkedin.com/in/erikpr94/ 
-Jonander Elosua - https://github.com/Jonandereg - https://www.linkedin.com/in/jonander-elosua-41095654/
-Elizabeth Sarquiz - https://github.com/LisaPisa12/ - https://www.linkedin.com/in/elizabeth-sarquiz-55513a1b9/
+*Erik Pastor - https://github.com/erikpr1994 - https://www.linkedin.com/in/erikpr94/ 
+*Jonander Elosua - https://github.com/Jonandereg - https://www.linkedin.com/in/jonander-elosua-41095654/
+*Elizabeth Sarquiz - https://github.com/LisaPisa12/ - https://www.linkedin.com/in/elizabeth-sarquiz-55513a1b9/
