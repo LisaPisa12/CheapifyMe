@@ -38,11 +38,14 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
 * Frontend
   * [React](https://reactjs.org/)
   * [Redux](https://redux.js.org/)
+  * [Next.js](https://nextjs.org/)
+  * [Framer Motion](https://www.framer.com/motion/)
+  * [Apollo Client](https://www.apollographql.com/docs/react/)
 * Backend:
   * [GraphQL](https://graphql.org/)
   * [Apollo Server](https://www.apollographql.com/docs/)
-  * [Mongo](https://www.mongodb.com/)
-  * [Next.js](https://nextjs.org/)
+  * [MongoDB](https://www.mongodb.com/)
+ 
 
 
 # Developers
