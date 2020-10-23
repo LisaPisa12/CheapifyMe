@@ -7,6 +7,9 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
 
 # Screenshots
 
+<p align="center">
+  <img src="./client/public/screenshot.png" width="300">
+ </p> 
 
 # Getting Started
 1. Clone this repo and enter!
