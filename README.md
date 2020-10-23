@@ -44,7 +44,6 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
   * [Mongo](https://www.mongodb.com/)
   * [Next.js](https://nextjs.org/)
 
-# Tech Stack
 
 # Developers
 * Erik Pastor - [Github](https://github.com/erikpr1994) - [LinkedIn](https://www.linkedin.com/in/erikpr94/)
