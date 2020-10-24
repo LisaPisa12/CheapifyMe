@@ -28,10 +28,10 @@ CheapifyMe is a food and drink deal finder app. It will help you find amazing de
 3. Start the client and the server 
    ```bash
    cd client
-   npm start
+   npm run dev:secure
    
    cd server 
-   npm start
+   npm run dev:secure
    ```
 
 4. The app will show on localhost:3000
